@@ -34,6 +34,9 @@ comparison.txt: syncopated-test.txt headwords.txt
 	paste syncopated-test.txt headwords.txt | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' > $@
 	wc -l $@
 
+diacriticbug.txt: comparison.txt
+	cat comparison.txt | sed 's/ǧ/g/g; s/ȟ/h/g; s/ǩ/k/g' | egrep '^(.+)[^a-z]\1$$' | sed 's/\t.*//' > $@
+
 # analyze usage of apostrophe in Biigtigong forms 
 badapost.txt: $(TSV) multichar.txt headwords.txt
 	cat headwords.txt | egrep -o "[^aeiou-]+'[^aeiou-]+"  | egrep -v ' ' | tr -d "'" | egrep -v -f multichar.txt | sort | uniq -c | sort -r -n > $@
