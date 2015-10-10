@@ -34,6 +34,7 @@ shp
 sht
 sk
 sǩ
+sp
 t
 w
 y

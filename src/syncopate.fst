@@ -3,7 +3,7 @@ define LongV [ e | a a | i i | o o ];
 define Vowel [ ShortV | LongV ];
 ! no diacritics since upper language is full-vowel
 define wAbleCons [ ' | b | c h | d | g | h | j | k | m | m b | n | n d | n g | n h | n j | n z | p | s | s h | s h k | s k | t | z | z h ];
-define otherCons [ n s | n y | n z h | s h p | s h t | w | y ];
+define otherCons [ n s | n y | n z h | s h p | s h t | s p | w | y ];
 ! unused characters in Nishnaabemwin; dropped a,i,o map to these respectively
 define dropMarker [ F | L | X ];
 define Cons [ wAbleCons | otherCons ];
