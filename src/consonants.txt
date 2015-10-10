@@ -1,7 +1,6 @@
 '
 b
 ch
-cȟ
 d
 g
 ǧ
@@ -17,17 +16,14 @@ nd
 ng
 nǧ
 nh
-nȟ
 nj
 ns
 ny
 nz
 nzh
-nzȟ
 p
 s
 sh
-sȟ
 shk
 shǩ
 shp
@@ -40,4 +36,3 @@ w
 y
 z
 zh
-zȟ
