@@ -28,8 +28,10 @@ fullvowel.txt: $(TSV)
 syncopated-test.txt: fullvowel.txt syncopate.bin
 	cat fullvowel.txt | flookup -i syncopate.bin | egrep '.' | sed 's/^.*\t//' > $@
 
+# filters out (1) anything correct (2) entries with spaces 
+# (3) entries missing full-vowel form (so 1st column in resulting paste empty)
 comparison.txt: syncopated-test.txt headwords.txt
-	paste syncopated-test.txt headwords.txt | egrep -v '^(.+).\1$$' > $@
+	paste syncopated-test.txt headwords.txt | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' > $@
 	wc -l $@
 
 # analyze usage of apostrophe in Biigtigong forms 
