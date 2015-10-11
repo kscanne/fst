@@ -31,8 +31,11 @@ syncopated-test.txt: fullvowel.txt syncopate.bin
 # filters out (1) anything correct (2) entries with spaces 
 # (3) entries missing full-vowel form (so 1st column in resulting paste empty)
 comparison.txt: syncopated-test.txt headwords.txt
+	touch $@
+	mv -f $@ comparison-prev.txt
 	paste syncopated-test.txt headwords.txt | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' > $@
-	wc -l $@
+	-diff -u comparison-prev.txt $@
+	wc -l comparison-prev.txt $@
 
 diacriticbug.txt: comparison.txt
 	cat comparison.txt | sed 's/ǧ/g/g; s/ȟ/h/g; s/ǩ/k/g' | egrep '^(.+)[^a-z]\1$$' | sed 's/\t.*//' > $@
