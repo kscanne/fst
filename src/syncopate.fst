@@ -13,8 +13,9 @@ define markWeak [ a -> F, i -> L, o -> X // .#. _ Cluster Vowel , .#. Cluster _ 
 define insertApost [ c dropMarker h -> c ' h, m dropMarker b -> m ' b, n dropMarker d -> n ' d, n dropMarker g -> n ' g, n dropMarker h -> n ' h, n dropMarker j -> n ' j, n dropMarker s -> n ' s, n dropMarker y -> n ' y, n dropMarker z -> n ' z, s dropMarker h -> s ' h, s dropMarker k -> s ' k ];
 define insertDiacriticsGK [ g X -> ǧ, k X -> ǩ, g w F -> ǧ, k w F -> ǩ || _ \w];
 define insertDiacriticsH [ h X -> ȟ, h w F -> ȟ || Vowel _ \w ];
+define initialO [ X -> w || .#. _, Hyphen _ ];
 define dropAllMarkers [ F -> 0, L -> 0, X -> 0 ];
 define convertGlottal [ ' -> h ];
-define syncopate [ markWeak .o. convertGlottal .o. insertApost .o. insertDiacriticsGK .o. insertDiacriticsH .o. dropAllMarkers ];
+define syncopate [ markWeak .o. convertGlottal .o. insertApost .o. insertDiacriticsGK .o. insertDiacriticsH .o. initialO .o. dropAllMarkers ];
 push defined syncopate
 save stack syncopate.bin
