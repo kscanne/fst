@@ -43,13 +43,13 @@ diacriticbug.txt: comparison.txt
 	wc -l $@
 
 # analyze usage of apostrophe in Biigtigong forms 
-badapost.txt: $(TSV) allaposts.txt headwords.txt
+badapost.txt: allaposts.txt headwords.txt
 	cat headwords.txt | egrep -o "[^aeiou-]+'[^aeiou-]+"  | egrep -v ' ' | egrep -v -f allaposts.txt | sort | uniq -c | sort -r -n > $@
 
-badchar.txt: $(TSV) headwords.txt
+badchar.txt: headwords.txt
 	-cat headwords.txt | egrep -v '(weǧnesh| OR )' | egrep "[^A-EG-KM-PSTWYZa-eg-km-pstwyzǧǩȟ ?'-]" > $@
 
-badvowel.txt: $(TSV) headwords.txt
+badvowel.txt: headwords.txt
 	-cat headwords.txt | egrep '(a[eio]|e[aio]|i[aeo]|o[aei])' > $@
 
 clusters.txt: consonants.txt
