@@ -42,6 +42,9 @@ diacriticbug.txt: comparison.txt
 	cat comparison.txt | sed 's/ǧ/g/g; s/ȟ/h/g; s/ǩ/k/g' | egrep '^(.+)[^a-z]\1$$' | sed 's/\t.*//' > $@
 	wc -l $@
 
+consonanttypos.txt: comparison.txt
+	cat comparison.txt | while read x; do if ! echo "$$x" | tr -d "aeiouw'" | egrep '^(.+).\1$$' > /dev/null; then echo $$x; fi; done > $@
+
 # analyze usage of apostrophe in Biigtigong forms 
 badapost.txt: allaposts.txt headwords.txt
 	cat headwords.txt | egrep -o "[^aeiou-]+'[^aeiou-]+"  | egrep -v ' ' | egrep -v -f allaposts.txt | sort | uniq -c | sort -r -n > $@
