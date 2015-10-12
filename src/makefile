@@ -13,8 +13,9 @@ all: badapost.txt badchar.txt badvowel.txt badcluster.txt
 syncopate.bin: syncopate.fst
 	foma -f syncopate.fst
 
-multichar.txt: consonants.txt
-	egrep '..' consonants.txt > $@
+# all theoretically possible apostrophes in Biigtigong orthography
+allaposts.txt: consonants.txt
+	(egrep '^..' consonants.txt | sed "s/^./&'/"; egrep '^...$$' consonants.txt | sed "s/.$$/'&/") | sort -u > $@
 
 ascii-headwords.txt: headwords.txt
 	cat headwords.txt | sed 's/ǧ/g/g; s/ȟ/h/g; s/ǩ/k/g' > $@
@@ -39,10 +40,11 @@ comparison.txt: syncopated-test.txt headwords.txt
 
 diacriticbug.txt: comparison.txt
 	cat comparison.txt | sed 's/ǧ/g/g; s/ȟ/h/g; s/ǩ/k/g' | egrep '^(.+)[^a-z]\1$$' | sed 's/\t.*//' > $@
+	wc -l $@
 
 # analyze usage of apostrophe in Biigtigong forms 
-badapost.txt: $(TSV) multichar.txt headwords.txt
-	cat headwords.txt | egrep -o "[^aeiou-]+'[^aeiou-]+"  | egrep -v ' ' | tr -d "'" | egrep -v -f multichar.txt | sort | uniq -c | sort -r -n > $@
+badapost.txt: $(TSV) allaposts.txt headwords.txt
+	cat headwords.txt | egrep -o "[^aeiou-]+'[^aeiou-]+"  | egrep -v ' ' | egrep -v -f allaposts.txt | sort | uniq -c | sort -r -n > $@
 
 badchar.txt: $(TSV) headwords.txt
 	-cat headwords.txt | egrep -v '(weǧnesh| OR )' | egrep "[^A-EG-KM-PSTWYZa-eg-km-pstwyzǧǩȟ ?'-]" > $@
@@ -57,4 +59,4 @@ badcluster.txt: fullvowel.txt clusters.txt
 	-cat fullvowel.txt | egrep -v ' ' | egrep -o '[^aeiou-]+' | keepif -n clusters.txt | sort | uniq -c | sort -r -n > $@
 
 clean:
-	rm -f badapost.txt multichar.txt badchar.txt badcluster.txt badvowel.txt syncopate.bin headwords.txt fullvowel.txt syncopated-test.txt comparison.txt clusters.txt ascii-headwords.txt
+	rm -f badapost.txt allaposts.txt badchar.txt badcluster.txt badvowel.txt syncopate.bin headwords.txt fullvowel.txt syncopated-test.txt comparison.txt clusters.txt ascii-headwords.txt
