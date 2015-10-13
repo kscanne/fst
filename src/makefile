@@ -34,7 +34,7 @@ syncopated-test.txt: fullvowel.txt syncopate.bin
 comparison.txt: syncopated-test.txt headwords.txt
 	touch $@
 	mv -f $@ comparison-prev.txt
-	paste syncopated-test.txt headwords.txt | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' > $@
+	paste syncopated-test.txt headwords.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' > $@
 	-diff -u comparison-prev.txt $@
 	wc -l comparison-prev.txt $@
 
