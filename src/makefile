@@ -34,13 +34,16 @@ syncopated-test.txt: fullvowel.txt syncopate.bin
 comparison.txt: syncopated-test.txt headwords.txt
 	touch $@
 	mv -f $@ comparison-prev.txt
-	paste syncopated-test.txt headwords.txt | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' > $@
+	paste syncopated-test.txt headwords.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' > $@
 	-diff -u comparison-prev.txt $@
 	wc -l comparison-prev.txt $@
 
 diacriticbug.txt: comparison.txt
 	cat comparison.txt | sed 's/ǧ/g/g; s/ȟ/h/g; s/ǩ/k/g' | egrep '^(.+)[^a-z]\1$$' | sed 's/\t.*//' > $@
 	wc -l $@
+
+consonanttypos.txt: comparison.txt
+	cat comparison.txt | while read x; do if ! echo "$$x" | tr -d "aeiouw'" | egrep '^(.+).\1$$' > /dev/null; then echo $$x; fi; done > $@
 
 # analyze usage of apostrophe in Biigtigong forms 
 badapost.txt: allaposts.txt headwords.txt
