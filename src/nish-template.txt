@@ -1,4 +1,4 @@
-Multichar_Symbols +NA +NI 1P+ 2P+ 3P+ Sg+ Pl+ Poss+ Excl+ +1P +2P +3P +Sg +Pl +Pej +Dim +Obv +Loc +Con +Poss
+Multichar_Symbols +NA +NI +NAPl +NIPl 1P+ 2P+ 3P+ Sg+ Pl+ Poss+ Excl+ +1P +2P +3P +Sg +Pl +Pej +Dim +Obv +Loc +Con +Poss
 
 LEXICON Root
 	Nouns ;
@@ -91,7 +91,8 @@ LEXICON Mode
 			Number ;
 
 LEXICON Number
-+Pl:^ag		# ;
-+Sg:0		# ;
++NAPl:^ag		# ;
++NIPl:^an		# ;
++Sg:0			# ;
 
 LEXICON Verbs
