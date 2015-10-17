@@ -1,0 +1,97 @@
+Multichar_Symbols +NA +NI 1P+ 2P+ 3P+ Sg+ Pl+ Poss+ Excl+ +1P +2P +3P +Sg +Pl +Pej +Dim +Obv +Loc +Con +Poss
+
+LEXICON Root
+	Nouns ;
+	Verbs ;
+
+LEXICON Nouns
+	RegularNouns ;
+	! InherentlyPlural ;  ! V p.182
+	! MassNouns ; ...     ! V p.182
+
+LEXICON RegularNouns
+	PossPrefixes ;
+
+LEXICON PossPrefixes
+1P+Sg+Poss+:n		NounStems ;
+2P+Sg+Poss+:g		NounStems ;
+3P+Sg+Poss+:w		NounStems ;
+1P+Pl+Poss+:n		NounStems ;
+1P+Excl+Poss+:g		NounStems ;
+2P+Pl+Poss+:g		NounStems ;
+3P+Pl+Poss+:w		NounStems ;
+					NounStems ;
+
+LEXICON NounStems
+
+LEXICON NA_I
++NA:0	DiminutiveOrContemptive ;
+
+LEXICON NA_II
++NA:0	DiminutiveOrContemptive ;
+
+LEXICON NA_III
++NA:w	DiminutiveOrContemptive ;
+
+! capital W here is a hack to distinguish from IVb;
+! see spelling rewrite rules in nish.fst
+LEXICON NA_IVa
++NA:W	DiminutiveOrContemptive ;
+
+LEXICON NA_IVb
++NA:w	DiminutiveOrContemptive ;
+
+LEXICON NA_V
++NA:y	DiminutiveOrContemptive ;
+
+LEXICON NA_VI
++NA:0	DiminutiveOrContemptive ;
+
+LEXICON NI_I
++NI:0	DiminutiveOrContemptive ;
+
+LEXICON NI_II
++NI:0	DiminutiveOrContemptive ;
+
+LEXICON NI_III
++NI:w	DiminutiveOrContemptive ;
+
+! capital W here is a hack to distinguish from IVb;
+! see spelling rewrite rules in nish.fst
+LEXICON NI_IVa
++NI:W	DiminutiveOrContemptive ;
+
+! Note no NI_IVb
+
+LEXICON NI_V
++NI:y	DiminutiveOrContemptive ;
+
+LEXICON NI_VI
++NI:0	DiminutiveOrContemptive ;
+
+
+LEXICON DiminutiveOrContemptive
++Dim:^ens	PossTheme ;
++Con:^eny	PossTheme ;
+			PossTheme ;
+
+LEXICON PossTheme
++Poss:0		Pejorative ;
+			Pejorative ;
+
+LEXICON Pejorative
++Pej:^sh	Obviation ;
+			Obviation ;
+
+LEXICON Obviation   ! NB only animate nouns have obviative (V p.183)
++Obv:^ni	Mode ;
+			Mode ;
+
+LEXICON Mode
+			Number ;
+
+LEXICON Number
++Pl:^ag		# ;
++Sg:0		# ;
+
+LEXICON Verbs
