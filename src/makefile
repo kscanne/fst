@@ -77,6 +77,26 @@ niVI.txt: $(TSV)
 classified-nouns.txt: naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt
 	cat naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt > $@
 
+nish.txt: nish-template.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt
+	rm -f templex.txt $@
+	cat naI.txt | sed 's/$$/\tNA_I ;/' > templex.txt
+	cat niI.txt | sed 's/$$/\tNI_I ;/' >> templex.txt
+	cat naII.txt | sed 's/$$/\tNA_II ;/' >> templex.txt
+	cat niII.txt | sed 's/$$/\tNI_II ;/' >> templex.txt
+	cat naIII.txt | sed 's/$$/\tNA_III ;/' >> templex.txt
+	cat niIII.txt | sed 's/$$/\tNI_III ;/' >> templex.txt
+	cat naIVa.txt | sed 's/$$/\tNA_IVa ;/' >> templex.txt
+	cat niIVa.txt | sed 's/$$/\tNI_IVa ;/' >> templex.txt
+	cat naIVb.txt | sed 's/$$/\tNA_IVb ;/' >> templex.txt
+	cat niIVb.txt | sed 's/$$/\tNI_IVb ;/' >> templex.txt
+	cat naV.txt | sed 's/$$/\tNA_V ;/' >> templex.txt
+	cat niV.txt | sed 's/$$/\tNI_V ;/' >> templex.txt
+	cat naVI.txt | sed 's/$$/\tNA_VI ;/' >> templex.txt
+	cat niVI.txt | sed 's/$$/\tNI_VI ;/' >> templex.txt
+	cat nish-template.txt | sed '/^LEXICON NounStems/r templex.txt' > $@
+	rm -f templex.txt
+	chmod 444 $@
+
 othernouns.txt: classified-nouns.txt
 	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t\(n[ai]\)\?\t/p' | cut -f 2,7 | egrep '[a-z]$$' | cut -f 1 | keepif -n classified-nouns.txt > $@
 	#cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t\(n[ai]\)\?\t/p' | cut -f 2 | keepif -n classified-nouns.txt > $@
@@ -117,4 +137,4 @@ badcluster.txt: fullvowel.txt clusters.txt
 	-cat fullvowel.txt | egrep -v ' ' | egrep -o '[^aeiou-]+' | keepif -n clusters.txt | sort | uniq -c | sort -r -n > $@
 
 clean:
-	rm -f badapost.txt allaposts.txt badchar.txt badcluster.txt badvowel.txt syncopate.bin headwords.txt fullvowel.txt syncopated-test.txt comparison.txt clusters.txt ascii-headwords.txt classified-nouns.txt othernouns.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt comparison-prev.txt consonanttypos.txt diacriticbug.txt multichar.txt
+	rm -f badapost.txt allaposts.txt badchar.txt badcluster.txt badvowel.txt syncopate.bin headwords.txt fullvowel.txt syncopated-test.txt comparison.txt clusters.txt ascii-headwords.txt classified-nouns.txt othernouns.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt comparison-prev.txt consonanttypos.txt diacriticbug.txt multichar.txt nish.txt
