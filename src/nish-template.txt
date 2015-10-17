@@ -80,19 +80,13 @@ LEXICON PossTheme
 			Pejorative ;
 
 LEXICON Pejorative
-+Pej:^sh	Obviation ;
-			Obviation ;
-
-LEXICON Obviation   ! NB only animate nouns have obviative (V p.183)
-+Obv:^ni	Mode ;
-			Mode ;
-
-LEXICON Mode
++Pej:^sh	Number ;
 			Number ;
 
 LEXICON Number
 +NAPl:^ag		# ;
 +NIPl:^an		# ;
++Obv:^an		# ;	! NB only animate nouns have obviative (V p.183) 
 +Sg:0			# ;
 
 LEXICON Verbs
