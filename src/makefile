@@ -10,6 +10,9 @@ all: badapost.txt badchar.txt badvowel.txt badcluster.txt
 	@echo "bad full-vowel clusters..."
 	@cat badcluster.txt
 
+nish.bin: nish.fst nish.txt syncopate.bin
+	foma -f nish.fst
+
 syncopate.bin: syncopate.fst
 	foma -f syncopate.fst
 
@@ -27,40 +30,40 @@ fullvowel.txt: $(TSV)
 	cat $(TSV) | cut -f 6 > $@
 
 naI.txt: $(TSV)
-	cat $(TSV) | sed -n '/^\t[^\t]*\([^aeio]\)\tna\t/p' | cut -f 2,3,6,7 | egrep "^[A-Za-z'-]*[aeio]([bcdfghjkmnprstwyz]+)[^A-Za-z'-].+\1ag$$" | cut -f 1 > $@
+	cat $(TSV) | sed -n '/^\t[^\t]*\([^aeio]\)\tna\t/p' | cut -f 2,3,6,7 | egrep "^[A-Za-z'-]*[aeio]([bcdfghjkmnprstwyz]+)[^A-Za-z'-].+\1ag$$" | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
 niI.txt: $(TSV)
-	cat $(TSV) | sed -n '/^\t[^\t]*\([^aeio]\)\tni\t/p' | cut -f 2,3,6,7 | egrep "^[A-Za-z'-]*[aeio]([bcdfghjkmnprstwyz]+)[^A-Za-z'-].+\1an$$" | cut -f 1 > $@
+	cat $(TSV) | sed -n '/^\t[^\t]*\([^aeio]\)\tni\t/p' | cut -f 2,3,6,7 | egrep "^[A-Za-z'-]*[aeio]([bcdfghjkmnprstwyz]+)[^A-Za-z'-].+\1an$$" | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
 naCon.txt: $(TSV)
-	cat $(TSV) | sed -n '/^\t[^\t]*nh\tna\t/p' | cut -f 2,3,6,7 | egrep "nyag$$" | cut -f 1 > $@
+	cat $(TSV) | sed -n '/^\t[^\t]*nh\tna\t/p' | cut -f 2,3,6,7 | egrep "nyag$$" | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
 niCon.txt: $(TSV)
-	cat $(TSV) | sed -n '/^\t[^\t]*nh\tni\t/p' | cut -f 2,3,6,7 | egrep "nyan$$" | cut -f 1 > $@
+	cat $(TSV) | sed -n '/^\t[^\t]*nh\tni\t/p' | cut -f 2,3,6,7 | egrep "nyan$$" | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
 # intentionally allowing even short vowels as final vowel (mkwa, miikna, etc.)
 naII.txt: $(TSV)
-	cat $(TSV) | sed -n '/^\t[^\t]*[aeio]\tna\t/p' | cut -f 2,3,6,7 | egrep '^(.+)[^a-z].+\1g$$' | cut -f 1 > $@
+	cat $(TSV) | sed -n '/^\t[^\t]*[aeio]\tna\t/p' | cut -f 2,3,6,7 | egrep '^(.+)[^a-z].+\1g$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
 niII.txt: $(TSV)
-	cat $(TSV) | sed -n '/^\t[^\t]*[aeio]\tni\t/p' | cut -f 2,3,6,7 | egrep '^(.+)[^a-z].+\1n$$' | cut -f 1 > $@
+	cat $(TSV) | sed -n '/^\t[^\t]*[aeio]\tni\t/p' | cut -f 2,3,6,7 | egrep '^(.+)[^a-z].+\1n$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
 naIII.txt: $(TSV)
-	cat $(TSV) | sed -n '/^\t[^\t]*\([aeio]\)\tna\t/p' | cut -f 2,3,6,7 | egrep '^(.+)i?[^a-z].+\1wag$$' | cut -f 1 > $@
+	cat $(TSV) | sed -n '/^\t[^\t]*\([aeio]\)\tna\t/p' | cut -f 2,3,6,7 | egrep '^(.+)i?[^a-z].+\1wag$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
 niIII.txt: $(TSV)
-	cat $(TSV) | sed -n '/^\t[^\t]*\([aeio]\)\tni\t/p' | cut -f 2,3,6,7 | egrep '^(.+)i?[^a-z].+\1wan$$' | cut -f 1 > $@
+	cat $(TSV) | sed -n '/^\t[^\t]*\([aeio]\)\tni\t/p' | cut -f 2,3,6,7 | egrep '^(.+)i?[^a-z].+\1wan$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
 # IVa/IVb labels in Valentine esp. p. 176 are flipped...
 # Trusting that tables on p. 178 and p.181 are correct; oo[gn] => IVa
 naIVa.txt: $(TSV)
-	cat $(TSV) | sed -n '/^\t[^\t]*\([^aeio]\)\tna\t/p' | cut -f 2,3,6,7 | egrep 'oog$$' | cut -f 1 > $@
+	cat $(TSV) | sed -n '/^\t[^\t]*\([^aeio]\)\tna\t/p' | cut -f 2,3,6,7 | egrep 'oog$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
 niIVa.txt: $(TSV)
-	cat $(TSV) | sed -n '/^\t[^\t]*\([^aeio]\)\tni\t/p' | cut -f 2,3,6,7 | egrep 'oon$$' | cut -f 1 > $@
+	cat $(TSV) | sed -n '/^\t[^\t]*\([^aeio]\)\tni\t/p' | cut -f 2,3,6,7 | egrep 'oon$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
 naIVb.txt: $(TSV)
-	cat $(TSV) | sed -n '/^\t[^\t]*\([^aeio]\)\tna\t/p' | cut -f 2,3,6,7 | egrep '^(.+)[^a-z].+[^a-z]\1(o|wa)g$$' | cut -f 1 > $@
+	cat $(TSV) | sed -n '/^\t[^\t]*\([^aeio]\)\tna\t/p' | cut -f 2,3,6,7 | egrep '^(.+)[^a-z].+[^a-z]\1(o|wa)g$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
 naV.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\tna\t/p' | cut -f 2,3,6,7 | egrep 'iig$$' | cut -f 1 | egrep -v 'ii$$' > $@
@@ -69,10 +72,10 @@ niV.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\tni\t/p' | cut -f 2,3,6,7 | egrep 'iin$$' | cut -f 1 | egrep -v 'ii$$' > $@
 
 naVI.txt: $(TSV)
-	cat $(TSV) | sed -n '/^\t[^\t]*\([^aeio]\)\tna\t/p' | cut -f 2,3,6,7,8 | egrep 'aang$$' | cut -f 1 > $@
+	cat $(TSV) | sed -n '/^\t[^\t]*\([^aeio]\)\tna\t/p' | cut -f 2,3,6,7,8 | egrep 'aang$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
 niVI.txt: $(TSV)
-	cat $(TSV) | sed -n '/^\t[^\t]*\([^aeio]\)\tni\t/p' | cut -f 2,3,6,7,8 | egrep 'aang$$' | cut -f 1 > $@
+	cat $(TSV) | sed -n '/^\t[^\t]*\([^aeio]\)\tni\t/p' | cut -f 2,3,6,7,8 | egrep 'aang$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
 classified-nouns.txt: naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt
 	cat naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt > $@
@@ -81,6 +84,8 @@ nish.txt: nish-template.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.tx
 	rm -f templex.txt $@
 	cat naI.txt | sed 's/$$/\tNA_I ;/' > templex.txt
 	cat niI.txt | sed 's/$$/\tNI_I ;/' >> templex.txt
+	cat naCon.txt | sed 's/$$/\tNA_Con ;/' >> templex.txt
+	cat niCon.txt | sed 's/$$/\tNI_Con ;/' >> templex.txt
 	cat naII.txt | sed 's/$$/\tNA_II ;/' >> templex.txt
 	cat niII.txt | sed 's/$$/\tNI_II ;/' >> templex.txt
 	cat naIII.txt | sed 's/$$/\tNA_III ;/' >> templex.txt
@@ -100,6 +105,22 @@ nish.txt: nish-template.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.tx
 othernouns.txt: classified-nouns.txt
 	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t\(n[ai]\)\?\t/p' | cut -f 2,7 | egrep '[a-z]$$' | cut -f 1 | keepif -n classified-nouns.txt > $@
 	#cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t\(n[ai]\)\?\t/p' | cut -f 2 | keepif -n classified-nouns.txt > $@
+
+nouns-to-test.txt: $(TSV) 
+	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t/p' | cut -f 3,6 | sed '/^na/s/^..\t\(.*\)/\1+NA+Pl/; /^ni/s/^..\t\(.*\)/\1+NI+Pl/' > $@
+
+tsv-plurals.txt: $(TSV)
+	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t/p' | cut -f 7 > $@
+
+plural-test.txt: nouns-to-test.txt nish.bin
+	cat nouns-to-test.txt | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
+
+plural-comparison.txt: plural-test.txt tsv-plurals.txt 
+	touch $@
+	mv -f $@ plural-comparison-prev.txt
+	paste plural-test.txt tsv-plurals.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
+	-diff -u plural-comparison-prev.txt $@
+	wc -l plural-comparison-prev.txt $@
 
 syncopated-test.txt: fullvowel.txt syncopate.bin
 	cat fullvowel.txt | flookup -i syncopate.bin | egrep '.' | sed 's/^.*\t//' > $@
@@ -137,4 +158,8 @@ badcluster.txt: fullvowel.txt clusters.txt
 	-cat fullvowel.txt | egrep -v ' ' | egrep -o '[^aeiou-]+' | keepif -n clusters.txt | sort | uniq -c | sort -r -n > $@
 
 clean:
-	rm -f badapost.txt allaposts.txt badchar.txt badcluster.txt badvowel.txt syncopate.bin headwords.txt fullvowel.txt syncopated-test.txt comparison.txt clusters.txt ascii-headwords.txt classified-nouns.txt othernouns.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt comparison-prev.txt consonanttypos.txt diacriticbug.txt multichar.txt nish.txt
+	rm -f badapost.txt allaposts.txt badchar.txt badcluster.txt badvowel.txt headwords.txt fullvowel.txt syncopated-test.txt clusters.txt ascii-headwords.txt classified-nouns.txt othernouns.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt *-prev.txt consonanttypos.txt diacriticbug.txt multichar.txt nish.txt plural-test.txt tsv-plurals.txt nouns-to-test.txt
+
+distclean:
+	$(MAKE) clean
+	rm -f syncopate.bin nish.bin comparison.txt plural-comparison.txt
