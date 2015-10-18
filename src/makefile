@@ -115,11 +115,17 @@ tsv-plurals.txt: $(TSV)
 tsv-diminutives.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t/p' | cut -f 9 > $@
 
+tsv-obviatives.txt: $(TSV)
+	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t/p' | cut -f 13 > $@
+
 plural-test.txt: nouns-to-test.txt nish.bin
 	cat nouns-to-test.txt | sed 's/$$/+Pl/' | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
 
 diminutive-test.txt: nouns-to-test.txt nish.bin
 	cat nouns-to-test.txt | sed 's/$$/+Dim+Sg/' | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
+
+obviative-test.txt: nouns-to-test.txt nish.bin
+	cat nouns-to-test.txt | sed 's/$$/+Obv/' | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
 
 plural-comparison.txt: plural-test.txt tsv-plurals.txt 
 	touch $@
@@ -134,6 +140,13 @@ diminutive-comparison.txt: diminutive-test.txt tsv-diminutives.txt
 	paste diminutive-test.txt tsv-diminutives.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
 	-diff -u diminutive-comparison-prev.txt $@
 	wc -l diminutive-comparison-prev.txt $@
+
+obviative-comparison.txt: obviative-test.txt tsv-obviatives.txt 
+	touch $@
+	mv -f $@ obviative-comparison-prev.txt
+	paste obviative-test.txt tsv-obviatives.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
+	-diff -u obviative-comparison-prev.txt $@
+	wc -l obviative-comparison-prev.txt $@
 
 syncopated-test.txt: fullvowel.txt syncopate.bin
 	cat fullvowel.txt | flookup -i syncopate.bin | egrep '.' | sed 's/^.*\t//' > $@
