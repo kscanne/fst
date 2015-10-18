@@ -102,9 +102,10 @@ nish.txt: nish-template.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.tx
 	rm -f templex.txt
 	chmod 444 $@
 
+# nouns in TSV that never ended up in a noun class file naI, niIVa, etc. 
 othernouns.txt: classified-nouns.txt
-	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t\(n[ai]\)\?\t/p' | cut -f 2,7 | egrep '[a-z]$$' | cut -f 1 | keepif -n classified-nouns.txt > $@
-	#cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t\(n[ai]\)\?\t/p' | cut -f 2 | keepif -n classified-nouns.txt > $@
+	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t\(n[ai]\)\?\t/p' | cut -f 6,7 | egrep '[a-z]$$' | cut -f 1 | keepif -n classified-nouns.txt | egrep '[a-z]' > $@
+	#cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t\(n[ai]\)\?\t/p' | cut -f 6 | keepif -n classified-nouns.txt > $@
 
 nouns-to-test.txt: $(TSV) 
 	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t/p' | cut -f 3,6 | sed '/^na/s/^..\t\(.*\)/\1+NA/; /^ni/s/^..\t\(.*\)/\1+NI/' > $@
@@ -115,6 +116,9 @@ tsv-plurals.txt: $(TSV)
 tsv-diminutives.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t/p' | cut -f 9 > $@
 
+tsv-pejoratives.txt: $(TSV)
+	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t/p' | cut -f 10 > $@
+
 tsv-obviatives.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t/p' | cut -f 13 > $@
 
@@ -123,6 +127,9 @@ plural-test.txt: nouns-to-test.txt nish.bin
 
 diminutive-test.txt: nouns-to-test.txt nish.bin
 	cat nouns-to-test.txt | sed 's/$$/+Dim+Sg/' | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
+
+pejorative-test.txt: nouns-to-test.txt nish.bin
+	cat nouns-to-test.txt | sed 's/$$/+Pej+Sg/' | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
 
 obviative-test.txt: nouns-to-test.txt nish.bin
 	cat nouns-to-test.txt | sed 's/$$/+Obv/' | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
@@ -140,6 +147,13 @@ diminutive-comparison.txt: diminutive-test.txt tsv-diminutives.txt
 	paste diminutive-test.txt tsv-diminutives.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
 	-diff -u diminutive-comparison-prev.txt $@
 	wc -l diminutive-comparison-prev.txt $@
+
+pejorative-comparison.txt: pejorative-test.txt tsv-pejoratives.txt 
+	touch $@
+	mv -f $@ pejorative-comparison-prev.txt
+	paste pejorative-test.txt tsv-pejoratives.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
+	-diff -u pejorative-comparison-prev.txt $@
+	wc -l pejorative-comparison-prev.txt $@
 
 obviative-comparison.txt: obviative-test.txt tsv-obviatives.txt 
 	touch $@
