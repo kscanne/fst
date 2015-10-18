@@ -107,13 +107,19 @@ othernouns.txt: classified-nouns.txt
 	#cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t\(n[ai]\)\?\t/p' | cut -f 2 | keepif -n classified-nouns.txt > $@
 
 nouns-to-test.txt: $(TSV) 
-	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t/p' | cut -f 3,6 | sed '/^na/s/^..\t\(.*\)/\1+NA+Pl/; /^ni/s/^..\t\(.*\)/\1+NI+Pl/' > $@
+	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t/p' | cut -f 3,6 | sed '/^na/s/^..\t\(.*\)/\1+NA/; /^ni/s/^..\t\(.*\)/\1+NI/' > $@
 
 tsv-plurals.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t/p' | cut -f 7 > $@
 
+tsv-diminutives.txt: $(TSV)
+	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t/p' | cut -f 9 > $@
+
 plural-test.txt: nouns-to-test.txt nish.bin
-	cat nouns-to-test.txt | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
+	cat nouns-to-test.txt | sed 's/$$/+Pl/' | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
+
+diminutive-test.txt: nouns-to-test.txt nish.bin
+	cat nouns-to-test.txt | sed 's/$$/+Dim+Sg/' | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
 
 plural-comparison.txt: plural-test.txt tsv-plurals.txt 
 	touch $@
@@ -121,6 +127,13 @@ plural-comparison.txt: plural-test.txt tsv-plurals.txt
 	paste plural-test.txt tsv-plurals.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
 	-diff -u plural-comparison-prev.txt $@
 	wc -l plural-comparison-prev.txt $@
+
+diminutive-comparison.txt: diminutive-test.txt tsv-diminutives.txt 
+	touch $@
+	mv -f $@ diminutive-comparison-prev.txt
+	paste diminutive-test.txt tsv-diminutives.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
+	-diff -u diminutive-comparison-prev.txt $@
+	wc -l diminutive-comparison-prev.txt $@
 
 syncopated-test.txt: fullvowel.txt syncopate.bin
 	cat fullvowel.txt | flookup -i syncopate.bin | egrep '.' | sed 's/^.*\t//' > $@
