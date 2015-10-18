@@ -86,13 +86,14 @@ LEXICON PossTheme
 			Pejorative ;
 
 LEXICON Pejorative
-+Pej:^sh	Number ;
++Pej:^ish	Number ;   ! V p.192 "underlying form of the pejorative is /-ish/"
 			Number ;
 
 LEXICON Number
 +NAPl:^ag		# ;
 +NIPl:^an		# ;
 +Obv:^an		# ;	! NB only animate nouns have obviative (V p.183) 
++Loc:^ing		# ; ! V p.195 "basic form of the locative suffix is /-ing/"
 +Sg:0			# ;
 
 LEXICON Verbs
