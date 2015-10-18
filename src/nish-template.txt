@@ -39,10 +39,10 @@ LEXICON NA_III
 ! capital W here is a hack to distinguish from IVb;
 ! see spelling rewrite rules in nish.fst
 LEXICON NA_IVa
-+NA:WA	DiminutiveOrContemptive ;
++NA:W	DiminutiveOrContemptive ;
 
 LEXICON NA_IVb
-+NA:WB	DiminutiveOrContemptive ;
++NA:w	DiminutiveOrContemptive ;
 
 LEXICON NA_V
 +NA:y	DiminutiveOrContemptive ;
@@ -65,7 +65,7 @@ LEXICON NI_III
 ! capital W here is a hack to distinguish from IVb;
 ! see spelling rewrite rules in nish.fst
 LEXICON NI_IVa
-+NI:WA	DiminutiveOrContemptive ;
++NI:W	DiminutiveOrContemptive ;
 
 ! Note no NI_IVb
 

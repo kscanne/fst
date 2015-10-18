@@ -5,9 +5,9 @@ define AnimatePlural [ "+Pl" -> "+NAPl" || "+NA" ?* _ .#. ];
 define InanimatePlural [ "+Pl" -> "+NIPl" || "+NI" ?* _ .#. ];
 define ObviativeAnimateOnly ~[$[ "+NI" ?* "+Obv" ]];
 define LongDistanceDependencies [ ObviativeAnimateOnly .o. AnimatePlural .o. InanimatePlural ];
-define PluralRules [ n h "^" a -> n y a , a "^" a -> a , i i "^" a -> i i , e "^" a -> e , o o "^" a -> o o , W A "^" a -> o o , W B "^" a -> w a ];
+define PluralRules [ n h "^" a -> n y a , a "^" a -> a , i i "^" a -> i i , e "^" a -> e , o o "^" a -> o o , W "^" a -> o o ];
 ! for -gan dim. = gaans, see V p.188
-define ConOrDimRules [ g a n "^" e -> g a a , a a "^" e -> a a , i i "^" e -> i i , e "^" e -> e , o o "^" e -> o o , W ? "^" e -> o o ];
+define ConOrDimRules [ g a n "^" e -> g a a , a a "^" e -> a a , i i "^" e -> i i , e "^" e -> e , o o "^" e -> o o , W "^" e -> o o , k w "^" e -> k o o , g w "^" e -> g o o ];
 define ShortAConOrDim [ a "^" e -> e || \a _ ];  ! miikna -> miiknens e.g.
 ! the \a condition here avoids application of this to class I nouns like gaaway
 define ClassVPlural [ y "^" a -> i i || \a _ ]; 
