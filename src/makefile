@@ -113,6 +113,9 @@ nouns-to-test.txt: $(TSV)
 tsv-plurals.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t/p' | cut -f 7 > $@
 
+tsv-locatives.txt: $(TSV)
+	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t/p' | cut -f 8 > $@
+
 tsv-diminutives.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t/p' | cut -f 9 > $@
 
@@ -124,6 +127,9 @@ tsv-obviatives.txt: $(TSV)
 
 plural-test.txt: nouns-to-test.txt nish.bin
 	cat nouns-to-test.txt | sed 's/$$/+Pl/' | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
+
+locative-test.txt: nouns-to-test.txt nish.bin
+	cat nouns-to-test.txt | sed 's/$$/+Loc/' | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
 
 diminutive-test.txt: nouns-to-test.txt nish.bin
 	cat nouns-to-test.txt | sed 's/$$/+Dim+Sg/' | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
@@ -140,6 +146,13 @@ plural-comparison.txt: plural-test.txt tsv-plurals.txt
 	paste plural-test.txt tsv-plurals.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
 	-diff -u plural-comparison-prev.txt $@
 	wc -l plural-comparison-prev.txt $@
+
+locative-comparison.txt: locative-test.txt tsv-locatives.txt 
+	touch $@
+	mv -f $@ locative-comparison-prev.txt
+	paste locative-test.txt tsv-locatives.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
+	-diff -u locative-comparison-prev.txt $@
+	wc -l locative-comparison-prev.txt $@
 
 diminutive-comparison.txt: diminutive-test.txt tsv-diminutives.txt 
 	touch $@

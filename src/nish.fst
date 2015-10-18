@@ -12,7 +12,9 @@ define ShortAConOrDim [ a "^" e -> e || \a _ ];  ! miikna -> miiknens e.g.
 ! the \a condition here avoids application of this to class I nouns like gaaway
 define ClassVPlural [ y "^" a -> i i || \a _ ]; 
 define ClassVConOrDim [ y "^" e -> i i || \a _ ]; 
+define ClassVPejOrLoc [ y "^" i -> i i || \a _ ]; 
+define PejOrLocRules [ n s "^" i s -> n z h i s , n h "^" i -> n y i , a "^" i -> a , i i "^" i -> i i , i w "^" i n g -> i i n g , e "^" i -> e , o o "^" i -> o o , W "^" i -> o , k w "^" i -> k o , g w "^" g o ];
 define Cleanup "^" -> 0;
-define Morph [ DisallowIntermediateTags .o. LongDistanceDependencies .o. Lexicon .o. PluralRules .o. ClassVPlural .o. ConOrDimRules .o. ClassVConOrDim .o. ShortAConOrDim .o. Cleanup .o. @"syncopate.bin" ];
+define Morph [ DisallowIntermediateTags .o. LongDistanceDependencies .o. Lexicon .o. PluralRules .o. ClassVPlural .o. ConOrDimRules .o. ClassVConOrDim .o. ShortAConOrDim .o. PejOrLocRules .o. ClassVPejOrLoc .o. Cleanup .o. @"syncopate.bin" ];
 push Morph
 save stack nish.bin
