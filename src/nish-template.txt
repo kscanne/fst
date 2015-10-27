@@ -1,4 +1,4 @@
-Multichar_Symbols +NA +NI +NAPl +NIPl 1P+ 2P+ 3P+ Sg+ Pl+ Poss+ Excl+ +1P +2P +3P +Sg +Pl +Pej +Dim +Obv +Loc +Con +Poss
+Multichar_Symbols +NA +NI +NAPl +NIPl +NASg +NISg 1P+ 2P+ 3P+ Sg+ Pl+ Poss+ Ex+ +1P +2P +3P +Ex +Sg +Pl +Pej +Dim +Obv +Loc +Con +Poss +PossThm
 
 LEXICON Root
 	Nouns ;
@@ -17,12 +17,12 @@ LEXICON PossPrefixes
 2P+Sg+Poss+:g		NounStems ;
 3P+Sg+Poss+:w		NounStems ;
 1P+Pl+Poss+:n		NounStems ;
-1P+Excl+Poss+:g		NounStems ;
+1P+Ex+Poss+:g		NounStems ;
 2P+Pl+Poss+:g		NounStems ;
 3P+Pl+Poss+:w		NounStems ;
 					NounStems ;
 
-LEXICON NounStems
+LEXICON NounStems  ! actual nouns from lexical database go here...
 
 LEXICON NA_I
 +NA:0	DiminutiveOrContemptive ;
@@ -82,8 +82,47 @@ LEXICON DiminutiveOrContemptive
 			PossTheme ;
 
 LEXICON PossTheme
-+Poss:0		Pejorative ;
-			Pejorative ;
++PossThm:^im	Possessor ;
+			Possessor ;  ! Possessive theme "im" is always optional V p.200
+
+LEXICON Possessor  ! see table on V p.196-197
++1P+Sg+Poss+NASg:0			# ;
++2P+Sg+Poss+NASg:0			# ;
++3P+Sg+Poss+NASg:^an			# ;
++1P+Pl+Poss+NASg:^inaan		# ;
++1P+Ex+Poss+NASg:^inaan		# ;
++2P+Pl+Poss+NASg:^iwaa		# ;
++3P+Pl+Poss+NASg:^iwaan		# ;
++1P+Sg+Poss+NAPl:^ag			# ;
++2P+Sg+Poss+NAPl:^ag			# ;
++3P+Sg+Poss+NAPl:^an			# ;
++1P+Pl+Poss+NAPl:^inaanig		# ;
++1P+Ex+Poss+NAPl:^inaanig	# ;
++2P+Pl+Poss+NAPl:^iwaag		# ;
++3P+Pl+Poss+NAPl:^iwaan		# ;
++1P+Sg+Poss+Obv:^an			# ;
++2P+Sg+Poss+Obv:^an			# ;
++3P+Sg+Poss+Obv:^an			# ;
+! +3P+Obv+Poss+Obv:^ini			# ;
++1P+Pl+Poss+Obv:^inaanin		# ;
++1P+Ex+Poss+Obv:^inaanin	# ;
++2P+Pl+Poss+Obv:^iwaan		# ;
++3P+Pl+Poss+Obv:^iwaan		# ;
++1P+Sg+Poss+NISg:0			# ;
++2P+Sg+Poss+NISg:0			# ;
++3P+Sg+Poss+NISg:0			# ;
++1P+Pl+Poss+NISg:^inaan		# ;
++1P+Ex+Poss+NISg:^inaan		# ;
++2P+Pl+Poss+NISg:^iwaa		# ;
++3P+Pl+Poss+NISg:^iwaan		# ;
++1P+Sg+Poss+NIPl:^an			# ;
++2P+Sg+Poss+NIPl:^an			# ;
++3P+Sg+Poss+NIPl:^an			# ;
++1P+Pl+Poss+NIPl:^inaanin		# ;
++1P+Ex+Poss+NIPl:^inaanin	# ;
++2P+Pl+Poss+NIPl:^iwaan		# ;
++3P+Pl+Poss+NIPl:^iwaan		# ;
+							Pejorative ;
 
 LEXICON Pejorative
 +Pej:^ish	Number ;   ! V p.192 "underlying form of the pejorative is /-ish/"
@@ -94,6 +133,7 @@ LEXICON Number
 +NIPl:^an		# ;
 +Obv:^an		# ;	! NB only animate nouns have obviative (V p.183) 
 +Loc:^ing		# ; ! V p.195 "basic form of the locative suffix is /-ing/"
-+Sg:0			# ;
++NASg:0			# ;
++NISg:0			# ;
 
 LEXICON Verbs
