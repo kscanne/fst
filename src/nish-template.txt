@@ -114,7 +114,7 @@ LEXICON Possessor  ! see table on V p.196-197
 +1P+Pl+Poss+NISg:^inaan		# ;
 +1P+Ex+Poss+NISg:^inaan		# ;
 +2P+Pl+Poss+NISg:^iwaa		# ;
-+3P+Pl+Poss+NISg:^iwaan		# ;
++3P+Pl+Poss+NISg:^iwaa		# ;		! note typo on V p.197
 +1P+Sg+Poss+NIPl:^an			# ;
 +2P+Sg+Poss+NIPl:^an			# ;
 +3P+Sg+Poss+NIPl:^an			# ;
