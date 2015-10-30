@@ -27,6 +27,9 @@ LEXICON NounStems  ! actual nouns from lexical database go here...
 LEXICON NA_I
 +NA:0	DiminutiveOrContemptive ;
 
+LEXICON NA_Dim
++NA:0	PossTheme ;
+
 LEXICON NA_Con
 +NA:0	PossTheme ;
 
@@ -52,6 +55,9 @@ LEXICON NA_VI
 
 LEXICON NI_I
 +NI:0	DiminutiveOrContemptive ;
+
+LEXICON NI_Dim
++NI:0	PossTheme ;
 
 LEXICON NI_Con
 +NI:0	PossTheme ;
