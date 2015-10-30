@@ -10,6 +10,8 @@ all: badapost.txt badchar.txt badvowel.txt badcluster.txt
 	@echo "bad full-vowel clusters..."
 	@cat badcluster.txt
 
+comp: comparison.txt diminutive-comparison.txt locative-comparison.txt obviative-comparison.txt pejorative-comparison.txt plural-comparison.txt
+
 nish.bin: nish.fst nish.txt syncopate.bin
 	foma -f nish.fst
 
@@ -23,11 +25,17 @@ allaposts.txt: consonants.txt
 ascii-headwords.txt: headwords.txt
 	cat headwords.txt | sed 's/ǧ/g/g; s/ȟ/h/g; s/ǩ/k/g' > $@
 
+repeats.txt: pos.txt $(TSV)
+	cat pos.txt | while read x; do cat $(TSV) | sed -n "/^[^\t]*\t[^\t]*\t$${x}\t/p" | cut -f 3,6 | sort | uniq -c | sort -r -n | egrep -v ' 1 '; done | egrep '[a-z]$$' > $@
+
 headwords.txt: $(TSV)
 	cat $(TSV) | cut -f 2 > $@
 
 fullvowel.txt: $(TSV)
 	cat $(TSV) | cut -f 6 > $@
+
+pos.txt: $(TSV)
+	cat $(TSV) | cut -f 3 | sort -u > $@
 
 naI.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\([^aeio]\)\tna\t/p' | cut -f 2,3,6,7 | egrep "^[A-Za-z'-]*[aeio]([bcdfghjkmnprstwyz]+)[^A-Za-z'-].+\1ag$$" | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
@@ -211,7 +219,7 @@ badcluster.txt: fullvowel.txt clusters.txt
 	-cat fullvowel.txt | egrep -v ' ' | egrep -o '[^aeiou-]+' | keepif -n clusters.txt | sort | uniq -c | sort -r -n > $@
 
 clean:
-	rm -f badapost.txt allaposts.txt badchar.txt badcluster.txt badvowel.txt headwords.txt fullvowel.txt syncopated-test.txt clusters.txt ascii-headwords.txt classified-nouns.txt othernouns.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt *-prev.txt consonanttypos.txt diacriticbug.txt multichar.txt nish.txt plural-test.txt tsv-plurals.txt nouns-to-test.txt
+	rm -f badapost.txt allaposts.txt badchar.txt badcluster.txt badvowel.txt headwords.txt fullvowel.txt syncopated-test.txt clusters.txt ascii-headwords.txt classified-nouns.txt othernouns.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt *-prev.txt consonanttypos.txt diacriticbug.txt multichar.txt nish.txt plural-test.txt tsv-plurals.txt nouns-to-test.txt pos.txt repeats.txt
 
 distclean:
 	$(MAKE) clean
