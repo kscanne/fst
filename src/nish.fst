@@ -1,6 +1,6 @@
 read lexc nish.txt
 define Lexicon;
-define DisallowIntermediateTags ~[$[ "+NAPl" | "+NIPl" | "+NASg" | "+NISg" ]];
+define DisallowIntermediateTags ~[$[ "+NAPl" | "+NIPl" | "+NASg" | "+NISg" | "+Poss" ]];
 define AnimatePlural [ "+Pl" -> "+NAPl" || "+NA" ?* _ .#. ];
 define InanimatePlural [ "+Pl" -> "+NIPl" || "+NI" ?* _ .#. ];
 define AnimateSingular [ "+Sg" -> "+NASg" || "+NA" ?* _ .#. ];
