@@ -27,6 +27,9 @@ LEXICON NounStems  ! actual nouns from lexical database go here...
 LEXICON NA_I
 +NA:0	DiminutiveOrContemptive ;
 
+LEXICON NA_Dim
++NA:0	PossTheme ;
+
 LEXICON NA_Con
 +NA:0	PossTheme ;
 
@@ -52,6 +55,9 @@ LEXICON NA_VI
 
 LEXICON NI_I
 +NI:0	DiminutiveOrContemptive ;
+
+LEXICON NI_Dim
++NI:0	PossTheme ;
 
 LEXICON NI_Con
 +NI:0	PossTheme ;
@@ -122,6 +128,13 @@ LEXICON Possessor  ! see table on V p.196-197
 +1P+Ex+Poss+NIPl:^inaanin	# ;
 +2P+Pl+Poss+NIPl:^iwaan		# ;
 +3P+Pl+Poss+NIPl:^iwaan		# ;
++1P+Sg+Poss+Loc:^ing			# ;
++2P+Sg+Poss+Loc:^ing			# ;
++3P+Sg+Poss+Loc:^ing			# ;
++1P+Pl+Poss+Loc:^inaaning		# ;
++1P+Ex+Poss+Loc:^inaaning	# ;
++2P+Pl+Poss+Loc:^iwaang		# ;
++3P+Pl+Poss+Loc:^iwaang		# ;
 							Pejorative ;
 
 LEXICON Pejorative
