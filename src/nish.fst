@@ -26,7 +26,7 @@ define ShortAConOrDim [ a "^" e -> e || \a _ ];  ! miikna -> miiknens e.g.
 define ClassVPlural [ y "^" a -> i i || \a _ ]; 
 define ClassVConOrDim [ y "^" e -> i i || \a _ ]; 
 define ClassVPejOrLoc [ y "^" i -> i i || \a _ ]; 
-define PejOrLocRules [ n s "^" i s -> n z h i s , n h "^" i -> n y i , a "^" i -> a , i i "^" i -> i i , i w "^" i n g -> i i n g , e "^" i -> e , o o "^" i -> o o , W "^" i -> o , k w "^" i -> k o , g w "^" g o ];
+define PejOrLocRules [ n s "^" i s -> n z h i s , n h "^" i -> n y i , a "^" i -> a , i i "^" i -> i i , i w "^" i n g -> i i n g , e "^" i -> e , o o "^" i -> o o , W "^" i -> o , k w "^" i -> k o , g w "^" i -> g o ];
 define LeniteQuasiDim [ z e n s "^" i s -> z h e n z h i s ];  ! as in kwezens -> kwezhenzhish, gwiiwzens -> gwiiwzhenzhish, V p.193; do this before PejOrLocRules
 define Cleanup "^" -> 0;
 define Morph [ DisallowIntermediateTags .o. LongDistanceDependencies .o. Lexicon .o. PluralRules .o. ClassVPlural .o. ConOrDimRules .o. ClassVConOrDim .o. ShortAConOrDim .o. LeniteQuasiDim .o. PejOrLocRules .o. ClassVPejOrLoc .o. Cleanup .o. @"syncopate.bin" ];
