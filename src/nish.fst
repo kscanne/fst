@@ -26,7 +26,7 @@ define ShortAConOrDim [ a "^" e -> e || \a _ ];  ! miikna -> miiknens e.g.
 define ClassVPlural [ y "^" a -> i i || \a _ ]; 
 define ClassVConOrDim [ y "^" e -> i i || \a _ ]; 
 define ClassVPejOrLoc [ y "^" i -> i i || \a _ ]; 
-define PejRules [ n s "^" i s -> n z h i s , n h "^" i s -> n y i s , a "^" i s -> a w i s , i i "^" i s -> i i , e "^" i s -> e w i s , o o "^" i s -> o o s , W "^" i s -> o s , k w "^" i s -> k o s , g w "^" i s -> g o s ];
+define PejRules [ n s "^" i s -> n z h i s , n h "^" i s -> n y i s , a "^" i s -> a w i s , i i "^" i s -> i i s , e "^" i s -> e w i s , o o "^" i s -> o o s , W "^" i s -> o s , k w "^" i s -> k o s , g w "^" i s -> g o s ];
 define LocRules [ n h "^" i n -> n y i n , a "^" i n -> a n , i i "^" i n -> i i n , i w "^" i n g -> i i n g , e "^" i n -> e n , o o "^" i n -> o o n , W "^" i n -> o n , k w "^" i n -> k o n , g w "^" i n -> g o n ];
 define LeniteQuasiDim [ z e n s "^" i s -> z h e n z h i s ];  ! as in kwezens -> kwezhenzhish, gwiiwzens -> gwiiwzhenzhish, V p.193; do this before PejRules
 define Cleanup "^" -> 0;
