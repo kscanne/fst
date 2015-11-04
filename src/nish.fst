@@ -18,7 +18,7 @@ define 2pPossessum [ "+Poss" -> "+2P" "+Pl" "+Poss" || .#. "2P+" "Pl+" "Poss+" ?
 define 3pPossessum [ "+Poss" -> "+3P" "+Pl" "+Poss" || .#. "3P+" "Pl+" "Poss+" ?+ _ ? .#. ]; 
 define ObviativeAnimateOnly ~[$[ "+NI" ?* "+Obv" ]];
 define LongDistanceDependencies [ ObviativeAnimateOnly .o. InsertPossSg .o. InsertPossPl .o. InsertPossObv .o. InsertPossLoc .o. 1sPossessum .o. 2sPossessum .o. 3sPossessum .o. 1pPossessum .o. 21Possessum .o. 2pPossessum .o. 3pPossessum .o. AnimatePlural .o. InanimatePlural .o. AnimateSingular .o. InanimateSingular ];
-define PluralRules [ n h "^" a -> n y a , a "^" a -> a , i i "^" a -> i i , e "^" a -> e , o o "^" a -> o o , W "^" a -> o o ];
+define PluralRules [ n h "^" a -> n y a , a "^" a -> a , i i "^" a -> i i , e "^" a -> e , o o "^" a -> o o , W "^" a -> o o ];  ! same rules for Obviative
 ! for -gan dim. = gaans, see V p.188
 define ConOrDimRules [ g a n "^" e -> g a a , a a "^" e -> a a , i i "^" e -> i i , e "^" e -> e , o o "^" e -> o o , W "^" e -> o o , k w "^" e -> k o o , g w "^" e -> g o o , i w "^" e -> i i ];
 define ShortAConOrDim [ a "^" e -> e || \a _ ];  ! miikna -> miiknens e.g.
