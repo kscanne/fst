@@ -10,7 +10,7 @@ all: badapost.txt badchar.txt badvowel.txt badcluster.txt
 	@echo "bad full-vowel clusters..."
 	@cat badcluster.txt
 
-comp: comparison.txt diminutive-comparison.txt locative-comparison.txt obviative-comparison.txt pejorative-comparison.txt plural-comparison.txt
+comp: syncope-comparison.txt diminutive-comparison.txt locative-comparison.txt obviative-comparison.txt pejorative-comparison.txt plural-comparison.txt
 
 nish.bin: nish.fst nish.txt syncopate.bin
 	foma -f nish.fst
@@ -196,19 +196,19 @@ syncopated-test.txt: fullvowel.txt syncopate.bin
 
 # filters out (1) anything correct (2) entries with spaces 
 # (3) entries missing full-vowel form (so 1st column in resulting paste empty)
-comparison.txt: syncopated-test.txt headwords.txt
+syncope-comparison.txt: syncopated-test.txt headwords.txt
 	touch $@
 	mv -f $@ comparison-prev.txt
 	paste syncopated-test.txt headwords.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' > $@
 	-diff -u comparison-prev.txt $@
 	wc -l comparison-prev.txt $@
 
-diacriticbug.txt: comparison.txt
-	cat comparison.txt | sed 's/ǧ/g/g; s/ȟ/h/g; s/ǩ/k/g' | egrep '^(.+)[^a-z]\1$$' | sed 's/\t.*//' > $@
+diacriticbug.txt: syncope-comparison.txt
+	cat syncope-comparison.txt | sed 's/ǧ/g/g; s/ȟ/h/g; s/ǩ/k/g' | egrep '^(.+)[^a-z]\1$$' | sed 's/\t.*//' > $@
 	wc -l $@
 
-consonanttypos.txt: comparison.txt
-	cat comparison.txt | while read x; do if ! echo "$$x" | tr -d "aeiouw'" | egrep '^(.+).\1$$' > /dev/null; then echo $$x; fi; done > $@
+consonanttypos.txt: syncope-comparison.txt
+	cat syncope-comparison.txt | while read x; do if ! echo "$$x" | tr -d "aeiouw'" | egrep '^(.+).\1$$' > /dev/null; then echo $$x; fi; done > $@
 
 # analyze usage of apostrophe in Biigtigong forms 
 badapost.txt: allaposts.txt headwords.txt
@@ -231,4 +231,4 @@ clean:
 
 distclean:
 	$(MAKE) clean
-	rm -f syncopate.bin nish.bin comparison.txt plural-comparison.txt
+	rm -f syncopate.bin nish.bin syncope-comparison.txt plural-comparison.txt
