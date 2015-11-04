@@ -2,7 +2,6 @@ Multichar_Symbols +NA +NI +NAPl +NIPl +NASg +NISg 1P+ 2P+ 3P+ Sg+ Pl+ Poss+ Ex+ 
 
 LEXICON Root
 	Nouns ;
-	Verbs ;
 
 LEXICON Nouns
 	RegularNouns ;
@@ -13,16 +12,22 @@ LEXICON RegularNouns
 	PossPrefixes ;
 
 LEXICON PossPrefixes
-1P+Sg+Poss+:n		NounStems ;
-2P+Sg+Poss+:g		NounStems ;
-3P+Sg+Poss+:w		NounStems ;
-1P+Pl+Poss+:n		NounStems ;
-1P+Ex+Poss+:g		NounStems ;
-2P+Pl+Poss+:g		NounStems ;
-3P+Pl+Poss+:w		NounStems ;
-					NounStems ;
+1P+Sg+Poss+:ni		AllNounStems ;
+2P+Sg+Poss+:gi		AllNounStems ;
+3P+Sg+Poss+:w		AllNounStems ;
+1P+Pl+Poss+:ni		AllNounStems ;
+1P+Ex+Poss+:gi		AllNounStems ;
+2P+Pl+Poss+:gi		AllNounStems ;
+3P+Pl+Poss+:w		AllNounStems ;
+					IndependentNouns ;  ! no poss. prefix => independent only
 
-LEXICON NounStems  ! actual nouns from lexical database go here...
+LEXICON AllNounStems
+	IndependentNouns ;
+	DependentNouns ;
+
+LEXICON IndependentNouns  ! actual ind. nouns from lexical database go here...
+
+LEXICON DependentNouns ! actual dep. nouns from lexical database go here
 
 LEXICON NA_I
 +NA:0	DiminutiveOrContemptive ;
@@ -53,6 +58,9 @@ LEXICON NA_V
 LEXICON NA_VI
 +NA:0	DiminutiveOrContemptive ;
 
+LEXICON NA_Dep
++NA:0	DiminutiveOrContemptive ;
+
 LEXICON NI_I
 +NI:0	DiminutiveOrContemptive ;
 
@@ -81,6 +89,8 @@ LEXICON NI_V
 LEXICON NI_VI
 +NI:0	DiminutiveOrContemptive ;
 
+LEXICON NI_Dep
++NI:0	DiminutiveOrContemptive ;
 
 LEXICON DiminutiveOrContemptive
 +Dim:^ens	PossTheme ;
@@ -148,5 +158,3 @@ LEXICON Number
 +Loc:^ing		# ; ! V p.195 "basic form of the locative suffix is /-ing/"
 +NASg:0			# ;
 +NISg:0			# ;
-
-LEXICON Verbs

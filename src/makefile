@@ -91,6 +91,12 @@ naVI.txt: $(TSV)
 niVI.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\([^aeio]\)\tni\t/p' | cut -f 2,3,6,7,8 | egrep 'aang$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
+naDep.txt: $(TSV)
+	cat $(TSV) | sed -n '/^n[^\t]*\t[^\t]*\tna\t/p' | cut -f 6 | egrep '[a-z]' | egrep -v ' ' > $@
+
+niDep.txt: $(TSV)
+	cat $(TSV) | sed -n '/^n[^\t]*\t[^\t]*\tni\t/p' | cut -f 6 | egrep '[a-z]' | egrep -v ' ' > $@
+
 classified-nouns.txt: naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt ni.Dim.txt
 	cat naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt > $@
 
@@ -114,7 +120,10 @@ nish.txt: nish-template.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.tx
 	cat niV.txt | sed 's/$$/\tNI_V ;/' >> templex.txt
 	cat naVI.txt | sed 's/$$/\tNA_VI ;/' >> templex.txt
 	cat niVI.txt | sed 's/$$/\tNI_VI ;/' >> templex.txt
-	cat nish-template.txt | sed '/^LEXICON NounStems/r templex.txt' > $@
+	cat nish-template.txt | sed '/^LEXICON IndependentNouns/r templex.txt' > $@
+	cat naDep.txt | sed 's/$$/\tNA_Dep ;/' > templex.txt
+	cat niDep.txt | sed 's/$$/\tNI_Dep ;/' >> templex.txt
+	sed -i '/^LEXICON DependentNouns/r templex.txt' $@
 	rm -f templex.txt
 	chmod 444 $@
 
