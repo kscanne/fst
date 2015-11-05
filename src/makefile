@@ -264,8 +264,8 @@ badcluster.txt: fullvowel.txt clusters.txt
 	-cat fullvowel.txt | egrep -v ' ' | egrep -o '[^aeiou-]+' | keepif -n clusters.txt | sort | uniq -c | sort -r -n > $@
 
 clean:
-	rm -f badapost.txt allaposts.txt badchar.txt badcluster.txt badvowel.txt headwords.txt fullvowel.txt syncopated-test.txt clusters.txt ascii-headwords.txt classified-nouns.txt othernouns.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt *-prev.txt consonanttypos.txt diacriticbug.txt multichar.txt nish.txt plural-test.txt tsv-plurals.txt independentnouns.txt pos.txt repeats.txt
+	rm -f badapost.txt allaposts.txt badchar.txt badcluster.txt badvowel.txt headwords.txt fullvowel.txt syncopated-test.txt clusters.txt ascii-headwords.txt classified-nouns.txt othernouns.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDep.txt niDep.txt naDim.txt niDim.txt *-prev.txt *-comparison.txt *-test.txt consonanttypos.txt diacriticbug.txt multichar.txt nish.txt plural-test.txt tsv-*.txt independentnouns.txt pos.txt repeats.txt allnouns.txt
 
 distclean:
 	$(MAKE) clean
-	rm -f syncopate.bin nish.bin syncope-comparison.txt plural-comparison.txt
+	rm -f syncopate.bin nish.bin
