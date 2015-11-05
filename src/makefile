@@ -10,7 +10,7 @@ all: badapost.txt badchar.txt badvowel.txt badcluster.txt
 	@echo "bad full-vowel clusters..."
 	@cat badcluster.txt
 
-comp: syncope-comparison.txt diminutive-comparison.txt locative-comparison.txt obviative-comparison.txt pejorative-comparison.txt plural-comparison.txt
+comp: syncope-comparison.txt diminutive-comparison.txt locative-comparison.txt obviative-comparison.txt pejorative-comparison.txt possessive-comparison.txt posswithm-comparison.txt plural-comparison.txt
 
 nish.bin: nish.fst nish.txt syncopate.bin
 	foma -f nish.fst
