@@ -97,8 +97,8 @@ naDep.txt: $(TSV)
 niDep.txt: $(TSV)
 	cat $(TSV) | sed -n '/^n[^\t]*\t[^\t]*\tni\t/p' | cut -f 6 | egrep '[a-z]' | egrep -v ' ' > $@
 
-classified-nouns.txt: naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt ni.Dim.txt
-	cat naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt > $@
+classified-nouns.txt: naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naDep.txt niDep.txt
+	cat naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naDep.txt niDep.txt > $@
 
 nish.txt: nish-template.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt
 	rm -f templex.txt $@
@@ -115,7 +115,6 @@ nish.txt: nish-template.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.tx
 	cat naIVa.txt | sed 's/$$/\tNA_IVa ;/' >> templex.txt
 	cat niIVa.txt | sed 's/$$/\tNI_IVa ;/' >> templex.txt
 	cat naIVb.txt | sed 's/$$/\tNA_IVb ;/' >> templex.txt
-	cat niIVb.txt | sed 's/$$/\tNI_IVb ;/' >> templex.txt
 	cat naV.txt | sed 's/$$/\tNA_V ;/' >> templex.txt
 	cat niV.txt | sed 's/$$/\tNI_V ;/' >> templex.txt
 	cat naVI.txt | sed 's/$$/\tNA_VI ;/' >> templex.txt
@@ -129,7 +128,7 @@ nish.txt: nish-template.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.tx
 
 # nouns in TSV that never ended up in a noun class file naI, niIVa, etc. 
 othernouns.txt: classified-nouns.txt
-	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t\(n[ai]\)\?\t/p' | cut -f 6,7 | egrep '[a-z]$$' | cut -f 1 | keepif -n classified-nouns.txt | egrep '[a-z]' > $@
+	cat $(TSV) | sed -n '/^[^\t]*\t[^\t]*\tn[ai]\t\(n[ai]\)\?\t/p' | cut -f 6,7 | egrep '[a-z]$$' | cut -f 1 | keepif -n classified-nouns.txt | egrep '[a-z]' > $@
 	#cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t\(n[ai]\)\?\t/p' | cut -f 6 | keepif -n classified-nouns.txt > $@
 
 nouns-to-test.txt: $(TSV) 
