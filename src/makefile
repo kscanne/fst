@@ -10,7 +10,7 @@ all: badapost.txt badchar.txt badvowel.txt badcluster.txt
 	@echo "bad full-vowel clusters..."
 	@cat badcluster.txt
 
-comp: comparison.txt diminutive-comparison.txt locative-comparison.txt obviative-comparison.txt pejorative-comparison.txt plural-comparison.txt
+comp: syncope-comparison.txt diminutive-comparison.txt locative-comparison.txt obviative-comparison.txt pejorative-comparison.txt plural-comparison.txt
 
 nish.bin: nish.fst nish.txt syncopate.bin
 	foma -f nish.fst
@@ -91,6 +91,12 @@ naVI.txt: $(TSV)
 niVI.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\([^aeio]\)\tni\t/p' | cut -f 2,3,6,7,8 | egrep 'aang$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
+naDep.txt: $(TSV)
+	cat $(TSV) | sed -n '/^n[^\t]*\t[^\t]*\tna\t/p' | cut -f 6 | egrep '[a-z]' | egrep -v ' ' > $@
+
+niDep.txt: $(TSV)
+	cat $(TSV) | sed -n '/^n[^\t]*\t[^\t]*\tni\t/p' | cut -f 6 | egrep '[a-z]' | egrep -v ' ' > $@
+
 classified-nouns.txt: naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt ni.Dim.txt
 	cat naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt > $@
 
@@ -114,7 +120,10 @@ nish.txt: nish-template.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.tx
 	cat niV.txt | sed 's/$$/\tNI_V ;/' >> templex.txt
 	cat naVI.txt | sed 's/$$/\tNA_VI ;/' >> templex.txt
 	cat niVI.txt | sed 's/$$/\tNI_VI ;/' >> templex.txt
-	cat nish-template.txt | sed '/^LEXICON NounStems/r templex.txt' > $@
+	cat nish-template.txt | sed '/^LEXICON IndependentNouns/r templex.txt' > $@
+	cat naDep.txt | sed 's/$$/\tNA_Dep ;/' > templex.txt
+	cat niDep.txt | sed 's/$$/\tNI_Dep ;/' >> templex.txt
+	sed -i '/^LEXICON DependentNouns/r templex.txt' $@
 	rm -f templex.txt
 	chmod 444 $@
 
@@ -196,19 +205,19 @@ syncopated-test.txt: fullvowel.txt syncopate.bin
 
 # filters out (1) anything correct (2) entries with spaces 
 # (3) entries missing full-vowel form (so 1st column in resulting paste empty)
-comparison.txt: syncopated-test.txt headwords.txt
+syncope-comparison.txt: syncopated-test.txt headwords.txt
 	touch $@
 	mv -f $@ comparison-prev.txt
 	paste syncopated-test.txt headwords.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' > $@
 	-diff -u comparison-prev.txt $@
 	wc -l comparison-prev.txt $@
 
-diacriticbug.txt: comparison.txt
-	cat comparison.txt | sed 's/ǧ/g/g; s/ȟ/h/g; s/ǩ/k/g' | egrep '^(.+)[^a-z]\1$$' | sed 's/\t.*//' > $@
+diacriticbug.txt: syncope-comparison.txt
+	cat syncope-comparison.txt | sed 's/ǧ/g/g; s/ȟ/h/g; s/ǩ/k/g' | egrep '^(.+)[^a-z]\1$$' | sed 's/\t.*//' > $@
 	wc -l $@
 
-consonanttypos.txt: comparison.txt
-	cat comparison.txt | while read x; do if ! echo "$$x" | tr -d "aeiouw'" | egrep '^(.+).\1$$' > /dev/null; then echo $$x; fi; done > $@
+consonanttypos.txt: syncope-comparison.txt
+	cat syncope-comparison.txt | while read x; do if ! echo "$$x" | tr -d "aeiouw'" | egrep '^(.+).\1$$' > /dev/null; then echo $$x; fi; done > $@
 
 # analyze usage of apostrophe in Biigtigong forms 
 badapost.txt: allaposts.txt headwords.txt
@@ -231,4 +240,4 @@ clean:
 
 distclean:
 	$(MAKE) clean
-	rm -f syncopate.bin nish.bin comparison.txt plural-comparison.txt
+	rm -f syncopate.bin nish.bin syncope-comparison.txt plural-comparison.txt
