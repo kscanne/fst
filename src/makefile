@@ -235,10 +235,10 @@ syncopated-test.txt: fullvowel.txt syncopate.bin
 # (3) entries missing full-vowel form (so 1st column in resulting paste empty)
 syncope-comparison.txt: syncopated-test.txt headwords.txt
 	touch $@
-	mv -f $@ comparison-prev.txt
+	mv -f $@ syncope-comparison-prev.txt
 	paste syncopated-test.txt headwords.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' > $@
-	-diff -u comparison-prev.txt $@
-	wc -l comparison-prev.txt $@
+	-diff -u syncope-comparison-prev.txt $@
+	wc -l syncope-comparison-prev.txt $@
 
 diacriticbug.txt: syncope-comparison.txt
 	cat syncope-comparison.txt | sed 's/ǧ/g/g; s/ȟ/h/g; s/ǩ/k/g' | egrep '^(.+)[^a-z]\1$$' | sed 's/\t.*//' > $@
