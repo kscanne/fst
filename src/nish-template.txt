@@ -12,13 +12,13 @@ LEXICON RegularNouns
 	PossPrefixes ;
 
 LEXICON PossPrefixes
-1P+Sg+Poss+:ni		AllNounStems ;
-2P+Sg+Poss+:gi		AllNounStems ;
-3P+Sg+Poss+:w		AllNounStems ;
-1P+Pl+Poss+:ni		AllNounStems ;
-1P+Ex+Poss+:gi		AllNounStems ;
-2P+Pl+Poss+:gi		AllNounStems ;
-3P+Pl+Poss+:w		AllNounStems ;
+1P+Sg+Poss+:ni@		AllNounStems ;
+2P+Sg+Poss+:gi@		AllNounStems ;
+3P+Sg+Poss+:w@		AllNounStems ;
+1P+Pl+Poss+:ni@		AllNounStems ;
+1P+Ex+Poss+:gi@		AllNounStems ;
+2P+Pl+Poss+:gi@		AllNounStems ;
+3P+Pl+Poss+:w@		AllNounStems ;
 					IndependentNouns ;  ! no poss. prefix => independent only
 
 LEXICON AllNounStems
