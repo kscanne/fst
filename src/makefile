@@ -10,7 +10,7 @@ all: badapost.txt badchar.txt badvowel.txt badcluster.txt
 	@echo "bad full-vowel clusters..."
 	@cat badcluster.txt
 
-comp: syncope-comparison.txt diminutive-comparison.txt locative-comparison.txt obviative-comparison.txt pejorative-comparison.txt plural-comparison.txt
+comp: syncope-comparison.txt diminutive-comparison.txt locative-comparison.txt obviative-comparison.txt pejorative-comparison.txt possessive-comparison.txt posswithm-comparison.txt plural-comparison.txt
 
 nish.bin: nish.fst nish.txt syncopate.bin
 	foma -f nish.fst
@@ -97,8 +97,8 @@ naDep.txt: $(TSV)
 niDep.txt: $(TSV)
 	cat $(TSV) | sed -n '/^n[^\t]*\t[^\t]*\tni\t/p' | cut -f 6 | egrep '[a-z]' | egrep -v ' ' > $@
 
-classified-nouns.txt: naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt ni.Dim.txt
-	cat naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt > $@
+classified-nouns.txt: naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naDep.txt niDep.txt
+	cat naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naDep.txt niDep.txt > $@
 
 nish.txt: nish-template.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt
 	rm -f templex.txt $@
@@ -115,7 +115,6 @@ nish.txt: nish-template.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.tx
 	cat naIVa.txt | sed 's/$$/\tNA_IVa ;/' >> templex.txt
 	cat niIVa.txt | sed 's/$$/\tNI_IVa ;/' >> templex.txt
 	cat naIVb.txt | sed 's/$$/\tNA_IVb ;/' >> templex.txt
-	cat niIVb.txt | sed 's/$$/\tNI_IVb ;/' >> templex.txt
 	cat naV.txt | sed 's/$$/\tNA_V ;/' >> templex.txt
 	cat niV.txt | sed 's/$$/\tNI_V ;/' >> templex.txt
 	cat naVI.txt | sed 's/$$/\tNA_VI ;/' >> templex.txt
@@ -129,11 +128,14 @@ nish.txt: nish-template.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.tx
 
 # nouns in TSV that never ended up in a noun class file naI, niIVa, etc. 
 othernouns.txt: classified-nouns.txt
-	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t\(n[ai]\)\?\t/p' | cut -f 6,7 | egrep '[a-z]$$' | cut -f 1 | keepif -n classified-nouns.txt | egrep '[a-z]' > $@
+	cat $(TSV) | sed -n '/^[^\t]*\t[^\t]*\tn[ai]\t\(n[ai]\)\?\t/p' | cut -f 6,7 | egrep '[a-z]$$' | cut -f 1 | keepif -n classified-nouns.txt | egrep '[a-z]' > $@
 	#cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t\(n[ai]\)\?\t/p' | cut -f 6 | keepif -n classified-nouns.txt > $@
 
-nouns-to-test.txt: $(TSV) 
+independentnouns.txt: $(TSV) 
 	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t/p' | cut -f 3,6 | sed '/^na/s/^..\t\(.*\)/\1+NA/; /^ni/s/^..\t\(.*\)/\1+NI/' > $@
+
+allnouns.txt: $(TSV) 
+	cat $(TSV) | sed -n '/^[^\t]*\t[^\t]*\tn[ai]\t/p' | cut -f 3,6 | sed '/^na/s/^..\t\(.*\)/\1+NA/; /^ni/s/^..\t\(.*\)/\1+NI/' > $@
 
 tsv-plurals.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t/p' | cut -f 7 > $@
@@ -147,23 +149,35 @@ tsv-diminutives.txt: $(TSV)
 tsv-pejoratives.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t/p' | cut -f 10 > $@
 
+tsv-possessive.txt: $(TSV)
+	cat $(TSV) | sed -n '/^[^\t]*\t[^\t]*\tn[ai]\t/p' | cut -f 11 > $@
+
+tsv-posswithm.txt: $(TSV)
+	cat $(TSV) | sed -n '/^[^\t]*\t[^\t]*\tn[ai]\t/p' | cut -f 12 > $@
+
 tsv-obviatives.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t/p' | cut -f 13 > $@
 
-plural-test.txt: nouns-to-test.txt nish.bin
-	cat nouns-to-test.txt | sed 's/$$/+Pl/' | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
+plural-test.txt: independentnouns.txt nish.bin
+	cat independentnouns.txt | sed 's/$$/+Pl/' | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
 
-locative-test.txt: nouns-to-test.txt nish.bin
-	cat nouns-to-test.txt | sed 's/$$/+Loc/' | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
+locative-test.txt: independentnouns.txt nish.bin
+	cat independentnouns.txt | sed 's/$$/+Loc/' | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
 
-diminutive-test.txt: nouns-to-test.txt nish.bin
-	cat nouns-to-test.txt | sed 's/$$/+Dim+Sg/' | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
+diminutive-test.txt: independentnouns.txt nish.bin
+	cat independentnouns.txt | sed 's/$$/+Dim+Sg/' | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
 
-pejorative-test.txt: nouns-to-test.txt nish.bin
-	cat nouns-to-test.txt | sed 's/$$/+Pej+Sg/' | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
+pejorative-test.txt: independentnouns.txt nish.bin
+	cat independentnouns.txt | sed 's/$$/+Pej+Sg/' | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
 
-obviative-test.txt: nouns-to-test.txt nish.bin
-	cat nouns-to-test.txt | sed 's/$$/+Obv/' | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
+possessive-test.txt: allnouns.txt nish.bin
+	cat allnouns.txt | sed 's/^/1P+Sg+Poss+/' | sed 's/$$/+Sg/' | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
+
+posswithm-test.txt: allnouns.txt nish.bin
+	cat allnouns.txt | sed 's/^/1P+Sg+Poss+/' | sed 's/$$/+PossThm+Sg/' | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
+
+obviative-test.txt: independentnouns.txt nish.bin
+	cat independentnouns.txt | sed 's/$$/+Obv/' | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
 
 plural-comparison.txt: plural-test.txt tsv-plurals.txt 
 	touch $@
@@ -193,6 +207,20 @@ pejorative-comparison.txt: pejorative-test.txt tsv-pejoratives.txt
 	-diff -u pejorative-comparison-prev.txt $@
 	wc -l pejorative-comparison-prev.txt $@
 
+possessive-comparison.txt: possessive-test.txt tsv-possessive.txt 
+	touch $@
+	mv -f $@ possessive-comparison-prev.txt
+	paste possessive-test.txt tsv-possessive.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
+	-diff -u possessive-comparison-prev.txt $@
+	wc -l possessive-comparison-prev.txt $@
+
+posswithm-comparison.txt: posswithm-test.txt tsv-posswithm.txt 
+	touch $@
+	mv -f $@ posswithm-comparison-prev.txt
+	paste posswithm-test.txt tsv-posswithm.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
+	-diff -u posswithm-comparison-prev.txt $@
+	wc -l posswithm-comparison-prev.txt $@
+
 obviative-comparison.txt: obviative-test.txt tsv-obviatives.txt 
 	touch $@
 	mv -f $@ obviative-comparison-prev.txt
@@ -207,10 +235,10 @@ syncopated-test.txt: fullvowel.txt syncopate.bin
 # (3) entries missing full-vowel form (so 1st column in resulting paste empty)
 syncope-comparison.txt: syncopated-test.txt headwords.txt
 	touch $@
-	mv -f $@ comparison-prev.txt
+	mv -f $@ syncope-comparison-prev.txt
 	paste syncopated-test.txt headwords.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' > $@
-	-diff -u comparison-prev.txt $@
-	wc -l comparison-prev.txt $@
+	-diff -u syncope-comparison-prev.txt $@
+	wc -l syncope-comparison-prev.txt $@
 
 diacriticbug.txt: syncope-comparison.txt
 	cat syncope-comparison.txt | sed 's/ǧ/g/g; s/ȟ/h/g; s/ǩ/k/g' | egrep '^(.+)[^a-z]\1$$' | sed 's/\t.*//' > $@
@@ -236,8 +264,8 @@ badcluster.txt: fullvowel.txt clusters.txt
 	-cat fullvowel.txt | egrep -v ' ' | egrep -o '[^aeiou-]+' | keepif -n clusters.txt | sort | uniq -c | sort -r -n > $@
 
 clean:
-	rm -f badapost.txt allaposts.txt badchar.txt badcluster.txt badvowel.txt headwords.txt fullvowel.txt syncopated-test.txt clusters.txt ascii-headwords.txt classified-nouns.txt othernouns.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt *-prev.txt consonanttypos.txt diacriticbug.txt multichar.txt nish.txt plural-test.txt tsv-plurals.txt nouns-to-test.txt pos.txt repeats.txt
+	rm -f badapost.txt allaposts.txt badchar.txt badcluster.txt badvowel.txt headwords.txt fullvowel.txt syncopated-test.txt clusters.txt ascii-headwords.txt classified-nouns.txt othernouns.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDep.txt niDep.txt naDim.txt niDim.txt *-prev.txt *-comparison.txt *-test.txt consonanttypos.txt diacriticbug.txt multichar.txt nish.txt plural-test.txt tsv-*.txt independentnouns.txt pos.txt repeats.txt allnouns.txt
 
 distclean:
 	$(MAKE) clean
-	rm -f syncopate.bin nish.bin syncope-comparison.txt plural-comparison.txt
+	rm -f syncopate.bin nish.bin
