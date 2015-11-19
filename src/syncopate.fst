@@ -14,8 +14,9 @@ define insertApost [ c dropMarker h -> c ' h, m dropMarker b -> m ' b, n dropMar
 define insertDiacriticsGK [ g X -> ǧ, k X -> ǩ, g w F -> ǧ, k w F -> ǩ || _ \w];
 define insertDiacriticsH [ h X -> ȟ, h w F -> ȟ || Vowel _ \w ];
 define initialO [ X -> w || .#. _, Hyphen _ ];
+define initialGW [ F g w a -> F g o || .#. _ \a ];
 define dropAllMarkers [ F -> 0, L -> 0, X -> 0 ];
 define convertGlottal [ ' -> h ];
-define syncopate [ markWeak .o. convertGlottal .o. insertApost .o. insertDiacriticsGK .o. insertDiacriticsH .o. initialO .o. dropAllMarkers ];
+define syncopate [ markWeak .o. convertGlottal .o. insertApost .o. insertDiacriticsGK .o. insertDiacriticsH .o. initialO .o. initialGW .o. dropAllMarkers ];
 push defined syncopate
 save stack syncopate.bin
