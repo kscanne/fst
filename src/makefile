@@ -158,6 +158,10 @@ tsv-posswithm.txt: $(TSV)
 tsv-obviatives.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t/p' | cut -f 13 > $@
 
+# Biigtigong we/wedi (pron dem) aren't just syncopated version of full vowel
+tsv-syncopated.txt: $(TSV)
+	cat $(TSV) | cut -f 2 | egrep -v "^(we|wedi)$$" > $@
+
 plural-test.txt: independentnouns.txt nish.bin
 	cat independentnouns.txt | sed 's/$$/+Pl/' | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
 
@@ -178,6 +182,10 @@ posswithm-test.txt: allnouns.txt nish.bin
 
 obviative-test.txt: independentnouns.txt nish.bin
 	cat independentnouns.txt | sed 's/$$/+Obv/' | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
+
+# Biigtigong we/wedi (pron dem) aren't just syncopated version of full vowel
+syncopated-test.txt: $(TSV) syncopate.bin
+	cat $(TSV) | cut -f 2,6 | egrep -v "^(we|wedi)[^ a-z]" | cut -f 2 | flookup -i syncopate.bin | egrep '.' | sed 's/^.*\t//' > $@
 
 plural-comparison.txt: plural-test.txt tsv-plurals.txt 
 	touch $@
@@ -228,15 +236,12 @@ obviative-comparison.txt: obviative-test.txt tsv-obviatives.txt
 	-diff -u obviative-comparison-prev.txt $@
 	wc -l obviative-comparison-prev.txt $@
 
-syncopated-test.txt: fullvowel.txt syncopate.bin
-	cat fullvowel.txt | flookup -i syncopate.bin | egrep '.' | sed 's/^.*\t//' > $@
-
 # filters out (1) anything correct (2) entries with spaces 
 # (3) entries missing full-vowel form (so 1st column in resulting paste empty)
-syncope-comparison.txt: syncopated-test.txt headwords.txt
+syncope-comparison.txt: syncopated-test.txt tsv-syncopated.txt
 	touch $@
 	mv -f $@ syncope-comparison-prev.txt
-	paste syncopated-test.txt headwords.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' > $@
+	paste syncopated-test.txt tsv-syncopated.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' > $@
 	-diff -u syncope-comparison-prev.txt $@
 	wc -l syncope-comparison-prev.txt $@
 
