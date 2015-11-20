@@ -190,8 +190,8 @@ obviative-test.txt: independentnouns.txt nish.bin
 syncopated-test.txt: $(TSV) syncopate.bin
 	cat $(TSV) | egrep -v '^[a-z]' | cut -f 2,6 | egrep -v "^(we|wedi)[^ a-z]" | cut -f 2 | flookup -i syncopate.bin | egrep '.' | sed 's/^.*\t//' > $@
 
-depsyncopated-test.txt: $(TSV) syncopate.bin
-	cat $(TSV) | egrep '^[a-z]' | cut -f 6 | sed "s/^/ni/" | flookup -i syncopate.bin | egrep '.' | sed 's/^.*\t//' > $@
+depsyncopated-test.txt: $(TSV) nish.bin
+	cat $(TSV) | egrep '^[a-z]' | cut -f 3,6 | sed 's/^\(n[ai]\)p/\1/' | sed 's/^na\t\(.*\)/\1+NA+Sg/' | sed 's/^ni\t\(.*\)/\1+NI+Sg/' | sed "s/^/1P+Sg+Poss+/" | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
 
 plural-comparison.txt: plural-test.txt tsv-plurals.txt 
 	touch $@
