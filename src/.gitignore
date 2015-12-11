@@ -6,6 +6,9 @@ badcluster.txt
 badvowel.txt
 classified-nouns.txt
 clusters.txt
+depsyncopated-test.txt
+depsyncope-comparison-prev.txt
+depsyncope-comparison.txt
 diminutive-comparison-prev.txt
 diminutive-comparison.txt
 diminutive-test.txt
@@ -58,6 +61,7 @@ syncopate.bin
 syncopated-test.txt
 syncope-comparison-prev.txt
 syncope-comparison.txt
+tsv-depsyncopated.txt
 tsv-diminutives.txt
 tsv-locatives.txt
 tsv-obviatives.txt
@@ -65,3 +69,4 @@ tsv-pejoratives.txt
 tsv-plurals.txt
 tsv-possessive.txt
 tsv-posswithm.txt
+tsv-syncopated.txt
