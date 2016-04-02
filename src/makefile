@@ -10,7 +10,7 @@ all: badapost.txt badchar.txt badvowel.txt badcluster.txt
 	@echo "bad full-vowel clusters..."
 	@cat badcluster.txt
 
-comp: depsyncope-comparison.txt syncope-comparison.txt diminutive-comparison.txt locative-comparison.txt obviative-comparison.txt pejorative-comparison.txt possessive-comparison.txt posswithm-comparison.txt plural-comparison.txt
+comp: depsyncope-comparison.txt syncope-comparison.txt diminutive-comparison.txt locative-comparison.txt obviative-comparison.txt pejorative-comparison.txt possessive-comparison.txt posswithm-comparison.txt plural-comparison.txt singular-comparison.txt
 
 nish.bin: nish.fst nish.txt syncopate.bin
 	foma -f nish.fst
@@ -137,6 +137,9 @@ independentnouns.txt: $(TSV)
 allnouns.txt: $(TSV) 
 	cat $(TSV) | sed -n '/^[^\t]*\t[^\t]*\tn[ai]\t/p' | cut -f 3,6 | sed '/^na/s/^..\t\(.*\)/\1+NA/; /^ni/s/^..\t\(.*\)/\1+NI/' > $@
 
+tsv-singulars.txt: $(TSV)
+	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t/p' | cut -f 2 > $@
+
 tsv-plurals.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\tn[ai]\t/p' | cut -f 7 > $@
 
@@ -165,6 +168,9 @@ tsv-syncopated.txt: $(TSV)
 tsv-depsyncopated.txt: $(TSV)
 	cat $(TSV) | egrep '^[a-z]' | cut -f 1,2 | tr -d "\t" > $@
 
+singular-test.txt: independentnouns.txt nish.bin
+	cat independentnouns.txt | sed 's/$$/+Sg/' | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
+
 plural-test.txt: independentnouns.txt nish.bin
 	cat independentnouns.txt | sed 's/$$/+Pl/' | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
 
@@ -192,6 +198,13 @@ syncopated-test.txt: $(TSV) syncopate.bin
 
 depsyncopated-test.txt: $(TSV) nish.bin
 	cat $(TSV) | egrep '^[a-z]' | cut -f 3,6 | sed 's/^\(n[ai]\)p/\1/' | sed 's/^na\t\(.*\)/\1+NA+Sg/' | sed 's/^ni\t\(.*\)/\1+NI+Sg/' | sed "s/^/1P+Sg+Poss+/" | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
+
+singular-comparison.txt: singular-test.txt tsv-singulars.txt 
+	touch $@
+	mv -f $@ singular-comparison-prev.txt
+	paste singular-test.txt tsv-singulars.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
+	-diff -u singular-comparison-prev.txt $@
+	wc -l singular-comparison-prev.txt $@
 
 plural-comparison.txt: plural-test.txt tsv-plurals.txt 
 	touch $@

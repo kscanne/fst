@@ -42,18 +42,18 @@ LEXICON NA_II
 +NA:0	DiminutiveOrContemptive ;
 
 LEXICON NA_III
-+NA:w	DiminutiveOrContemptive ;
++NA:^w	DiminutiveOrContemptive ;
 
 ! capital W here is a hack to distinguish from IVb;
 ! see spelling rewrite rules in nish.fst
 LEXICON NA_IVa
-+NA:W	DiminutiveOrContemptive ;
++NA:^W	DiminutiveOrContemptive ;
 
 LEXICON NA_IVb
-+NA:w	DiminutiveOrContemptive ;
++NA:^w	DiminutiveOrContemptive ;
 
 LEXICON NA_V
-+NA:y	DiminutiveOrContemptive ;
++NA:^y	DiminutiveOrContemptive ;
 
 LEXICON NA_VI
 +NA:0	DiminutiveOrContemptive ;
@@ -74,17 +74,17 @@ LEXICON NI_II
 +NI:0	DiminutiveOrContemptive ;
 
 LEXICON NI_III
-+NI:w	DiminutiveOrContemptive ;
++NI:^w	DiminutiveOrContemptive ;
 
 ! capital W here is a hack to distinguish from IVb;
 ! see spelling rewrite rules in nish.fst
 LEXICON NI_IVa
-+NI:W	DiminutiveOrContemptive ;
++NI:^W	DiminutiveOrContemptive ;
 
 ! Note no NI_IVb
 
 LEXICON NI_V
-+NI:y	DiminutiveOrContemptive ;
++NI:^y	DiminutiveOrContemptive ;
 
 LEXICON NI_VI
 +NI:0	DiminutiveOrContemptive ;
