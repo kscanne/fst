@@ -95,7 +95,7 @@ naDep.txt: $(TSV)
 	cat $(TSV) | sed -n '/^n[^\t]*\t[^\t]*\tna\t/p' | cut -f 6 | egrep '[a-z]' | egrep -v ' ' > $@
 
 niDep.txt: $(TSV)
-	cat $(TSV) | sed -n '/^n[^\t]*\t[^\t]*\tni\t/p' | cut -f 6 | egrep '[a-z]' | egrep -v ' ' > $@
+	cat $(TSV) | sed -n '/^n[^\t]*\t[^\t]*\tni\t/p' | cut -f 6 | egrep '[a-z]' | egrep -v ' ' | egrep -v '^mashkimod$$' > $@
 
 classified-nouns.txt: naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naDep.txt niDep.txt
 	cat naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naDep.txt niDep.txt > $@

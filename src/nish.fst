@@ -31,15 +31,15 @@ define ConOrDimRules [ w a "^" e -> o o , a a "^" e -> a a , i i "^" e -> i i , 
 define ShortAConOrDim [ a "^" e -> e || \a _ ];  ! miikna -> miiknens e.g.
 define ClassVFinalI [ i "^" y "^" [ a | e | i ] -> i i ]; 
 define ClassVOther [ "^" y "^" [ a | e | i ] -> i i || \i _ ]; 
-! define ClassVConOrDim [ "^" y "^" e -> i i ]; 
-! define ClassVPejOrLoc [ "^" y "^" i -> i i ]; 
-define PejRules [ n s "^" i s -> n z h i s , n h "^" i s -> n y i s , a "^" i s -> a w i s , i i "^" i s -> i i w i s , e "^" i s -> e w i s , o o "^" i s -> o o w i s , W "^" i s -> o s , k "^" w "^" i s -> k o s , g "^" w "^" i s -> g o s ];
-define LocRules [ n h "^" i n -> n y i n , w a "^" i n -> o n , a a "^" i n -> a a n , i i "^" i n -> i i n , i w "^" i n g -> i i n g , i "^" w "^" i n g -> i i n g , e "^" i n -> e n , o o "^" i n -> o o n , W "^" i n -> o n , e "^" w "^" i n -> e n , k "^" w "^" i n -> k o n , g "^" w "^" i n -> g o n ];
+define ClassVIDropY [ a y -> 0 || _ "^" A "^" i ];
+define PejRules [ n s "^" i s -> n z h i s , n h "^" i s -> n y i s , a "^" i s -> a w i s , i i "^" i s -> i i w i s , e "^" i s -> e w i s , o o "^" i s -> o o w i s , W "^" i s -> o s , k "^" w "^" i s -> k o s , g "^" w "^" i s -> g o s , "^" A "^" i s -> a a s ];
+define LocRules [ n h "^" i n -> n y i n , w a "^" i n -> o n , a a "^" i n -> a a n , i i "^" i n -> i i n , i w "^" i n g -> i i n g , i "^" w "^" i n g -> i i n g , e "^" i n -> e n , o o "^" i n -> o o n , W "^" i n -> o n , e "^" w "^" i n -> e n , k "^" w "^" i n -> k o n , g "^" w "^" i n -> g o n , "^" A "^" i n -> a a n ];
 define ShortALocOrPoss [ a "^" i -> a a || \a _ ];  ! miikna -> miiknaang, miiknaam
-define PossThmRules [ n h "^" i m -> n y i m , w a "^" i m -> o m , a a "^" i m -> a a m , i i "^" i m -> i i m , i w "^" i m -> i i m , i "^" w "^" i m -> i i m , e "^" i m -> e m , o o "^" i m -> o o m , W "^" i m -> o m , e "^" w "^" i m -> e m , k "^" w "^" i m -> k o m , g "^" w "^" i m -> g o m ]; ! cf. V. p. 201
+define PossThmRules [ n h "^" i m -> n y i m , w a "^" i m -> o m , a a "^" i m -> a a m , i i "^" i m -> i i m , i w "^" i m -> i i m , i "^" w "^" i m -> i i m , e "^" i m -> e m , o o "^" i m -> o o m , W "^" i m -> o m , e "^" w "^" i m -> e m , k "^" w "^" i m -> k o m , g "^" w "^" i m -> g o m , "^" A "^" i m -> a a m ]; ! cf. V. p. 201
 define LeniteQuasiDim [ z e n s "^" i s -> z h e n z h i s ];  ! as in kwezens -> kwezhenzhish, gwiiwzens -> gwiiwzhenzhish, V p.193; do this before PejRules
 define SingularCleanup [ "^" [ w | W | y ] -> 0 || _ .#. ];
+define classVICleanup [ "^" A -> 0 ];
 define Cleanup [ "^" -> 0, "@" -> 0 ];
-define Morph [ DisallowIntermediateTags .o. LongDistanceDependencies .o. Lexicon .o. PossPrefixRules .o. PluralRules .o. ClassVFinalI .o. ClassVOther .o. ConOrDimRules .o. ShortAConOrDim .o. LeniteQuasiDim .o. PejRules .o. LocRules .o. PossThmRules .o. ShortALocOrPoss .o. SingularCleanup .o. Cleanup .o. @"syncopate.bin" ];
+define Morph [ DisallowIntermediateTags .o. LongDistanceDependencies .o. Lexicon .o. PossPrefixRules .o. PluralRules .o. ClassVFinalI .o. ClassVOther .o. ConOrDimRules .o. ShortAConOrDim .o. LeniteQuasiDim .o. ClassVIDropY .o. PejRules .o. LocRules .o. PossThmRules .o. ShortALocOrPoss .o. classVICleanup .o. SingularCleanup .o. Cleanup .o. @"syncopate.bin" ];
 push Morph
 save stack nish.bin
