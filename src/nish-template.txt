@@ -1,7 +1,169 @@
-Multichar_Symbols +NA +NI +NAPl +NIPl +NASg +NISg 1P+ 2P+ 3P+ Sg+ Pl+ Poss+ Ex+ +1P +2P +3P +Ex +Sg +Pl +Pej +Dim +Obv +Loc +Con +Poss +PossThm
+Multichar_Symbols +NA +NI +NAPl +NIPl +NASg +NISg 1P+ 2P+ 3P+ Sg+ Obv+ Pl+ Poss+ Ex+ Imp+ Conj+ +1P +2P +3P +Ex +Sg +Pl +Imp +Pej +Dim +Obv +Loc +Con +Poss +PossThm +Indep +Conj +Indic +Pret +Dub +PretDub +Neg
 
 LEXICON Root
+	Verbs ;
 	Nouns ;
+
+LEXICON Verbs
+	VAI ;
+	! VII ;
+	! VTA ;
+	! VTI ;
+
+LEXICON VAI
+	VAISubjectPrefixes ;
+
+LEXICON VAISubjectPrefixes
+	1P+Sg+:ni	VAI_Stems ;
+	2P+Sg+:gi	VAI_Stems ;
+	3P+Sg+:0	VAI_Stems ;
+	3P+Obv+:0	VAI_Stems ;
+	1P+Pl+:ni	VAI_Stems ;
+	1P+Ex+:gi	VAI_Stems ;
+	2P+Pl+:gi	VAI_Stems ;
+	3P+Pl+:0	VAI_Stems ;
+	Imp+:0		VAI_Stems ;		! Impersonal ("unspecified actor")
+	Conj+:ConjVC+	VAI_Stems ;		! for Conjunct order
+
+LEXICON VAI_Stems
+
+LEXICON VAI_Vowel_Final_Suffixes
+	+Indep:0		VAI_Vowel_Final_Indep_Suffixes ;
+	+Conj:0		VAI_Vowel_Final_Conj_Suffixes ;
+	! +CC:0		! changed conjuct verbal order
+
+! +Pres from Biigtigong tables implicit here 
+LEXICON VAI_Vowel_Final_Indep_Suffixes
+	+1P+Sg+Indic:0		# ;		! Biigtigong verb chart VAI sheet (1a)
+	+2P+Sg+Indic:0		# ;
+	+3P+Sg+Indic:0		# ;
+	+3P+Obv+Indic:wan	# ;
+	+1P+Pl+Indic:min		# ;
+	+1P+Ex+Indic:min		# ;
+	+2P+Pl+Indic:m		# ;
+	+3P+Pl+Indic:wag		# ;
+	+Imp+Indic:m		# ;
+	+1P+Sg+Pret:naaban		# ;		! Biigtigong verb chart VAI sheet (2a)
+	+2P+Sg+Pret:naaban		# ;
+	+3P+Sg+Pret:ban		# ;
+	+3P+Obv+Pret:baniin		# ;
+	+1P+Pl+Pret:minaaban		# ;
+	+1P+Ex+Pret:minaaban		# ;
+	+2P+Pl+Pret:mwaaban		# ;
+	+3P+Pl+Pret:baniig		# ;
+	+Imp+Pret:mwaaban			# ;
+	+1P+Sg+Dub:naadog		# ;		! Biigtigong verb chart VAI sheet (3a)
+	+2P+Sg+Dub:naadog		# ;
+	+3P+Sg+Dub:dog		# ;
+	+3P+Obv+Dub:dogwenan		# ;
+	+1P+Pl+Dub:minaadog		# ;
+	+1P+Ex+Dub:minaadog		# ;
+	+2P+Pl+Dub:mwaadog		# ;
+	+3P+Pl+Dub:dogwenag		# ;
+	+Imp+Dub:mwaadog			# ;
+	+3P+Sg+PretDub:goban		# ;		! Biigtigong verb chart VAI sheet (4a)
+	+3P+Obv+PretDub:nigoban		# ;
+	+3P+Pl+PretDub:gwaaban		# ;
+	+1P+Sg+Neg+Indic:sii		# ;		! Biigtigong verb chart VAI sheet (1b)
+	+2P+Sg+Neg+Indic:sii		# ;
+	+3P+Sg+Neg+Indic:sii		# ;
+	+3P+Obv+Neg+Indic:siiwan		# ;
+	+1P+Pl+Neg+Indic:siimin		# ;
+	+1P+Ex+Neg+Indic:siimin		# ;
+	+2P+Pl+Neg+Indic:siim		# ;
+	+3P+Pl+Neg+Indic:siiwag		# ;
+	+Imp+Neg+Indic:siim		# ;
+	+1P+Sg+Neg+Pret:siinaaban		# ;		! Biigtigong verb chart VAI sheet (2b)
+	+2P+Sg+Neg+Pret:siinaaban		# ;
+	+3P+Sg+Neg+Pret:siiban		# ;
+	+3P+Obv+Neg+Pret:siibaniin		# ;
+	+1P+Pl+Neg+Pret:siiminaaban		# ;
+	+1P+Ex+Neg+Pret:siiminaaban		# ;
+	+2P+Pl+Neg+Pret:siimwaaban		# ;
+	+3P+Pl+Neg+Pret:siibaniig		# ;
+	+Imp+Neg+Pret:siimiban			# ;
+	+1P+Sg+Neg+Dub:siinaadig		# ;		! Biigtigong verb chart VAI sheet (3b)
+	+2P+Sg+Neg+Dub:siinaadig		# ;
+	+3P+Sg+Neg+Dub:siidig		# ;
+	+3P+Obv+Neg+Dub:siidigenan		# ;
+	+1P+Pl+Neg+Dub:siiminaadig		# ;
+	+1P+Ex+Neg+Dub:siiminaadig		# ;
+	+2P+Pl+Neg+Dub:siiwaadig		# ;
+	+3P+Pl+Neg+Dub:siidigenag		# ;
+	+Imp+Neg+Dub:siimidig			# ;
+	+3P+Sg+Neg+PretDub:siigoban		# ;		! Biigtigong verb chart VAI sheet (4b)
+	+3P+Obv+Neg+PretDub:siinigoban		# ;
+	+3P+Pl+Neg+PretDub:siiwaagoban		# ;
+
+LEXICON VAI_Vowel_Final_Conj_Suffixes
+
+LEXICON VAI_Nasal_Final_Suffixes
+	+Indep:0		VAI_Nasal_Final_Indep_Suffixes ;
+	+Conj:0		VAI_Nasal_Final_Conj_Suffixes ;
+
+LEXICON VAI_Nasal_Final_Indep_Suffixes
+	+1P+Sg+Indic:0		# ;		! Biigtigong verb chart VAI sheet (1a)
+	+2P+Sg+Indic:0		# ;
+	+3P+Sg+Indic:0		# ;
+	+3P+Obv+Indic:oon	# ;
+	+1P+Pl+Indic:omin		# ;
+	+1P+Ex+Indic:omin		# ;
+	+2P+Pl+Indic:om		# ;
+	+3P+Pl+Indic:oog		# ;
+	+Imp+Indic:om		# ;
+	+1P+Sg+Pret:inaaban		# ;		! Biigtigong verb chart VAI sheet (2a)
+	+2P+Sg+Pret:inaaban		# ;
+	+3P+Sg+Pret:ooban		# ;
+	+3P+Obv+Pret:oobaniin		# ;
+	+1P+Pl+Pret:ominaaban		# ;
+	+1P+Ex+Pret:ominaaban		# ;
+	+2P+Pl+Pret:omwaaban		# ;
+	+3P+Pl+Pret:oobaniig		# ;
+	+Imp+Pret:omwaaban			# ;
+	+1P+Sg+Dub:inaadog		# ;		! Biigtigong verb chart VAI sheet (3a)
+	+2P+Sg+Dub:inaadog		# ;
+	+3P+Sg+Dub:owidog		# ;
+	+3P+Obv+Dub:owidogwenan		# ;
+	+1P+Pl+Dub:iminaadog		# ;
+	+1P+Ex+Dub:iminaadog		# ;
+	+2P+Pl+Dub:imwaadog		# ;
+	+3P+Pl+Dub:owidogwenag		# ;
+	+Imp+Dub:imwaadog			# ;
+	+3P+Sg+PretDub:amogoban		# ;		! Biigtigong verb chart VAI sheet (4a)
+	+3P+Obv+PretDub:aminigoban		# ;
+	+3P+Pl+PretDub:amogwaaban		# ;
+	+1P+Sg+Neg+Indic:~nzii	# ;		! Biigtigong verb chart VAI sheet (1b)
+	+2P+Sg+Neg+Indic:~nzii	# ;
+	+3P+Sg+Neg+Indic:~nzii	# ;
+	+3P+Obv+Neg+Indic:~nziiwan		# ;
+	+1P+Pl+Neg+Indic:~nziimin		# ;
+	+1P+Ex+Neg+Indic:~nziimin		# ;
+	+2P+Pl+Neg+Indic:~nziim		# ;
+	+3P+Pl+Neg+Indic:~nziiwag		# ;
+	+Imp+Neg+Indic:~nziim		# ;
+	+1P+Sg+Neg+Pret:~nziinaaban		# ;		! Biigtigong verb chart VAI sheet (2b)
+	+2P+Sg+Neg+Pret:~nziinaaban		# ;
+	+3P+Sg+Neg+Pret:~nziiban		# ;
+	+3P+Obv+Neg+Pret:~nziibaniin		# ;
+	+1P+Pl+Neg+Pret:~nziiminaaban		# ;
+	+1P+Ex+Neg+Pret:~nziiminaaban		# ;
+	+2P+Pl+Neg+Pret:~nziimwaaban		# ;
+	+3P+Pl+Neg+Pret:~nziibaniig		# ;
+	+Imp+Neg+Pret:~nziimwaaban			# ;
+	+1P+Sg+Neg+Dub:~nziinaadog		# ;		! Biigtigong verb chart VAI sheet (3b)
+	+2P+Sg+Neg+Dub:~nziinaadog		# ;
+	+3P+Sg+Neg+Dub:~nziidog		# ;
+	+3P+Obv+Neg+Dub:~nziidogwenan		# ;
+	+1P+Pl+Neg+Dub:~nziiminaadog		# ;
+	+1P+Ex+Neg+Dub:~nziiminaadog		# ;
+	+2P+Pl+Neg+Dub:~nziimwaadog		# ;
+	+3P+Pl+Neg+Dub:~nziidogwenag		# ;
+	+Imp+Neg+Dub:~nziimwaadog			# ;
+	+3P+Sg+Neg+PretDub:~nziigoban		# ;		! Biigtigong verb chart VAI sheet (4b)
+	+3P+Obv+Neg+PretDub:~nziinigoban		# ;
+	+3P+Pl+Neg+PretDub:~nziigwaaban		# ;
+
+LEXICON VAI_Nasal_Final_Conj_Suffixes
 
 LEXICON Nouns
 	RegularNouns ;

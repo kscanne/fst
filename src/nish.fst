@@ -16,8 +16,18 @@ define 1pPossessum [ "+Poss" -> "+1P" "+Pl" "+Poss" || .#. "1P+" "Pl+" "Poss+" ?
 define 21Possessum [ "+Poss" -> "+1P" "+Ex" "+Poss" || .#. "1P+" "Ex+" "Poss+" ?+ _ ? .#. ]; 
 define 2pPossessum [ "+Poss" -> "+2P" "+Pl" "+Poss" || .#. "2P+" "Pl+" "Poss+" ?+ _ ? .#. ]; 
 define 3pPossessum [ "+Poss" -> "+3P" "+Pl" "+Poss" || .#. "3P+" "Pl+" "Poss+" ?+ _ ? .#. ]; 
+define 1sActor [ "+Indep" -> "+Indep" "+1P" "+Sg" || .#. "1P+" "Sg+" ?+ _ ]; 
+define 2sActor [ "+Indep" -> "+Indep" "+2P" "+Sg" || .#. "2P+" "Sg+" ?+ _ ]; 
+define 3sActor [ "+Indep" -> "+Indep" "+3P" "+Sg" || .#. "3P+" "Sg+" ?+ _ ]; 
+define 3oActor [ "+Indep" -> "+Indep" "+3P" "+Obv" || .#. "3P+" "Obv+" ?+ _ ]; 
+define 1pActor [ "+Indep" -> "+Indep" "+1P" "+Pl" || .#. "1P+" "Pl+" ?+ _ ]; 
+define 21Actor [ "+Indep" -> "+Indep" "+1P" "+Ex" || .#. "1P+" "Ex+" ?+ _ ]; 
+define 2pActor [ "+Indep" -> "+Indep" "+2P" "+Pl" || .#. "2P+" "Pl+" ?+ _ ]; 
+define 3pActor [ "+Indep" -> "+Indep" "+3P" "+Pl" || .#. "3P+" "Pl+" ?+ _ ]; 
+define PropagatePossessum [ 1sPossessum .o. 2sPossessum .o. 3sPossessum .o. 1pPossessum .o. 21Possessum .o. 2pPossessum .o. 3pPossessum ];
+define PropagateActor [ 1sActor .o. 2sActor .o. 3sActor .o. 3oActor .o. 1pActor .o. 21Actor .o. 2pActor .o. 3pActor ];
 define ObviativeAnimateOnly ~[$[ "+NI" ?* "+Obv" ]];
-define LongDistanceDependencies [ ObviativeAnimateOnly .o. InsertPossSg .o. InsertPossPl .o. InsertPossObv .o. InsertPossLoc .o. 1sPossessum .o. 2sPossessum .o. 3sPossessum .o. 1pPossessum .o. 21Possessum .o. 2pPossessum .o. 3pPossessum .o. AnimatePlural .o. InanimatePlural .o. AnimateSingular .o. InanimateSingular ];
+define LongDistanceDependencies [ ObviativeAnimateOnly .o. InsertPossSg .o. InsertPossPl .o. InsertPossObv .o. InsertPossLoc .o. PropagatePossessum .o. PropagateActor .o. AnimatePlural .o. InanimatePlural .o. AnimateSingular .o. InanimateSingular ];
 define PossLinkingD [ "@" -> d || _ [ a | e | i \i ] ];  ! V 4.9.2, but not ii or oo as in 4.9.2.1
 define PossLinkingDO [ "@" -> d o || _ o \o ]; ! lengthen initial o (Biigtigong TSV)
 define PossLinkingDW [ "@" w a -> d o o || _ \a ]; ! Biigtigong TSV, w + short a only
@@ -39,7 +49,8 @@ define PossThmRules [ n h "^" i m -> n y i m , w a "^" i m -> o m , a a "^" i m 
 define LeniteQuasiDim [ z e n s "^" i s -> z h e n z h i s ];  ! as in kwezens -> kwezhenzhish, gwiiwzens -> gwiiwzhenzhish, V p.193; do this before PejRules
 define SingularCleanup [ "^" [ w | W | y ] -> 0 || _ .#. ];
 define classVICleanup [ "^" A -> 0 ];
+define dropFinalCluster [ [ d | m | n | n d | t ] "~" n z -> n z || [ a | e | i | o ] _ ];
 define Cleanup [ "^" -> 0, "@" -> 0 ];
-define Morph [ DisallowIntermediateTags .o. LongDistanceDependencies .o. Lexicon .o. PossPrefixRules .o. PluralRules .o. ClassVFinalI .o. ClassVOther .o. ConOrDimRules .o. ShortAConOrDim .o. LeniteQuasiDim .o. ClassVIDropY .o. PejRules .o. LocRules .o. PossThmRules .o. ShortALocOrPoss .o. classVICleanup .o. SingularCleanup .o. Cleanup .o. @"syncopate.bin" ];
+define Morph [ DisallowIntermediateTags .o. LongDistanceDependencies .o. Lexicon .o. dropFinalCluster .o. PossPrefixRules .o. PluralRules .o. ClassVFinalI .o. ClassVOther .o. ConOrDimRules .o. ShortAConOrDim .o. LeniteQuasiDim .o. ClassVIDropY .o. PejRules .o. LocRules .o. PossThmRules .o. ShortALocOrPoss .o. classVICleanup .o. SingularCleanup .o. Cleanup .o. @"syncopate.bin" ];
 push Morph
 save stack nish.bin

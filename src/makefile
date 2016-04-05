@@ -97,10 +97,14 @@ naDep.txt: $(TSV)
 niDep.txt: $(TSV)
 	cat $(TSV) | sed -n '/^n[^\t]*\t[^\t]*\tni\t/p' | cut -f 6 | egrep '[a-z]' | egrep -v ' ' | egrep -v '^mashkimod$$' > $@
 
+# want the FV stems (col 15) here, *not* column 6 with the -ng or -d ending...
+vai.txt: $(TSV)
+	cat $(TSV) | sed -n '/^\t[^\t]*\tvai\t/p' | cut -f 15 | egrep '[a-z]' | egrep -v ' ' | sed 's/^\///; s/-\/$$//' > $@
+
 classified-nouns.txt: naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naDep.txt niDep.txt
 	cat naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naDep.txt niDep.txt > $@
 
-nish.txt: nish-template.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naDep.txt niDep.txt
+nish.txt: nish-template.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naDep.txt niDep.txt vai.txt
 	rm -f templex.txt $@
 	cat naI.txt | sed 's/$$/\tNA_I ;/' > templex.txt
 	cat niI.txt | sed 's/$$/\tNI_I ;/' >> templex.txt
@@ -123,6 +127,9 @@ nish.txt: nish-template.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.tx
 	cat naDep.txt | sed 's/$$/\tNA_Dep ;/' > templex.txt
 	cat niDep.txt | sed 's/$$/\tNI_Dep ;/' >> templex.txt
 	sed -i '/^LEXICON DependentNouns/r templex.txt' $@
+	cat vai.txt | egrep '[aeio]$$' | sed 's/$$/\tVAI_Vowel_Final_Suffixes ;/' > templex.txt
+	cat vai.txt | egrep '[^aeio]$$' | sed 's/$$/\tVAI_Nasal_Final_Suffixes ;/' >> templex.txt
+	sed -i '/^LEXICON VAI_Stems/r templex.txt' $@
 	rm -f templex.txt
 	chmod 444 $@
 
