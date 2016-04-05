@@ -24,8 +24,9 @@ define 1pActor [ "+Indep" -> "+Indep" "+1P" "+Pl" || .#. "1P+" "Pl+" ?+ _ ];
 define 21Actor [ "+Indep" -> "+Indep" "+1P" "+Ex" || .#. "1P+" "Ex+" ?+ _ ]; 
 define 2pActor [ "+Indep" -> "+Indep" "+2P" "+Pl" || .#. "2P+" "Pl+" ?+ _ ]; 
 define 3pActor [ "+Indep" -> "+Indep" "+3P" "+Pl" || .#. "3P+" "Pl+" ?+ _ ]; 
+define ImpActor [ "+Indep" -> "+Indep" "+Imp" || .#. "Imp+" ?+ _ ]; 
 define PropagatePossessum [ 1sPossessum .o. 2sPossessum .o. 3sPossessum .o. 1pPossessum .o. 21Possessum .o. 2pPossessum .o. 3pPossessum ];
-define PropagateActor [ 1sActor .o. 2sActor .o. 3sActor .o. 3oActor .o. 1pActor .o. 21Actor .o. 2pActor .o. 3pActor ];
+define PropagateActor [ 1sActor .o. 2sActor .o. 3sActor .o. 3oActor .o. 1pActor .o. 21Actor .o. 2pActor .o. 3pActor .o. ImpActor ];
 define ObviativeAnimateOnly ~[$[ "+NI" ?* "+Obv" ]];
 define LongDistanceDependencies [ ObviativeAnimateOnly .o. InsertPossSg .o. InsertPossPl .o. InsertPossObv .o. InsertPossLoc .o. PropagatePossessum .o. PropagateActor .o. AnimatePlural .o. InanimatePlural .o. AnimateSingular .o. InanimateSingular ];
 define PossLinkingD [ "@" -> d || _ [ a | e | i \i ] ];  ! V 4.9.2, but not ii or oo as in 4.9.2.1
