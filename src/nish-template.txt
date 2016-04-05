@@ -56,7 +56,7 @@ LEXICON NA_V
 +NA:^y	DiminutiveOrContemptive ;
 
 LEXICON NA_VI
-+NA:0	DiminutiveOrContemptive ;
++NA:^A	DiminutiveOrContemptive ;
 
 LEXICON NA_Dep
 +NA:0	DiminutiveOrContemptive ;
@@ -87,7 +87,7 @@ LEXICON NI_V
 +NI:^y	DiminutiveOrContemptive ;
 
 LEXICON NI_VI
-+NI:0	DiminutiveOrContemptive ;
++NI:^A	DiminutiveOrContemptive ;
 
 LEXICON NI_Dep
 +NI:0	DiminutiveOrContemptive ;
