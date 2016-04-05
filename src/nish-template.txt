@@ -82,18 +82,18 @@ LEXICON VAI_Vowel_Final_Indep_Suffixes
 	+2P+Pl+Neg+Pret:siimwaaban		# ;
 	+3P+Pl+Neg+Pret:siibaniig		# ;
 	+Imp+Neg+Pret:siimiban			# ;
-	+1P+Sg+Neg+Dub:siinaadig		# ;		! Biigtigong verb chart VAI sheet (3b)
-	+2P+Sg+Neg+Dub:siinaadig		# ;
-	+3P+Sg+Neg+Dub:siidig		# ;
-	+3P+Obv+Neg+Dub:siidigenan		# ;
-	+1P+Pl+Neg+Dub:siiminaadig		# ;
-	+1P+Ex+Neg+Dub:siiminaadig		# ;
-	+2P+Pl+Neg+Dub:siiwaadig		# ;
-	+3P+Pl+Neg+Dub:siidigenag		# ;
-	+Imp+Neg+Dub:siimidig			# ;
+	+1P+Sg+Neg+Dub:siinaadog		# ;		! Biigtigong verb chart VAI sheet (3b)
+	+2P+Sg+Neg+Dub:siinaadog		# ;
+	+3P+Sg+Neg+Dub:siidog		# ;
+	+3P+Obv+Neg+Dub:siidogwenan		# ;
+	+1P+Pl+Neg+Dub:siiminaadog		# ;
+	+1P+Ex+Neg+Dub:siiminaadog		# ;
+	+2P+Pl+Neg+Dub:siiwaadog		# ;
+	+3P+Pl+Neg+Dub:siidogwenag		# ;
+	+Imp+Neg+Dub:siimwaadog			# ;
 	+3P+Sg+Neg+PretDub:siigoban		# ;		! Biigtigong verb chart VAI sheet (4b)
 	+3P+Obv+Neg+PretDub:siinigoban		# ;
-	+3P+Pl+Neg+PretDub:siiwaagoban		# ;
+	+3P+Pl+Neg+PretDub:siigwaaban		# ;
 
 LEXICON VAI_Vowel_Final_Conj_Suffixes
 
