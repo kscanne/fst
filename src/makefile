@@ -80,10 +80,10 @@ naIVb.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\([^aeio]\)\tna\t/p' | cut -f 2,3,6,7 | egrep '^(.+)[^a-z].+[^a-z]\1(o|wa)g$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
 naV.txt: $(TSV)
-	cat $(TSV) | sed -n '/^\t[^\t]*\tna\t/p' | cut -f 2,3,6,7 | egrep 'iig$$' | cut -f 1 | egrep -v 'ii$$' > $@
+	cat $(TSV) | sed -n '/^\t[^\t]*\tna\t/p' | cut -f 2,3,6,7 | egrep 'iig$$' | cut -f 3 | egrep -v 'ii$$' > $@
 
 niV.txt: $(TSV)
-	cat $(TSV) | sed -n '/^\t[^\t]*\tni\t/p' | cut -f 2,3,6,7 | egrep 'iin$$' | cut -f 1 | egrep -v 'ii$$' > $@
+	cat $(TSV) | sed -n '/^\t[^\t]*\tni\t/p' | cut -f 2,3,6,7 | egrep 'iin$$' | cut -f 3 | egrep -v 'ii$$' > $@
 
 naVI.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\([^aeio]\)\tna\t/p' | cut -f 2,3,6,7,8 | egrep 'aang$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
