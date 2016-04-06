@@ -1,6 +1,6 @@
 read lexc nish.txt
 define Lexicon;
-define DisallowIntermediateTags ~[$[ "+NAPl" | "+NIPl" | "+NASg" | "+NISg" | "+Poss" ]];
+define DisallowIntermediateTags ~[$[ "+NAPl" | "+NIPl" | "+NASg" | "+NISg" | "+Poss" | "+1P" | "+2P" | "+3P" | "+Ex" | "+Imp" ]];
 define AnimatePlural [ "+Pl" -> "+NAPl" || "+NA" ?* _ .#. ];
 define InanimatePlural [ "+Pl" -> "+NIPl" || "+NI" ?* _ .#. ];
 define AnimateSingular [ "+Sg" -> "+NASg" || "+NA" ?* _ .#. ];
@@ -24,8 +24,9 @@ define 1pActor [ "+Indep" -> "+Indep" "+1P" "+Pl" || .#. "1P+" "Pl+" ?+ _ ];
 define 21Actor [ "+Indep" -> "+Indep" "+1P" "+Ex" || .#. "1P+" "Ex+" ?+ _ ]; 
 define 2pActor [ "+Indep" -> "+Indep" "+2P" "+Pl" || .#. "2P+" "Pl+" ?+ _ ]; 
 define 3pActor [ "+Indep" -> "+Indep" "+3P" "+Pl" || .#. "3P+" "Pl+" ?+ _ ]; 
+define ImpActor [ "+Indep" -> "+Indep" "+Imp" || .#. "Imp+" ?+ _ ]; 
 define PropagatePossessum [ 1sPossessum .o. 2sPossessum .o. 3sPossessum .o. 1pPossessum .o. 21Possessum .o. 2pPossessum .o. 3pPossessum ];
-define PropagateActor [ 1sActor .o. 2sActor .o. 3sActor .o. 3oActor .o. 1pActor .o. 21Actor .o. 2pActor .o. 3pActor ];
+define PropagateActor [ 1sActor .o. 2sActor .o. 3sActor .o. 3oActor .o. 1pActor .o. 21Actor .o. 2pActor .o. 3pActor .o. ImpActor ];
 define ObviativeAnimateOnly ~[$[ "+NI" ?* "+Obv" ]];
 define LongDistanceDependencies [ ObviativeAnimateOnly .o. InsertPossSg .o. InsertPossPl .o. InsertPossObv .o. InsertPossLoc .o. PropagatePossessum .o. PropagateActor .o. AnimatePlural .o. InanimatePlural .o. AnimateSingular .o. InanimateSingular ];
 define PossLinkingD [ "@" -> d || _ [ a | e | i \i ] ];  ! V 4.9.2, but not ii or oo as in 4.9.2.1
@@ -50,7 +51,9 @@ define LeniteQuasiDim [ z e n s "^" i s -> z h e n z h i s ];  ! as in kwezens -
 define SingularCleanup [ "^" [ w | W | y ] -> 0 || _ .#. ];
 define classVICleanup [ "^" A -> 0 ];
 define dropFinalCluster [ [ d | m | n | n d | t ] "~" n z -> n z || [ a | e | i | o ] _ ];
+define keepFinalLongVowel [ "@" -> 0 || [ a a | i i | o o ] _ .#. ];
+define dropFinalShortVowel [ [ a | i | o ] "@" -> 0 || _ .#. ];
 define Cleanup [ "^" -> 0, "@" -> 0 ];
-define Morph [ DisallowIntermediateTags .o. LongDistanceDependencies .o. Lexicon .o. dropFinalCluster .o. PossPrefixRules .o. PluralRules .o. ClassVFinalI .o. ClassVOther .o. ConOrDimRules .o. ShortAConOrDim .o. LeniteQuasiDim .o. ClassVIDropY .o. PejRules .o. LocRules .o. PossThmRules .o. ShortALocOrPoss .o. classVICleanup .o. SingularCleanup .o. Cleanup .o. @"syncopate.bin" ];
+define Morph [ DisallowIntermediateTags .o. LongDistanceDependencies .o. Lexicon .o. dropFinalCluster .o. keepFinalLongVowel .o. dropFinalShortVowel .o. PossPrefixRules .o. PluralRules .o. ClassVFinalI .o. ClassVOther .o. ConOrDimRules .o. ShortAConOrDim .o. LeniteQuasiDim .o. ClassVIDropY .o. PejRules .o. LocRules .o. PossThmRules .o. ShortALocOrPoss .o. classVICleanup .o. SingularCleanup .o. Cleanup .o. @"syncopate.bin" ];
 push Morph
 save stack nish.bin
