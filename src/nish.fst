@@ -1,6 +1,6 @@
 read lexc nish.txt
 define Lexicon;
-define DisallowIntermediateTags ~[$[ "+NAPl" | "+NIPl" | "+NASg" | "+NISg" | "+Poss" ]];
+define DisallowIntermediateTags ~[$[ "+NAPl" | "+NIPl" | "+NASg" | "+NISg" | "+Poss" | "+1P" | "+2P" | "+3P" | "+Ex" | "+Imp" ]];
 define AnimatePlural [ "+Pl" -> "+NAPl" || "+NA" ?* _ .#. ];
 define InanimatePlural [ "+Pl" -> "+NIPl" || "+NI" ?* _ .#. ];
 define AnimateSingular [ "+Sg" -> "+NASg" || "+NA" ?* _ .#. ];
@@ -51,7 +51,9 @@ define LeniteQuasiDim [ z e n s "^" i s -> z h e n z h i s ];  ! as in kwezens -
 define SingularCleanup [ "^" [ w | W | y ] -> 0 || _ .#. ];
 define classVICleanup [ "^" A -> 0 ];
 define dropFinalCluster [ [ d | m | n | n d | t ] "~" n z -> n z || [ a | e | i | o ] _ ];
+define keepFinalLongVowel [ "@" -> 0 || [ a a | i i | o o ] _ .#. ];
+define dropFinalShortVowel [ [ a | i | o ] "@" -> 0 || _ .#. ];
 define Cleanup [ "^" -> 0, "@" -> 0 ];
-define Morph [ DisallowIntermediateTags .o. LongDistanceDependencies .o. Lexicon .o. dropFinalCluster .o. PossPrefixRules .o. PluralRules .o. ClassVFinalI .o. ClassVOther .o. ConOrDimRules .o. ShortAConOrDim .o. LeniteQuasiDim .o. ClassVIDropY .o. PejRules .o. LocRules .o. PossThmRules .o. ShortALocOrPoss .o. classVICleanup .o. SingularCleanup .o. Cleanup .o. @"syncopate.bin" ];
+define Morph [ DisallowIntermediateTags .o. LongDistanceDependencies .o. Lexicon .o. dropFinalCluster .o. keepFinalLongVowel .o. dropFinalShortVowel .o. PossPrefixRules .o. PluralRules .o. ClassVFinalI .o. ClassVOther .o. ConOrDimRules .o. ShortAConOrDim .o. LeniteQuasiDim .o. ClassVIDropY .o. PejRules .o. LocRules .o. PossThmRules .o. ShortALocOrPoss .o. classVICleanup .o. SingularCleanup .o. Cleanup .o. @"syncopate.bin" ];
 push Morph
 save stack nish.bin

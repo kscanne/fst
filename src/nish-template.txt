@@ -34,8 +34,8 @@ LEXICON VAI_Vowel_Final_Suffixes
 
 ! +Pres from Biigtigong tables implicit here 
 LEXICON VAI_Vowel_Final_Indep_Suffixes
-	+1P+Sg+Indic:0		# ;		! Biigtigong verb chart VAI sheet (1a)
-	+2P+Sg+Indic:0		# ;
+	+1P+Sg+Indic:@		# ;		! Biigtigong verb chart VAI sheet (1a)
+	+2P+Sg+Indic:@		# ;		! "@" here means drop preceding short vowel
 	+3P+Sg+Indic:0		# ;
 	+3P+Obv+Indic:wan	# ;
 	+1P+Pl+Indic:min		# ;
