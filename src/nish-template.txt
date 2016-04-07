@@ -23,7 +23,7 @@ LEXICON VAISubjectPrefixes
 	2P+Pl+:gi	VAI_Stems ;
 	3P+Pl+:0	VAI_Stems ;
 	Imp+:0		VAI_Stems ;		! Impersonal ("unspecified actor")
-	Conj+:ConjVC+	VAI_Stems ;		! for Conjunct order
+				VAI_Stems ;		! Conjunct order, actor propagated then stripped
 
 LEXICON VAI_Stems
 
@@ -96,6 +96,78 @@ LEXICON VAI_Vowel_Final_Indep_Suffixes
 	+3P+Pl+Neg+PretDub:siigwaaban		# ;
 
 LEXICON VAI_Vowel_Final_Conj_Suffixes
+	+1P+Sg+Indic:yaan		# ;		! Biigtigong verb chart VAI sheet (1c)
+	+2P+Sg+Indic:yan		# ;
+	+3P+Sg+Indic:d		# ;
+	+3P+Obv+Indic:nid	# ;
+	+1P+Pl+Indic:yaang		# ;
+	+1P+Ex+Indic:yang		# ;
+	+2P+Pl+Indic:yeg		# ;
+	+3P+Pl+Indic:waad		# ;
+	+Imp+Indic:ng		# ;
+	+1P+Sg+Pret:yaambaan		# ;		! Biigtigong verb chart VAI sheet (2c)
+	+2P+Sg+Pret:yamban		# ;
+	+3P+Sg+Pret:pan		# ;
+	+3P+Obv+Pret:nipan		# ;
+	+1P+Pl+Pret:yaangiban		# ;
+	+1P+Ex+Pret:yangiban		# ;		! or yangoban
+	+2P+Pl+Pret:yegiban		# ;			! or yegoban
+	+3P+Pl+Pret:waapan		# ;
+	+Imp+Pret:ngiban			# ;
+	+1P+Sg+Dub:waanen		# ;		! Biigtigong verb chart VAI sheet (3c)
+	+2P+Sg+Dub:wanen		# ;
+	+3P+Sg+Dub:gwen		# ;
+	+3P+Obv+Dub:nigwen		# ;
+	+1P+Pl+Dub:waangen		# ;
+	+1P+Ex+Dub:wangwen		# ;		! or wangen
+	+2P+Pl+Dub:wegwen		# ;		! or wegen
+	+3P+Pl+Dub:waagwen		# ;
+	+Imp+Dub:wiingen			# ;
+	+1P+Sg+PretDub:waambaanen		# ;		! Biigtigong verb chart VAI sheet (4c)
+	+2P+Sg+PretDub:wambanen		# ;
+	+3P+Sg+PretDub:gobanen		# ;
+	+3P+Obv+PretDub:nigobanen		# ;
+	+1P+Pl+PretDub:waangibanen		# ;
+	+1P+Ex+PretDub:wangibanen		# ;		! or wangobanen
+	+2P+Pl+PretDub:wegibanen		# ;		! or wegobanen
+	+3P+Pl+PretDub:waagobanen		# ;
+	+Imp+PretDub:wiingibanen			# ;
+	+1P+Sg+Neg+Indic:siwaan		# ;		! Biigtigong verb chart VAI sheet (1d)
+	+2P+Sg+Neg+Indic:siwan		# ;
+	+3P+Sg+Neg+Indic:sig		# ;
+	+3P+Obv+Neg+Indic:sinig		# ;
+	+1P+Pl+Neg+Indic:siwaang		# ;
+	+1P+Ex+Neg+Indic:siwang		# ;
+	+2P+Pl+Neg+Indic:siweg		# ;
+	+3P+Pl+Neg+Indic:sigwaa		# ;
+	+Imp+Neg+Indic:sing		# ;
+	+1P+Sg+Neg+Pret:siwaambaan		# ;		! Biigtigong verb chart VAI sheet (2d)
+	+2P+Sg+Neg+Pret:siwamban		# ;
+	+3P+Sg+Neg+Pret:sigoban		# ;
+	+3P+Obv+Neg+Pret:sinigoban		# ;
+	+1P+Pl+Neg+Pret:siwaangiban		# ;
+	+1P+Ex+Neg+Pret:siwangiban		# ;		! or siwangoban
+	+2P+Pl+Neg+Pret:siwegiban		# ;		! or siwegoban
+	+3P+Pl+Neg+Pret:sigwaaban		# ;
+	+Imp+Neg+Pret:singiban			# ;
+	+1P+Sg+Neg+Dub:siwaanen		# ;		! Biigtigong verb chart VAI sheet (3d)
+	+2P+Sg+Neg+Dub:siwanen		# ;
+	+3P+Sg+Neg+Dub:sigwen		# ;
+	+3P+Obv+Neg+Dub:sinigwen		# ;
+	+1P+Pl+Neg+Dub:siwaangen		# ;
+	+1P+Ex+Neg+Dub:siwangwen		# ;		! or siwangen
+	+2P+Pl+Neg+Dub:siwegwen		# ;			! or siwegen
+	+3P+Pl+Neg+Dub:siwaagwen		# ;
+	+Imp+Neg+Dub:siwiingen			# ;
+	+1P+Sg+Neg+PretDub:siwaambaanen		# ;		! Biigtigong verb chart VAI sheet (4d)
+	+2P+Sg+Neg+PretDub:siwambanen		# ;
+	+3P+Sg+Neg+PretDub:sigobanen		# ;
+	+3P+Obv+Neg+PretDub:sinigobanen		# ;
+	+1P+Pl+Neg+PretDub:siwaangibanen		# ;
+	+1P+Ex+Neg+PretDub:siwangibanen		# ;		! or siwangobanen
+	+2P+Pl+Neg+PretDub:siwegibanen		# ;		! or siwegobanen
+	+3P+Pl+Neg+PretDub:siwaagobanen		# ;
+	+Imp+Neg+PretDub:siwiingibanen			# ;
 
 LEXICON VAI_Nasal_Final_Suffixes
 	+Indep:0		VAI_Nasal_Final_Indep_Suffixes ;
@@ -164,6 +236,78 @@ LEXICON VAI_Nasal_Final_Indep_Suffixes
 	+3P+Pl+Neg+PretDub:~nziigwaaban		# ;
 
 LEXICON VAI_Nasal_Final_Conj_Suffixes
+	+1P+Sg+Indic:aan		# ;		! Biigtigong verb chart VAI sheet (1c)
+	+2P+Sg+Indic:an		# ;
+	+3P+Sg+Indic:~ng		# ;
+	+3P+Obv+Indic:inid	# ;
+	+1P+Pl+Indic:aang		# ;
+	+1P+Ex+Indic:ang		# ;
+	+2P+Pl+Indic:eg		# ;
+	+3P+Pl+Indic:owaad		# ;
+	+Imp+Indic:ing		# ;
+	+1P+Sg+Pret:aambaan		# ;		! Biigtigong verb chart VAI sheet (2c)
+	+2P+Sg+Pret:amban		# ;
+	+3P+Sg+Pret:~ngiban		# ;
+	+3P+Obv+Pret:inipan		# ;
+	+1P+Pl+Pret:aangiban		# ;
+	+1P+Ex+Pret:angiban		# ;		! or angoban
+	+2P+Pl+Pret:egiban		# ;			! or egoban
+	+3P+Pl+Pret:owaapan		# ;
+	+Imp+Pret:ingiban			# ;
+	+1P+Sg+Dub:owaanen		# ;		! Biigtigong verb chart VAI sheet (3c)
+	+2P+Sg+Dub:owanen		# ;
+	+3P+Sg+Dub:ogwen		# ;
+	+3P+Obv+Dub:inigwen		# ;
+	+1P+Pl+Dub:owaangen		# ;
+	+1P+Ex+Dub:owangwen		# ;		! or owangen
+	+2P+Pl+Dub:owegwen		# ;		! or owegen
+	+3P+Pl+Dub:owaagwen		# ;
+	+Imp+Dub:owiingen			# ;
+	+1P+Sg+PretDub:owaambaanen		# ;		! Biigtigong verb chart VAI sheet (4c)
+	+2P+Sg+PretDub:owambanen		# ;
+	+3P+Sg+PretDub:ogobanen		# ;
+	+3P+Obv+PretDub:inigobanen		# ;
+	+1P+Pl+PretDub:owaangibanen		# ;
+	+1P+Ex+PretDub:owangibanen		# ;		! or owangobanen
+	+2P+Pl+PretDub:owegibanen		# ;		! or owegobanen
+	+3P+Pl+PretDub:owaagobanen		# ;
+	+Imp+PretDub:owiingibanen			# ;
+	+1P+Sg+Neg+Indic:~nziwaan		# ;		! Biigtigong verb chart VAI sheet (1d)
+	+2P+Sg+Neg+Indic:~nziwan		# ;
+	+3P+Sg+Neg+Indic:~nzig		# ;
+	+3P+Obv+Neg+Indic:~nzinig		# ;
+	+1P+Pl+Neg+Indic:~nziwaang		# ;
+	+1P+Ex+Neg+Indic:~nziwang		# ;
+	+2P+Pl+Neg+Indic:~nziweg		# ;
+	+3P+Pl+Neg+Indic:~nzigwaa		# ;
+	+Imp+Neg+Indic:~nzing		# ;
+	+1P+Sg+Neg+Pret:~nziwaambaan		# ;		! Biigtigong verb chart VAI sheet (2d)
+	+2P+Sg+Neg+Pret:~nziwamban		# ;
+	+3P+Sg+Neg+Pret:~nzigoban		# ;
+	+3P+Obv+Neg+Pret:~nzinigoban		# ;
+	+1P+Pl+Neg+Pret:~nziwaangiban		# ;
+	+1P+Ex+Neg+Pret:~nziwangiban		# ;		! or ~nziwangoban
+	+2P+Pl+Neg+Pret:~nziwegiban		# ;		! or ~nziwegoban
+	+3P+Pl+Neg+Pret:~nzigwaaban		# ;
+	+Imp+Neg+Pret:~nzingiban			# ;
+	+1P+Sg+Neg+Dub:~nziwaanen		# ;		! Biigtigong verb chart VAI sheet (3d)
+	+2P+Sg+Neg+Dub:~nziwanen		# ;
+	+3P+Sg+Neg+Dub:~nzigwen		# ;
+	+3P+Obv+Neg+Dub:~nzinigwen		# ;
+	+1P+Pl+Neg+Dub:~nziwaangen		# ;
+	+1P+Ex+Neg+Dub:~nziwangwen		# ;		! or ~nziwangen
+	+2P+Pl+Neg+Dub:~nziwegwen		# ;			! or ~nziwegen
+	+3P+Pl+Neg+Dub:~nziwaagwen		# ;
+	+Imp+Neg+Dub:~nziwiingen			# ;
+	+1P+Sg+Neg+PretDub:~nziwaambaanen		# ;		! Biigtigong verb chart VAI sheet (4d)
+	+2P+Sg+Neg+PretDub:~nziwambanen		# ;
+	+3P+Sg+Neg+PretDub:~nzigobanen		# ;
+	+3P+Obv+Neg+PretDub:~nzinigobanen		# ;
+	+1P+Pl+Neg+PretDub:~nziwaangibanen		# ;
+	+1P+Ex+Neg+PretDub:~nziwangibanen		# ;		! or ~nziwangobanen
+	+2P+Pl+Neg+PretDub:~nziwegibanen		# ;		! or ~nziwegobanen
+	+3P+Pl+Neg+PretDub:~nziwaagobanen		# ;
+	+Imp+Neg+PretDub:~nziwiingibanen			# ;
 
 LEXICON Nouns
 	RegularNouns ;

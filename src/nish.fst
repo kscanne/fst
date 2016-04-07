@@ -16,19 +16,29 @@ define 1pPossessum [ "+Poss" -> "+1P" "+Pl" "+Poss" || .#. "1P+" "Pl+" "Poss+" ?
 define 21Possessum [ "+Poss" -> "+1P" "+Ex" "+Poss" || .#. "1P+" "Ex+" "Poss+" ?+ _ ? .#. ]; 
 define 2pPossessum [ "+Poss" -> "+2P" "+Pl" "+Poss" || .#. "2P+" "Pl+" "Poss+" ?+ _ ? .#. ]; 
 define 3pPossessum [ "+Poss" -> "+3P" "+Pl" "+Poss" || .#. "3P+" "Pl+" "Poss+" ?+ _ ? .#. ]; 
-define 1sActor [ "+Indep" -> "+Indep" "+1P" "+Sg" || .#. "1P+" "Sg+" ?+ _ ]; 
-define 2sActor [ "+Indep" -> "+Indep" "+2P" "+Sg" || .#. "2P+" "Sg+" ?+ _ ]; 
-define 3sActor [ "+Indep" -> "+Indep" "+3P" "+Sg" || .#. "3P+" "Sg+" ?+ _ ]; 
-define 3oActor [ "+Indep" -> "+Indep" "+3P" "+Obv" || .#. "3P+" "Obv+" ?+ _ ]; 
-define 1pActor [ "+Indep" -> "+Indep" "+1P" "+Pl" || .#. "1P+" "Pl+" ?+ _ ]; 
-define 21Actor [ "+Indep" -> "+Indep" "+1P" "+Ex" || .#. "1P+" "Ex+" ?+ _ ]; 
-define 2pActor [ "+Indep" -> "+Indep" "+2P" "+Pl" || .#. "2P+" "Pl+" ?+ _ ]; 
-define 3pActor [ "+Indep" -> "+Indep" "+3P" "+Pl" || .#. "3P+" "Pl+" ?+ _ ]; 
-define ImpActor [ "+Indep" -> "+Indep" "+Imp" || .#. "Imp+" ?+ _ ]; 
+define 1sActorIndep [ "+Indep" -> "+Indep" "+1P" "+Sg" || .#. "1P+" "Sg+" ?+ _ ]; 
+define 2sActorIndep [ "+Indep" -> "+Indep" "+2P" "+Sg" || .#. "2P+" "Sg+" ?+ _ ]; 
+define 3sActorIndep [ "+Indep" -> "+Indep" "+3P" "+Sg" || .#. "3P+" "Sg+" ?+ _ ]; 
+define 3oActorIndep [ "+Indep" -> "+Indep" "+3P" "+Obv" || .#. "3P+" "Obv+" ?+ _ ]; 
+define 1pActorIndep [ "+Indep" -> "+Indep" "+1P" "+Pl" || .#. "1P+" "Pl+" ?+ _ ]; 
+define 21ActorIndep [ "+Indep" -> "+Indep" "+1P" "+Ex" || .#. "1P+" "Ex+" ?+ _ ]; 
+define 2pActorIndep [ "+Indep" -> "+Indep" "+2P" "+Pl" || .#. "2P+" "Pl+" ?+ _ ]; 
+define 3pActorIndep [ "+Indep" -> "+Indep" "+3P" "+Pl" || .#. "3P+" "Pl+" ?+ _ ]; 
+define ImpActorIndep [ "+Indep" -> "+Indep" "+Imp" || .#. "Imp+" ?+ _ ]; 
+define 1sActorConj [ "+Conj" -> "+Conj" "+1P" "+Sg" || .#. "1P+" "Sg+" ?+ _ ]; 
+define 2sActorConj [ "+Conj" -> "+Conj" "+2P" "+Sg" || .#. "2P+" "Sg+" ?+ _ ]; 
+define 3sActorConj [ "+Conj" -> "+Conj" "+3P" "+Sg" || .#. "3P+" "Sg+" ?+ _ ]; 
+define 3oActorConj [ "+Conj" -> "+Conj" "+3P" "+Obv" || .#. "3P+" "Obv+" ?+ _ ]; 
+define 1pActorConj [ "+Conj" -> "+Conj" "+1P" "+Pl" || .#. "1P+" "Pl+" ?+ _ ]; 
+define 21ActorConj [ "+Conj" -> "+Conj" "+1P" "+Ex" || .#. "1P+" "Ex+" ?+ _ ]; 
+define 2pActorConj [ "+Conj" -> "+Conj" "+2P" "+Pl" || .#. "2P+" "Pl+" ?+ _ ]; 
+define 3pActorConj [ "+Conj" -> "+Conj" "+3P" "+Pl" || .#. "3P+" "Pl+" ?+ _ ]; 
+define ImpActorConj [ "+Conj" -> "+Conj" "+Imp" || .#. "Imp+" ?+ _ ]; 
 define PropagatePossessum [ 1sPossessum .o. 2sPossessum .o. 3sPossessum .o. 1pPossessum .o. 21Possessum .o. 2pPossessum .o. 3pPossessum ];
-define PropagateActor [ 1sActor .o. 2sActor .o. 3sActor .o. 3oActor .o. 1pActor .o. 21Actor .o. 2pActor .o. 3pActor .o. ImpActor ];
+define PropagateActor [ 1sActorIndep .o. 2sActorIndep .o. 3sActorIndep .o. 3oActorIndep .o. 1pActorIndep .o. 21ActorIndep .o. 2pActorIndep .o. 3pActorIndep .o. ImpActorIndep .o. 1sActorConj .o. 2sActorConj .o. 3sActorConj .o. 3oActorConj .o. 1pActorConj .o. 21ActorConj .o. 2pActorConj .o. 3pActorConj .o. ImpActorConj ];
+define NoConjSubjectPrefix [ [ "Imp+" | [ "1P+" | "2P+" | "3P+" ] [ "Sg+" | "Obv+" | "Pl+" | "Ex+" ] ] -> 0 || .#. _ ?+ "+Conj" ];
 define ObviativeAnimateOnly ~[$[ "+NI" ?* "+Obv" ]];
-define LongDistanceDependencies [ ObviativeAnimateOnly .o. InsertPossSg .o. InsertPossPl .o. InsertPossObv .o. InsertPossLoc .o. PropagatePossessum .o. PropagateActor .o. AnimatePlural .o. InanimatePlural .o. AnimateSingular .o. InanimateSingular ];
+define LongDistanceDependencies [ ObviativeAnimateOnly .o. InsertPossSg .o. InsertPossPl .o. InsertPossObv .o. InsertPossLoc .o. PropagatePossessum .o. PropagateActor .o. NoConjSubjectPrefix .o. AnimatePlural .o. InanimatePlural .o. AnimateSingular .o. InanimateSingular ];
 define PossLinkingD [ "@" -> d || _ [ a | e | i \i ] ];  ! V 4.9.2, but not ii or oo as in 4.9.2.1
 define PossLinkingDO [ "@" -> d o || _ o \o ]; ! lengthen initial o (Biigtigong TSV)
 define PossLinkingDW [ "@" w a -> d o o || _ \a ]; ! Biigtigong TSV, w + short a only
@@ -50,7 +60,7 @@ define PossThmRules [ n h "^" i m -> n y i m , w a "^" i m -> o m , a a "^" i m 
 define LeniteQuasiDim [ z e n s "^" i s -> z h e n z h i s ];  ! as in kwezens -> kwezhenzhish, gwiiwzens -> gwiiwzhenzhish, V p.193; do this before PejRules
 define SingularCleanup [ "^" [ w | W | y ] -> 0 || _ .#. ];
 define classVICleanup [ "^" A -> 0 ];
-define dropFinalCluster [ [ d | m | n | n d | t ] "~" n z -> n z || [ a | e | i | o ] _ ];
+define dropFinalCluster [ [ d | m | n | n d | t ] "~" n -> n || [ a | e | i | o ] _ [ g | z ] ];
 define keepFinalLongVowel [ "@" -> 0 || [ a a | i i | o o ] _ .#. ];
 define dropFinalShortVowel [ [ a | i | o ] "@" -> 0 || _ .#. ];
 define Cleanup [ "^" -> 0, "@" -> 0 ];
