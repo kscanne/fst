@@ -99,7 +99,8 @@ niDep.txt: $(TSV)
 
 # want the FV stems (col 15) here, *not* column 6 with the -ng or -d ending...
 vai.txt: $(TSV)
-	cat $(TSV) | sed -n '/^\t[^\t]*\tvai\t/p' | cut -f 15 | egrep '[a-z]' | egrep -v ' ' | sed 's/^\///; s/-\/$$//' > $@
+	cat $(TSV) | sed -n '/^\t[^\t]*\tvai\tvai\t/p' | cut -f 15 | egrep '[a-z]' | egrep -v ' ' | sed 's/^\///; s/-\/$$//' > $@
+	cat $(TSV) | sed -n '/^\t[^\t]*\tvai\tvai2\t/p' | cut -f 15 | egrep '[a-z]' | egrep -v ' ' | sed 's/^\///; s/-\/$$//' | sed 's/$$/am/' >> $@
 
 classified-nouns.txt: naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naDep.txt niDep.txt
 	cat naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naDep.txt niDep.txt > $@
