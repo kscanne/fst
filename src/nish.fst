@@ -60,10 +60,12 @@ define PossThmRules [ n h "^" i m -> n y i m , w a "^" i m -> o m , a a "^" i m 
 define LeniteQuasiDim [ z e n s "^" i s -> z h e n z h i s ];  ! as in kwezens -> kwezhenzhish, gwiiwzens -> gwiiwzhenzhish, V p.193; do this before PejRules
 define SingularCleanup [ "^" [ w | W | y ] -> 0 || _ .#. ];
 define classVICleanup [ "^" A -> 0 ];
-define dropFinalCluster [ [ m | n ] "~" n -> n || [ a | e | i | o ] _ [ g | z ] ];
+define vai2Changes [ a m "~" [ i | o ] m -> a a m , a m "~" i n -> a a n , a m "~" b a n -> a m o b a n || \a _ ];
+define normalizeNasalToN [ [ m | n ] "~" n -> n || [ a | e | i | o ] _ [ g | z ] ];
+define adjustFinalNasal [ vai2Changes .o. normalizeNasalToN ];
 define keepFinalLongVowel [ "@" -> 0 || [ a a | i i | o o ] _ .#. ];
 define dropFinalShortVowel [ [ a | i | o ] "@" -> 0 || _ .#. ];
-define Cleanup [ "^" -> 0, "@" -> 0 ];
-define Morph [ DisallowIntermediateTags .o. LongDistanceDependencies .o. Lexicon .o. dropFinalCluster .o. keepFinalLongVowel .o. dropFinalShortVowel .o. PossPrefixRules .o. PluralRules .o. ClassVFinalI .o. ClassVOther .o. ConOrDimRules .o. ShortAConOrDim .o. LeniteQuasiDim .o. ClassVIDropY .o. PejRules .o. LocRules .o. PossThmRules .o. ShortALocOrPoss .o. classVICleanup .o. SingularCleanup .o. Cleanup .o. @"syncopate.bin" ];
+define Cleanup [ "~" -> 0, "^" -> 0, "@" -> 0 ];
+define Morph [ DisallowIntermediateTags .o. LongDistanceDependencies .o. Lexicon .o. adjustFinalNasal .o. keepFinalLongVowel .o. dropFinalShortVowel .o. PossPrefixRules .o. PluralRules .o. ClassVFinalI .o. ClassVOther .o. ConOrDimRules .o. ShortAConOrDim .o. LeniteQuasiDim .o. ClassVIDropY .o. PejRules .o. LocRules .o. PossThmRules .o. ShortALocOrPoss .o. classVICleanup .o. SingularCleanup .o. Cleanup .o. @"syncopate.bin" ];
 push Morph
 save stack nish.bin
