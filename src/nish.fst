@@ -60,7 +60,7 @@ define PossThmRules [ n h "^" i m -> n y i m , w a "^" i m -> o m , a a "^" i m 
 define LeniteQuasiDim [ z e n s "^" i s -> z h e n z h i s ];  ! as in kwezens -> kwezhenzhish, gwiiwzens -> gwiiwzhenzhish, V p.193; do this before PejRules
 define SingularCleanup [ "^" [ w | W | y ] -> 0 || _ .#. ];
 define classVICleanup [ "^" A -> 0 ];
-define dropFinalCluster [ [ d | m | n | n d | t ] "~" n -> n || [ a | e | i | o ] _ [ g | z ] ];
+define dropFinalCluster [ [ m | n ] "~" n -> n || [ a | e | i | o ] _ [ g | z ] ];
 define keepFinalLongVowel [ "@" -> 0 || [ a a | i i | o o ] _ .#. ];
 define dropFinalShortVowel [ [ a | i | o ] "@" -> 0 || _ .#. ];
 define Cleanup [ "^" -> 0, "@" -> 0 ];
