@@ -524,21 +524,21 @@ LEXICON VAI_Vowel_Final_Indep_Suffixes
 	+Imp+Indic:m		# ;
 	+1P+Sg+Pret:naaban		# ;		! Biigtigong verb chart VAI sheet (2a)
 	+2P+Sg+Pret:naaban		# ;
-	+3P+Sg+Pret:ban		# ;
-	+3P+Obv+Pret:baniin		# ;
+	+3P+Sg+Pret:ŵiban		# ;
+	+3P+Obv+Pret:ŵibaniin		# ;
 	+1P+Pl+Pret:minaaban		# ;
 	+1P+Ex+Pret:minaaban		# ;
 	+2P+Pl+Pret:mwaaban		# ;
-	+3P+Pl+Pret:baniig		# ;
+	+3P+Pl+Pret:ŵibaniig		# ;
 	+Imp+Pret:mwaaban			# ;
 	+1P+Sg+Dub:naadog		# ;		! Biigtigong verb chart VAI sheet (3a)
 	+2P+Sg+Dub:naadog		# ;
-	+3P+Sg+Dub:dog		# ;
-	+3P+Obv+Dub:dogwenan		# ;
+	+3P+Sg+Dub:ŵidog		# ;
+	+3P+Obv+Dub:ŵidogwenan		# ;
 	+1P+Pl+Dub:minaadog		# ;
 	+1P+Ex+Dub:minaadog		# ;
 	+2P+Pl+Dub:mwaadog		# ;
-	+3P+Pl+Dub:dogwenag		# ;
+	+3P+Pl+Dub:ŵidogwenag		# ;
 	+Imp+Dub:mwaadog			# ;
 	+3P+Sg+PretDub:goban		# ;		! Biigtigong verb chart VAI sheet (4a)
 	+3P+Obv+PretDub:nigoban		# ;
@@ -668,21 +668,21 @@ LEXICON VAI_Nasal_Final_Indep_Suffixes
 	+Imp+Indic:~om		# ;
 	+1P+Sg+Pret:~inaaban		# ;		! Biigtigong verb chart VAI sheet (2a)
 	+2P+Sg+Pret:~inaaban		# ;
-	+3P+Sg+Pret:ooban		# ;
-	+3P+Obv+Pret:oobaniin		# ;
+	+3P+Sg+Pret:~ŵiban		# ;
+	+3P+Obv+Pret:~ŵibaniin		# ;
 	+1P+Pl+Pret:~ominaaban		# ;
 	+1P+Ex+Pret:~ominaaban		# ;
 	+2P+Pl+Pret:~omwaaban		# ;
-	+3P+Pl+Pret:oobaniig		# ;
+	+3P+Pl+Pret:~ŵibaniig		# ;
 	+Imp+Pret:~omwaaban			# ;
 	+1P+Sg+Dub:~inaadog		# ;		! Biigtigong verb chart VAI sheet (3a)
 	+2P+Sg+Dub:~inaadog		# ;
-	+3P+Sg+Dub:owidog		# ;
-	+3P+Obv+Dub:owidogwenan		# ;
+	+3P+Sg+Dub:oŵidog		# ;
+	+3P+Obv+Dub:oŵidogwenan		# ;
 	+1P+Pl+Dub:~iminaadog		# ;
 	+1P+Ex+Dub:~iminaadog		# ;
 	+2P+Pl+Dub:~imwaadog		# ;
-	+3P+Pl+Dub:owidogwenag		# ;
+	+3P+Pl+Dub:oŵidogwenag		# ;
 	+Imp+Dub:~imwaadog			# ;
 	+3P+Sg+PretDub:amogoban		# ;		! Biigtigong verb chart VAI sheet (4a)
 	+3P+Obv+PretDub:aminigoban		# ;

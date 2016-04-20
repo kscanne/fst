@@ -3,7 +3,8 @@ define LongV [ e | a a | i i | o o ];
 define Vowel [ ShortV | LongV ];
 ! no diacritics since upper language is full-vowel
 define wAbleCons [ ' | b | c h | d | g | h | j | k | m | m b | n | n d | n g | n h | n j | n z | p | s | s h | s h k | s k | t | z | z h ];
-define otherCons [ n s | n y | n z h | s h p | s h t | s p | w | y ];
+! ŵ is a "fake" w used as a hack for "inflectional w deletion" (V p229)
+define otherCons [ n s | n y | n z h | s h p | s h t | s p | w | ŵ | y ];
 ! unused characters in Nishnaabemwin; dropped a,i,o map to these respectively
 define dropMarker [ F | L | X ];
 define Cons [ wAbleCons | otherCons ];
@@ -16,10 +17,12 @@ define insertDiacriticsH [ h X -> ȟ, h w F -> ȟ || Vowel _ \w ];
 define initialO [ X -> w || .#. _, Hyphen _ ];
 define initialGwaKwa [ w a -> o || .#. [ F | L ] [ g | k ] _ \[ a | "-" ] ];
 define nonFinalNH [ n h -> n y || _ \[ "-" ] ];
+define inflectionalWDeletion [ ŵ [ F | L | X ] -> 0 ];
+define fixFakeW [ ŵ -> w ];
 define fixZWY [ z w y -> z y ]; ! e.g. moozwayaanekizin -> moozyaanekzin
 define reflexiveException [ L -> i || n d _ w a a d .#. ];
 define dropAllMarkers [ F -> 0, L -> 0, X -> 0 ];
 define convertGlottal [ ' -> h ];
-define syncopate [ markWeak .o. convertGlottal .o. insertApost .o. insertDiacriticsGK .o. insertDiacriticsH .o. initialO .o. initialGwaKwa .o. reflexiveException .o. nonFinalNH .o. dropAllMarkers .o. fixZWY ];
+define syncopate [ markWeak .o. convertGlottal .o. insertApost .o. insertDiacriticsGK .o. insertDiacriticsH .o. initialO .o. initialGwaKwa .o. reflexiveException .o. nonFinalNH .o. inflectionalWDeletion .o. fixFakeW .o. dropAllMarkers .o. fixZWY ];
 push defined syncopate
 save stack syncopate.bin
