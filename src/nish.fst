@@ -60,7 +60,7 @@ define PossThmRules [ n h "^" i m -> n y i m , w a "^" i m -> o m , a a "^" i m 
 define LeniteQuasiDim [ z e n s "^" i s -> z h e n z h i s ];  ! as in kwezens -> kwezhenzhish, gwiiwzens -> gwiiwzhenzhish, V p.193; do this before PejRules
 define SingularCleanup [ "^" [ w | W | y ] -> 0 || _ .#. ];
 define classVICleanup [ "^" A -> 0 ];
-define vai2Changes [ a m "~" [ i | o ] m -> a a m , a m "~" i n -> a a n , a m "~" b a n -> a m o b a n || \a _ ];
+define vai2Changes [ a m "~" [ i | o ] m -> a a m , a m "~" i n -> a a n , a m "~" b a n -> a m o b a n , a m "~" ŵ -> a m o ŵ || \a _ ];
 define normalizeNasalToN [ [ m | n ] "~" n -> n || [ a | e | i | o ] _ [ g | z ] ];
 define adjustFinalNasal [ vai2Changes .o. normalizeNasalToN ];
 define keepFinalLongVowel [ "@" -> 0 || [ a a | i i | o o ] _ .#. ];
