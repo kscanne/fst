@@ -7,6 +7,7 @@ LEXICON Root
 LEXICON Verbs
 	VAI ;
 	VAIO ;
+	VAIP ;
 	! VII ;
 	! VTA ;
 	! VTI ;
@@ -16,6 +17,9 @@ LEXICON VAI
 
 LEXICON VAIO
 	VAIOSubjectPrefixes ;
+
+LEXICON VAIP
+	VAIPSubjectPrefixes ;
 
 LEXICON VAISubjectPrefixes
 	1P+Sg+:ni	VAI_Stems ;
@@ -28,6 +32,13 @@ LEXICON VAISubjectPrefixes
 	3P+Pl+:0	VAI_Stems ;
 	Imp+:0		VAI_Stems ;		! Impersonal ("unspecified actor")
 				VAI_Stems ;		! Conjunct order, actor propagated then stripped
+
+! need a separate trick to handle conjunct order
+LEXICON VAIPSubjectPrefixes
+	1P+Pl+:ni	VAIP_Stems ;
+	1P+Ex+:gi	VAIP_Stems ;
+	2P+Pl+:gi	VAIP_Stems ;
+	3P+Pl+:0	VAIP_Stems ;
 
 LEXICON VAIOSubjectPrefixes
 	1P+Sg+:ni	VAIO_Stems ;
@@ -44,6 +55,8 @@ LEXICON VAIOSubjectPrefixes
 LEXICON VAI_Stems
 
 LEXICON VAIO_Stems
+
+LEXICON VAIP_Stems
 
 LEXICON VAIO_Suffixes
 	+Indep:0		VAIO_Indep_Suffixes ;
@@ -491,6 +504,13 @@ LEXICON VAI_Vowel_Final_Suffixes
 	+Conj:0		VAI_Vowel_Final_Conj_Suffixes ;
 	! +CC:0		! changed conjuct verbal order
 
+! ok to use full VAI suffix table...
+! since we only accept plural actor prefixes under VAIPSubjectPrefixes above
+! none of the singular suffixes will apply
+! will need a separate trick to handle conjunct order...
+LEXICON VAIP_Vowel_Final_Suffixes
+	+Indep:0		VAI_Vowel_Final_Indep_Suffixes ;
+
 ! +Pres from Biigtigong tables implicit here 
 LEXICON VAI_Vowel_Final_Indep_Suffixes
 	+1P+Sg+Indic:@		# ;		! Biigtigong verb chart VAI sheet (1a)
@@ -631,6 +651,10 @@ LEXICON VAI_Vowel_Final_Conj_Suffixes
 LEXICON VAI_Nasal_Final_Suffixes
 	+Indep:0		VAI_Nasal_Final_Indep_Suffixes ;
 	+Conj:0		VAI_Nasal_Final_Conj_Suffixes ;
+
+! see comments above on VAIP_Vowel_Final_Suffixes
+LEXICON VAIP_Nasal_Final_Suffixes
+	+Indep:0		VAI_Nasal_Final_Indep_Suffixes ;
 
 LEXICON VAI_Nasal_Final_Indep_Suffixes
 	+1P+Sg+Indic:0		# ;		! Biigtigong verb chart VAI sheet (1a)
