@@ -8,7 +8,7 @@ LEXICON Verbs
 	VAI ;
 	VAIO ;
 	VAIP ;
-	! VII ;
+	VII ;
 	! VTA ;
 	! VTI ;
 
@@ -20,6 +20,9 @@ LEXICON VAIO
 
 LEXICON VAIP
 	VAIPSubjectPrefixes ;
+
+LEXICON VII
+	VIISubjectPrefixes ;
 
 LEXICON VAISubjectPrefixes
 	1P+Sg+:ni	VAI_Stems ;
@@ -52,11 +55,20 @@ LEXICON VAIOSubjectPrefixes
 	Imp+:0		VAIO_Stems ;	! Impersonal ("unspecified actor")
 				VAIO_Stems ;	! Conjunct order, actor propagated then stripped
 
+LEXICON VIISubjectPrefixes
+	3P+Sg+:0	VII_Stems ;
+	3P+Obv+:0	VII_Stems ;
+	3P+Obv+Pl+:0	VII_Stems ;
+	3P+Pl+:0	VII_Stems ;
+				VII_Stems ;		! Conjunct order, actor propagated then stripped
+
 LEXICON VAI_Stems
 
 LEXICON VAIO_Stems
 
 LEXICON VAIP_Stems
+
+LEXICON VII_Stems
 
 LEXICON VAIO_Suffixes
 	+Indep:0		VAIO_Indep_Suffixes ;
@@ -791,6 +803,174 @@ LEXICON VAI_Nasal_Final_Conj_Suffixes
 	+2P+Pl+Neg+PretDub:~nziwegibanen		# ;		! or ~nziwegobanen
 	+3P+Pl+Neg+PretDub:~nziwaagobanen		# ;
 	+Imp+Neg+PretDub:~nziwiingibanen			# ;
+
+LEXICON VII_Vowel_Final_Suffixes
+	+Indep:0		VII_Vowel_Final_Indep_Suffixes ;
+	+Conj:0		VII_Vowel_Final_Conj_Suffixes ;
+
+LEXICON VII_D_Final_Suffixes
+	+Indep:0		VII_D_Final_Indep_Suffixes ;
+	+Conj:0		VII_D_Final_Conj_Suffixes ;
+
+LEXICON VII_N_Final_Suffixes
+	+Indep:0		VII_N_Final_Indep_Suffixes ;
+	+Conj:0		VII_N_Final_Conj_Suffixes ;
+
+LEXICON VII_Vowel_Final_Indep_Suffixes
+	+3P+Sg+Indic:0		# ;		! Biigtigong chart VII, sheet (1a)
+	+3P+Pl+Indic:wan	# ;
+	+3P+Obv+Indic:ni	# ;
+	+3P+Obv+Pl+Indic:niwan	# ;
+	+3P+Sg+Pret:ban		# ;		! Biigtigong chart VII, sheet (2a)
+	+3P+Pl+Pret:baniin	# ;
+	+3P+Obv+Pret:niŵiban	# ;
+	+3P+Obv+Pl+Pret:niŵibaniin	# ;
+	+3P+Sg+Dub:dog		# ;		! Biigtigong chart VII, sheet (3a)
+	+3P+Pl+Dub:dogwenan	# ;
+	+3P+Obv+Dub:niwidog	# ;
+	+3P+Obv+Pl+Dub:niwidogwenan	# ;
+	+3P+Sg+PretDub:goban		# ;		! Biigtigong chart VII, sheet (4a)
+	+3P+Pl+PretDub:gobaniin	# ;
+	+3P+Obv+PretDub:nigoban	# ;
+	+3P+Obv+Pl+PretDub:nigobaniin	# ;
+	+3P+Sg+Neg+Indic:sinoon		# ;		! Biigtigong chart VII, sheet (1b)
+	+3P+Pl+Neg+Indic:sinoon	# ;
+	+3P+Obv+Neg+Indic:sinini	# ;
+	+3P+Obv+Pl+Neg+Indic:sininiwan	# ;
+	+3P+Sg+Neg+Pret:sinooban		# ;		! Biigtigong chart VII, sheet (2b)
+	+3P+Pl+Neg+Pret:sinoobaniin	# ;
+	+3P+Obv+Neg+Pret:sininiŵiban	# ;
+	+3P+Obv+Pl+Neg+Pret:sininiŵibaniin	# ;
+	+3P+Sg+Neg+Dub:sinodog		# ;		! Biigtigong chart VII, sheet (3b)
+	+3P+Pl+Neg+Dub:sinodogwenan	# ;
+	+3P+Obv+Neg+Dub:sininiwidog	# ;
+	+3P+Obv+Pl+Neg+Dub:sininiwidogwenan	# ;
+	+3P+Sg+Neg+PretDub:sinoogoban		# ;		! Biigtigong chart VII, sheet (4b)
+	+3P+Pl+Neg+PretDub:sinoogobaniin	# ;
+	+3P+Obv+Neg+PretDub:sininigoban	# ;
+	+3P+Obv+Pl+Neg+PretDub:sininigobaniin	# ;
+
+LEXICON VII_Vowel_Final_Conj_Suffixes
+	+3P+Sg+Indic:g		# ;		! Biigtigong chart VII, sheet (1c)
+	+3P+Obv+Indic:nig	# ;
+	+3P+Sg+Pret:giban		# ;		! Biigtigong chart VII, sheet (2c)
+	+3P+Obv+Pret:nigiban	# ;
+	+3P+Sg+Dub:gwen		# ;		! Biigtigong chart VII, sheet (3c)
+	+3P+Obv+Dub:nigwen	# ;
+	+3P+Sg+PretDub:gobanen		# ;		! Biigtigong chart VII, sheet (4c)
+	+3P+Obv+PretDub:nigobanen	# ;
+	+3P+Sg+Neg+Indic:sinog		# ;		! Biigtigong chart VII, sheet (1d)
+	+3P+Obv+Neg+Indic:sininig	# ;
+	+3P+Sg+Neg+Pret:sinoogiban		# ;		! Biigtigong chart VII, sheet (2d)
+	+3P+Obv+Neg+Pret:sininigiban	# ;
+	+3P+Sg+Neg+Dub:sinoogwen		# ;		! Biigtigong chart VII, sheet (3d)
+	+3P+Obv+Neg+Dub:sininigwen	# ;
+	+3P+Sg+Neg+PretDub:sinoogobanen		# ;		! Biigtigong chart VII, sheet (4d)
+	+3P+Obv+Neg+PretDub:sininigobanen	# ;
+
+LEXICON VII_D_Final_Indep_Suffixes
+	+3P+Sg+Indic:0		# ;		! Biigtigong chart VII, sheet (1a)
+	+3P+Pl+Indic:oon	# ;
+	+3P+Obv+Indic:ini	# ;
+	+3P+Obv+Pl+Indic:iniwan	# ;
+	+3P+Sg+Pret:oban		# ;		! Biigtigong chart VII, sheet (2a)
+	+3P+Pl+Pret:obaniin	# ;
+	+3P+Obv+Pret:iniŵiban	# ;
+	+3P+Obv+Pl+Pret:iniŵibaniin	# ;
+	+3P+Sg+Dub:odog		# ;		! Biigtigong chart VII, sheet (3a)
+	+3P+Pl+Dub:odogwenan	# ;
+	+3P+Obv+Dub:iniŵidog	# ;
+	+3P+Obv+Pl+Dub:iniŵidogwenan	# ;
+	+3P+Sg+PretDub:ogoban		# ;		! Biigtigong chart VII, sheet (4a)
+	+3P+Pl+PretDub:gobaniin	# ;
+	+3P+Obv+PretDub:inigoban	# ;
+	+3P+Obv+Pl+PretDub:nigobaniin	# ;
+	+3P+Sg+Neg+Indic:~sinoon		# ;		! Biigtigong chart VII, sheet (1b)
+	+3P+Pl+Neg+Indic:~sinoon	# ;
+	+3P+Obv+Neg+Indic:~sinini	# ;
+	+3P+Obv+Pl+Neg+Indic:~sininiwan	# ;
+	+3P+Sg+Neg+Pret:~sinooban		# ;		! Biigtigong chart VII, sheet (2b)
+	+3P+Pl+Neg+Pret:~sinoobaniin	# ;
+	+3P+Obv+Neg+Pret:~sininiŵiban	# ;
+	+3P+Obv+Pl+Neg+Pret:~sininiŵibaniin	# ;
+	+3P+Sg+Neg+Dub:~sinodog		# ;		! Biigtigong chart VII, sheet (3b)
+	+3P+Pl+Neg+Dub:~sinodogwenan	# ;
+	+3P+Obv+Neg+Dub:~sininiŵidog	# ;
+	+3P+Obv+Pl+Neg+Dub:~sininiŵidogwenan	# ;
+	+3P+Sg+Neg+PretDub:~nzinoogoban		# ;		! Biigtigong chart VII, sheet (4b)
+	+3P+Pl+Neg+PretDub:~nzinoogobaniin	# ;
+	+3P+Obv+Neg+PretDub:~nzininigoban	# ;
+	+3P+Obv+Pl+Neg+PretDub:~nzininigobaniin	# ;
+
+LEXICON VII_D_Final_Conj_Suffixes
+	+3P+Sg+Indic:~k		# ;		! Biigtigong chart VII, sheet (1c)
+	+3P+Obv+Indic:inig	# ;
+	+3P+Sg+Pret:~kiban		# ;		! Biigtigong chart VII, sheet (2c)
+	+3P+Obv+Pret:inigiban	# ;
+	+3P+Sg+Dub:ogwen		# ;		! Biigtigong chart VII, sheet (3c)
+	+3P+Obv+Dub:inigwen	# ;
+	+3P+Sg+PretDub:ogobanen		# ;		! Biigtigong chart VII, sheet (4c)
+	+3P+Obv+PretDub:inigobanen	# ;
+	+3P+Sg+Neg+Indic:~sinog		# ;		! Biigtigong chart VII, sheet (1d)
+	+3P+Obv+Neg+Indic:~sininig	# ;
+	+3P+Sg+Neg+Pret:~sinoogiban		# ;		! Biigtigong chart VII, sheet (2d)
+	+3P+Obv+Neg+Pret:~sininigiban	# ;
+	+3P+Sg+Neg+Dub:~sinoogwen		# ;		! Biigtigong chart VII, sheet (3d)
+	+3P+Obv+Neg+Dub:~sininigwen	# ;
+	+3P+Sg+Neg+PretDub:~sinoogobanen		# ;		! Biigtigong chart VII, sheet (4d)
+	+3P+Obv+Neg+PretDub:~sininigobanen	# ;
+
+LEXICON VII_N_Final_Indep_Suffixes
+	+3P+Sg+Indic:0		# ;		! Biigtigong chart VII, sheet (1a)
+	+3P+Pl+Indic:oon	# ;
+	+3P+Obv+Indic:ini	# ;
+	+3P+Obv+Pl+Indic:iniwan	# ;
+	+3P+Sg+Pret:oban		# ;		! Biigtigong chart VII, sheet (2a)
+	+3P+Pl+Pret:obaniin	# ;
+	+3P+Obv+Pret:iniŵiban	# ;
+	+3P+Obv+Pl+Pret:iniŵibaniin	# ;
+	+3P+Sg+Dub:odog		# ;		! Biigtigong chart VII, sheet (3a)
+	+3P+Pl+Dub:odogwenan	# ;
+	+3P+Obv+Dub:iniŵidog	# ;
+	+3P+Obv+Pl+Dub:iniŵidogwenan	# ;
+	+3P+Sg+PretDub:ogoban		# ;		! Biigtigong chart VII, sheet (4a)
+	+3P+Pl+PretDub:gobaniin	# ;
+	+3P+Obv+PretDub:inigoban	# ;
+	+3P+Obv+Pl+PretDub:nigobaniin	# ;
+	+3P+Sg+Neg+Indic:zinoon		# ;		! Biigtigong chart VII, sheet (1b)
+	+3P+Pl+Neg+Indic:zinoon	# ;
+	+3P+Obv+Neg+Indic:zinini	# ;
+	+3P+Obv+Pl+Neg+Indic:zininiwan	# ;
+	+3P+Sg+Neg+Pret:zinooban		# ;		! Biigtigong chart VII, sheet (2b)
+	+3P+Pl+Neg+Pret:zinoobaniin	# ;
+	+3P+Obv+Neg+Pret:zininiŵiban	# ;
+	+3P+Obv+Pl+Neg+Pret:zininiŵibaniin	# ;
+	+3P+Sg+Neg+Dub:zinodog		# ;		! Biigtigong chart VII, sheet (3b)
+	+3P+Pl+Neg+Dub:zinodogwenan	# ;
+	+3P+Obv+Neg+Dub:zininiŵidog	# ;
+	+3P+Obv+Pl+Neg+Dub:zininiŵidogwenan	# ;
+	+3P+Sg+Neg+PretDub:zinoogoban		# ;		! Biigtigong chart VII, sheet (4b)
+	+3P+Pl+Neg+PretDub:zinoogobaniin	# ;
+	+3P+Obv+Neg+PretDub:zininigoban	# ;
+	+3P+Obv+Pl+Neg+PretDub:zininigobaniin	# ;
+
+LEXICON VII_N_Final_Conj_Suffixes
+	+3P+Sg+Indic:g		# ;		! Biigtigong chart VII, sheet (1c)
+	+3P+Obv+Indic:inig	# ;
+	+3P+Sg+Pret:giban		# ;		! Biigtigong chart VII, sheet (2c)
+	+3P+Obv+Pret:inigiban	# ;
+	+3P+Sg+Dub:ogwen		# ;		! Biigtigong chart VII, sheet (3c)
+	+3P+Obv+Dub:inigwen	# ;
+	+3P+Sg+PretDub:ogobanen		# ;		! Biigtigong chart VII, sheet (4c)
+	+3P+Obv+PretDub:inigobanen	# ;
+	+3P+Sg+Neg+Indic:zinog		# ;		! Biigtigong chart VII, sheet (1d)
+	+3P+Obv+Neg+Indic:zininig	# ;
+	+3P+Sg+Neg+Pret:zinoogiban		# ;		! Biigtigong chart VII, sheet (2d)
+	+3P+Obv+Neg+Pret:zininigiban	# ;
+	+3P+Sg+Neg+Dub:zinoogwen		# ;		! Biigtigong chart VII, sheet (3d)
+	+3P+Obv+Neg+Dub:zininigwen	# ;
+	+3P+Sg+Neg+PretDub:zinoogobanen		# ;		! Biigtigong chart VII, sheet (4d)
+	+3P+Obv+Neg+PretDub:zininigobanen	# ;
 
 LEXICON Nouns
 	RegularNouns ;
