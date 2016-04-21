@@ -108,10 +108,13 @@ vaio.txt: $(TSV)
 vaip.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\tvaip\t/p' | cut -f 15 | egrep '[a-z]' | egrep -v ' ' | sed 's/^\///; s/-\/$$//' > $@
 
+vii.txt: $(TSV)
+	cat $(TSV) | sed -n '/^\t[^\t]*\tvii\tvii\t/p' | cut -f 15 | egrep '[a-z]' | egrep -v ' ' | sed 's/^\///; s/-\/$$//' > $@
+
 classified-nouns.txt: naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naDep.txt niDep.txt
 	cat naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naDep.txt niDep.txt > $@
 
-nish.txt: nish-template.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naDep.txt niDep.txt vai.txt vaio.txt vaip.txt
+nish.txt: nish-template.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naDep.txt niDep.txt vai.txt vaio.txt vaip.txt vii.txt
 	rm -f templex.txt $@
 	cat naI.txt | sed 's/$$/\tNA_I ;/' > templex.txt
 	cat niI.txt | sed 's/$$/\tNI_I ;/' >> templex.txt
@@ -142,6 +145,10 @@ nish.txt: nish-template.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.tx
 	cat vaip.txt | egrep '[aeio]$$' | sed 's/$$/\tVAIP_Vowel_Final_Suffixes ;/' > templex.txt
 	cat vaip.txt | egrep '[^aeio]$$' | sed 's/$$/\tVAIP_Nasal_Final_Suffixes ;/' >> templex.txt
 	sed -i '/^LEXICON VAIP_Stems/r templex.txt' $@
+	cat vii.txt | egrep '[aeio]$$' | sed 's/$$/\tVII_Vowel_Final_Suffixes ;/' > templex.txt
+	cat vii.txt | egrep 'n$$' | sed 's/$$/\tVII_N_Final_Suffixes ;/' >> templex.txt
+	cat vii.txt | egrep 'd$$' | sed 's/$$/\tVII_D_Final_Suffixes ;/' >> templex.txt
+	sed -i '/^LEXICON VII_Stems/r templex.txt' $@
 	rm -f templex.txt
 	chmod 444 $@
 
