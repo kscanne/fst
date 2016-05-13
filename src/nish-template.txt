@@ -1,4 +1,4 @@
-Multichar_Symbols +NA +NI +NAPl +NIPl +NASg +NISg 1P+ 2P+ 3P+ Sg+ Obv+ Pl+ Poss+ Ex+ Imp+ Conj+ +1P +2P +3P +Ex +Sg +Pl +Imp +Pej +Dim +Obv +Loc +Con +Poss +PossThm +Indep +Conj +Indic +Pret +Dub +PretDub +Neg
+Multichar_Symbols +NA +NI +NAPl +NIPl +NASg +NISg 1P+ 2P+ 3P+ NI+ Sg+ Obv+ Pl+ Poss+ Ex+ Imp+ Conj+ +1P +2P +3P +Ex +Sg +Pl +Imp +Pej +Dim +Obv +Loc +Con +Poss +PossThm +Indep +Conj +Indic +Pret +Dub +PretDub +Neg
 
 LEXICON Root
 	Verbs ;
@@ -66,16 +66,20 @@ LEXICON VIISubjectPrefixes
 				VII_Stems ;		! Conjunct order, actor propagated then stripped
 
 ! preprocessing applies topicality hierarchy rules to prefix after propagating
+! note that some of these are therefore "fake"; 1P+Obv etc.
 ! inanimate actors are allowed in VTA (0), but after applying topicality
 ! will never influence this prefix... (since goal is at least an animate 
 ! noun (3 or 3'), outranking 0)
 LEXICON VTASubjectPrefixes
 	1P+Sg+:ni	VTA_Stems ;
+	1P+Obv+:ni	VTA_Stems ;
 	2P+Sg+:gi	VTA_Stems ;
+	2P+Obv+:gi	VTA_Stems ;
 	3P+Sg+:wi	VTA_Stems ;
 	3P+Obv+:wi	VTA_Stems ;
 	1P+Pl+:ni	VTA_Stems ;
 	1P+Ex+:gi	VTA_Stems ;
+	2P+Ex+:gi	VTA_Stems ;
 	2P+Pl+:gi	VTA_Stems ;
 	3P+Pl+:wi	VTA_Stems ;
 	Imp+:0		VTA_Stems ;	! Impersonal ("unspecified actor")
@@ -999,8 +1003,12 @@ LEXICON VTA_Suffixes
 	! +CC:0		! changed conjuct verbal order
 
 LEXICON VTA_Indep_Suffixes
+	+1P+Sg+2P+Sg+Indic:in	# ; ! Biigtigong chart VTA, sheet (1a)
+	+2P+Sg+1P+Sg+Indic:izh	# ;
 
 LEXICON VTA_Conj_Suffixes
+	+1P+Sg+2P+Sg+Indic:inaan	# ; ! Biigtigong chart VTA, sheet (1c)
+	+2P+Sg+1P+Sg+Indic:izhiyan	# ;
 
 LEXICON Nouns
 	RegularNouns ;
