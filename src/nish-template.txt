@@ -9,7 +9,7 @@ LEXICON Verbs
 	VAIO ;
 	VAIP ;
 	VII ;
-	! VTA ;
+	VTA ;
 	! VTI ;
 
 LEXICON VAI
@@ -23,6 +23,9 @@ LEXICON VAIP
 
 LEXICON VII
 	VIISubjectPrefixes ;
+
+LEXICON VTA
+	VTASubjectPrefixes ;
 
 LEXICON VAISubjectPrefixes
 	1P+Sg+:ni	VAI_Stems ;
@@ -62,6 +65,22 @@ LEXICON VIISubjectPrefixes
 	3P+Pl+:0	VII_Stems ;
 				VII_Stems ;		! Conjunct order, actor propagated then stripped
 
+! preprocessing applies topicality hierarchy rules to prefix after propagating
+! inanimate actors are allowed in VTA (0), but after applying topicality
+! will never influence this prefix... (since goal is at least an animate 
+! noun (3 or 3'), outranking 0)
+LEXICON VTASubjectPrefixes
+	1P+Sg+:ni	VTA_Stems ;
+	2P+Sg+:gi	VTA_Stems ;
+	3P+Sg+:wi	VTA_Stems ;
+	3P+Obv+:wi	VTA_Stems ;
+	1P+Pl+:ni	VTA_Stems ;
+	1P+Ex+:gi	VTA_Stems ;
+	2P+Pl+:gi	VTA_Stems ;
+	3P+Pl+:wi	VTA_Stems ;
+	Imp+:0		VTA_Stems ;	! Impersonal ("unspecified actor")
+				VTA_Stems ;	! Conjunct order, actor propagated then stripped
+
 LEXICON VAI_Stems
 
 LEXICON VAIO_Stems
@@ -69,6 +88,8 @@ LEXICON VAIO_Stems
 LEXICON VAIP_Stems
 
 LEXICON VII_Stems
+
+LEXICON VTA_Stems
 
 LEXICON VAIO_Suffixes
 	+Indep:0		VAIO_Indep_Suffixes ;
@@ -971,6 +992,15 @@ LEXICON VII_N_Final_Conj_Suffixes
 	+3P+Obv+Neg+Dub:zininigwen	# ;
 	+3P+Sg+Neg+PretDub:zinoogobanen		# ;		! Biigtigong chart VII, sheet (4d)
 	+3P+Obv+Neg+PretDub:zininigobanen	# ;
+
+LEXICON VTA_Suffixes
+	+Indep:0		VTA_Indep_Suffixes ;
+	+Conj:0		VTA_Conj_Suffixes ;
+	! +CC:0		! changed conjuct verbal order
+
+LEXICON VTA_Indep_Suffixes
+
+LEXICON VTA_Conj_Suffixes
 
 LEXICON Nouns
 	RegularNouns ;
