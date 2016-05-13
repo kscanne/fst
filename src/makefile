@@ -12,6 +12,14 @@ all: badapost.txt badchar.txt badvowel.txt badcluster.txt
 
 comp: depsyncope-comparison.txt syncope-comparison.txt diminutive-comparison.txt locative-comparison.txt obviative-comparison.txt pejorative-comparison.txt possessive-comparison.txt posswithm-comparison.txt plural-comparison.txt singular-comparison.txt
 
+gentest: FORCE
+	cat generation-test.txt | egrep -v '^#' > test-correct.txt
+	cat generation-test.txt | egrep -v '^#' | sed 's/\t.*//' | flookup -i nish.bin | egrep '[a-z]' > test-actual.txt
+	diff -u test-correct.txt test-actual.txt
+
+generation-test.txt-rebuild: FORCE
+	cat generation-test.txt | while read x; do if echo "$$x" | egrep '^#' > /dev/null; then echo "$$x"; else echo "$$x" | sed 's/\t.*//' | flookup -i nish.bin | head -n 1; fi; done > generation-test.txt
+
 nish.bin: nish.fst nish.txt syncopate.bin
 	foma -f nish.fst
 
@@ -321,8 +329,10 @@ badcluster.txt: fullvowel.txt clusters.txt
 	-cat fullvowel.txt | egrep -v ' ' | egrep -o '[^aeiou-]+' | keepif -n clusters.txt | sort | uniq -c | sort -r -n > $@
 
 clean:
-	rm -f badapost.txt allaposts.txt badchar.txt badcluster.txt badvowel.txt headwords.txt fullvowel.txt syncopated-test.txt clusters.txt ascii-headwords.txt classified-nouns.txt othernouns.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDep.txt niDep.txt naDim.txt niDim.txt *-prev.txt *-comparison.txt *-test.txt consonanttypos.txt diacriticbug.txt multichar.txt nish.txt plural-test.txt tsv-*.txt independentnouns.txt pos.txt repeats.txt allnouns.txt
+	rm -f badapost.txt allaposts.txt badchar.txt badcluster.txt badvowel.txt headwords.txt fullvowel.txt syncopated-test.txt clusters.txt ascii-headwords.txt classified-nouns.txt othernouns.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDep.txt niDep.txt naDim.txt niDim.txt *-prev.txt *-comparison.txt *-test.txt consonanttypos.txt diacriticbug.txt multichar.txt nish.txt plural-test.txt tsv-*.txt independentnouns.txt pos.txt repeats.txt allnouns.txt test-actual.txt test-correct.txt
 
 distclean:
 	$(MAKE) clean
 	rm -f syncopate.bin nish.bin
+
+FORCE:
