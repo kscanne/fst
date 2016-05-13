@@ -61,3 +61,6 @@ Imp+boodawe+Indep+NA+Pl+Neg+Dub	boodwesiimwaadgwenag
 3P+Obv+bangisin+Conj+Indic	bngisninig
 3P+Obv+bangisin+Conj+PretDub	bngisnin'gobnen
 3P+Obv+bangisin+Conj+Neg+PretDub	bngisnzinniǧbanen
+# VTA
+1P+Sg+waabam+Indep+2P+Sg+Indic	gwaabmin
+2P+Sg+waabam+Indep+1P+Sg+Indic	gwaabmizh
