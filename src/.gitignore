@@ -64,6 +64,8 @@ syncopate.bin
 syncopated-test.txt
 syncope-comparison-prev.txt
 syncope-comparison.txt
+test-actual.txt
+test-correct.txt
 tsv-depsyncopated.txt
 tsv-diminutives.txt
 tsv-locatives.txt
