@@ -18,7 +18,8 @@ gentest: FORCE
 	diff -u test-correct.txt test-actual.txt
 
 generation-test.txt-rebuild: FORCE
-	cat generation-test.txt | while read x; do if echo "$$x" | egrep '^#' > /dev/null; then echo "$$x"; else echo "$$x" | sed 's/\t.*//' | flookup -i nish.bin | head -n 1; fi; done > generation-test.txt
+	cat generation-test.txt | while read x; do if echo "$$x" | egrep '^#' > /dev/null; then echo "$$x"; else echo "$$x" | sed 's/\t.*//' | flookup -i nish.bin | head -n 1; fi; done > tempfile
+	mv -f tempfile generation-test.txt
 
 nish.bin: nish.fst nish.txt syncopate.bin
 	foma -f nish.fst
