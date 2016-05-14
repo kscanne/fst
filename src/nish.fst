@@ -50,7 +50,8 @@ define Promote2PGoal [ [ "1P+" | "3P+" | "NI+" ] -> "2P+" || .#. _ ?+ [ "+Sg" | 
 define Promote2PGoalImp [ "Imp+" -> "2P+" "Sg+" || .#. _ ?+ "+Imp" [ "+2P" | [ "+1P" "+Ex" ] ] ];
 define Promote1PGoal [ [ "3P+" | "NI+" ] -> "1P+" || .#. _ ?+ [ "+Sg" | "+Pl" | "+Obv" ] "+1P" [ "+Sg" | "+Pl" ] ];
 define Promote1PGoalImp [ "Imp+" -> "1P+" "Sg+" || .#. _ ?+ "+Imp" "+1P" [ "+Sg" | "+Pl" ] ];
-define TopicalityHierarchy [ Promote2PGoal .o. Promote2PGoalImp .o. Promote1PGoal .o. Promote1PGoalImp ];
+define Promote3PGoal [ "NI+" -> "3P+" || .#. _ ?+ [ "+Sg" | "+Pl" ] "+3P" [ "+Sg" | "+Pl" | "+Obv" ] ];
+define TopicalityHierarchy [ Promote2PGoal .o. Promote2PGoalImp .o. Promote1PGoal .o. Promote1PGoalImp .o. Promote3PGoal ];
 define LongDistanceDependencies [ ObviativeAnimateOnly .o. InsertPossSg .o. InsertPossPl .o. InsertPossObv .o. InsertPossLoc .o. PropagatePossessum .o. PropagateActor .o. TopicalityHierarchy .o. NoConjSubjectPrefix .o. AnimatePlural .o. InanimatePlural .o. AnimateSingular .o. InanimateSingular ];
 define PossLinkingD [ "@" -> d || _ [ a | e | i \i ] ];  ! V 4.9.2, but not ii or oo as in 4.9.2.1
 define PossLinkingDO [ "@" -> d o || _ o \o ]; ! lengthen initial o (Biigtigong TSV)
