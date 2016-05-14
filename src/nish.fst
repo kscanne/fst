@@ -1,6 +1,6 @@
 read lexc nish.txt
 define Lexicon;
-define DisallowIntermediateTags ~[$[ "+NAPl" | "+NIPl" | "+NASg" | "+NISg" | "+Poss" | "+1P" | "+2P" | "+3P" | "+Ex" | "+Imp" ]];
+define DisallowIntermediateTags ~[$[ "+NAPl" | "+NIPl" | "+NASg" | "+NISg" | "+Poss" | "+Imp" ]];
 define AnimatePlural [ "+Pl" -> "+NAPl" || "+NA" ?* _ .#. ];
 define InanimatePlural [ "+Pl" -> "+NIPl" || "+NI" ?* _ .#. ];
 define AnimateSingular [ "+Sg" -> "+NASg" || "+NA" ?* _ .#. ];
@@ -26,6 +26,8 @@ define 21ActorIndep [ "+Indep" -> "+Indep" "+1P" "+Ex" || .#. "1P+" "Ex+" ?+ _ ]
 define 2pActorIndep [ "+Indep" -> "+Indep" "+2P" "+Pl" || .#. "2P+" "Pl+" ?+ _ ]; 
 define 3pActorIndep [ "+Indep" -> "+Indep" "+3P" "+Pl" || .#. "3P+" "Pl+" ?+ _ ]; 
 define ImpActorIndep [ "+Indep" -> "+Indep" "+Imp" || .#. "Imp+" ?+ _ ]; 
+define NISgActorIndep [ "+Indep" -> "+Indep" "+NI" "+Sg" || .#. "NI+" "Sg+" ?+ _ ]; 
+define NIPlActorIndep [ "+Indep" -> "+Indep" "+NI" "+Pl" || .#. "NI+" "Pl+" ?+ _ ]; 
 define 1sActorConj [ "+Conj" -> "+Conj" "+1P" "+Sg" || .#. "1P+" "Sg+" ?+ _ ]; 
 define 2sActorConj [ "+Conj" -> "+Conj" "+2P" "+Sg" || .#. "2P+" "Sg+" ?+ _ ]; 
 define 3sActorConj [ "+Conj" -> "+Conj" "+3P" "+Sg" || .#. "3P+" "Sg+" ?+ _ ]; 
@@ -35,11 +37,22 @@ define 21ActorConj [ "+Conj" -> "+Conj" "+1P" "+Ex" || .#. "1P+" "Ex+" ?+ _ ];
 define 2pActorConj [ "+Conj" -> "+Conj" "+2P" "+Pl" || .#. "2P+" "Pl+" ?+ _ ]; 
 define 3pActorConj [ "+Conj" -> "+Conj" "+3P" "+Pl" || .#. "3P+" "Pl+" ?+ _ ]; 
 define ImpActorConj [ "+Conj" -> "+Conj" "+Imp" || .#. "Imp+" ?+ _ ]; 
+define NISgActorConj [ "+Conj" -> "+Conj" "+NI" "+Sg" || .#. "NI+" "Sg+" ?+ _ ]; 
+define NIPlActorConj [ "+Conj" -> "+Conj" "+NI" "+Pl" || .#. "NI+" "Pl+" ?+ _ ]; 
 define PropagatePossessum [ 1sPossessum .o. 2sPossessum .o. 3sPossessum .o. 1pPossessum .o. 21Possessum .o. 2pPossessum .o. 3pPossessum ];
-define PropagateActor [ 1sActorIndep .o. 2sActorIndep .o. 3sActorIndep .o. 3opActorIndep .o. 3oActorIndep .o. 1pActorIndep .o. 21ActorIndep .o. 2pActorIndep .o. 3pActorIndep .o. ImpActorIndep .o. 1sActorConj .o. 2sActorConj .o. 3sActorConj .o. 3oActorConj .o. 1pActorConj .o. 21ActorConj .o. 2pActorConj .o. 3pActorConj .o. ImpActorConj ];
-define NoConjSubjectPrefix [ [ "Imp+" | [ "1P+" | "2P+" | "3P+" ] [ "Sg+" | "Obv+" | "Pl+" | "Ex+" ] ] -> 0 || .#. _ ?+ "+Conj" ];
+define PropagateActorIndep [ 1sActorIndep .o. 2sActorIndep .o. 3sActorIndep .o. 3opActorIndep .o. 3oActorIndep .o. 1pActorIndep .o. 21ActorIndep .o. 2pActorIndep .o. 3pActorIndep .o. ImpActorIndep .o. NISgActorIndep .o. NIPlActorIndep ];
+define PropagateActorConj [ 1sActorConj .o. 2sActorConj .o. 3sActorConj .o. 3oActorConj .o. 1pActorConj .o. 21ActorConj .o. 2pActorConj .o. 3pActorConj .o. ImpActorConj .o. NISgActorConj .o. NIPlActorConj ];
+define PropagateActor [ PropagateActorIndep .o. PropagateActorConj ];
+define NoConjSubjectPrefix [ [ "Imp+" | [ "1P+" | "2P+" | "3P+" | "NI+" ] [ "Sg+" | "Obv+" | "Pl+" | "Ex+" ] ] -> 0 || .#. _ ?+ "+Conj" ];
 define ObviativeAnimateOnly ~[$[ "+NI" ?* "+Obv" ]];
-define LongDistanceDependencies [ ObviativeAnimateOnly .o. InsertPossSg .o. InsertPossPl .o. InsertPossObv .o. InsertPossLoc .o. PropagatePossessum .o. PropagateActor .o. NoConjSubjectPrefix .o. AnimatePlural .o. InanimatePlural .o. AnimateSingular .o. InanimateSingular ];
+! topicality hierarchy for prefixes in VTA
+define Promote2PGoal [ [ "1P+" | "3P+" | "NI+" ] -> "2P+" || .#. _ ?+ [ "+Sg" | "+Pl" | "+Obv" | "+Ex" ] [ "+2P" | [ "+1P" "+Ex" ] ] ];
+define Promote2PGoalImp [ "Imp+" -> "2P+" "Sg+" || .#. _ ?+ "+Imp" [ "+2P" | [ "+1P" "+Ex" ] ] ];
+define Promote1PGoal [ [ "3P+" | "NI+" ] -> "1P+" || .#. _ ?+ [ "+Sg" | "+Pl" | "+Obv" ] "+1P" [ "+Sg" | "+Pl" ] ];
+define Promote1PGoalImp [ "Imp+" -> "1P+" "Sg+" || .#. _ ?+ "+Imp" "+1P" [ "+Sg" | "+Pl" ] ];
+define Promote3PGoal [ "NI+" -> "3P+" || .#. _ ?+ [ "+Sg" | "+Pl" ] "+3P" [ "+Sg" | "+Pl" | "+Obv" ] ];
+define TopicalityHierarchy [ Promote2PGoal .o. Promote2PGoalImp .o. Promote1PGoal .o. Promote1PGoalImp .o. Promote3PGoal ];
+define LongDistanceDependencies [ ObviativeAnimateOnly .o. InsertPossSg .o. InsertPossPl .o. InsertPossObv .o. InsertPossLoc .o. PropagatePossessum .o. PropagateActor .o. TopicalityHierarchy .o. NoConjSubjectPrefix .o. AnimatePlural .o. InanimatePlural .o. AnimateSingular .o. InanimateSingular ];
 define PossLinkingD [ "@" -> d || _ [ a | e | i \i ] ];  ! V 4.9.2, but not ii or oo as in 4.9.2.1
 define PossLinkingDO [ "@" -> d o || _ o \o ]; ! lengthen initial o (Biigtigong TSV)
 define PossLinkingDW [ "@" w a -> d o o || _ \a ]; ! Biigtigong TSV, w + short a only

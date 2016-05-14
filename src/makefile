@@ -18,7 +18,8 @@ gentest: FORCE
 	diff -u test-correct.txt test-actual.txt
 
 generation-test.txt-rebuild: FORCE
-	cat generation-test.txt | while read x; do if echo "$$x" | egrep '^#' > /dev/null; then echo "$$x"; else echo "$$x" | sed 's/\t.*//' | flookup -i nish.bin | head -n 1; fi; done > generation-test.txt
+	cat generation-test.txt | while read x; do if echo "$$x" | egrep '^#' > /dev/null; then echo "$$x"; else echo "$$x" | sed 's/\t.*//' | flookup -i nish.bin | head -n 1; fi; done > tempfile
+	mv -f tempfile generation-test.txt
 
 nish.bin: nish.fst nish.txt syncopate.bin
 	foma -f nish.fst
@@ -119,10 +120,13 @@ vaip.txt: $(TSV)
 vii.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\tvii\tvii\t/p' | cut -f 15 | egrep '[a-z]' | egrep -v ' ' | sed 's/^\///; s/-\/$$//' > $@
 
+vta.txt: $(TSV)
+	cat $(TSV) | sed -n '/^\t[^\t]*\tvta\tvta\t/p' | cut -f 15 | egrep '[a-z]' | egrep -v ' ' | sed 's/^\///; s/-\/$$//' > $@
+
 classified-nouns.txt: naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naDep.txt niDep.txt
 	cat naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naDep.txt niDep.txt > $@
 
-nish.txt: nish-template.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naDep.txt niDep.txt vai.txt vaio.txt vaip.txt vii.txt
+nish.txt: nish-template.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naDep.txt niDep.txt vai.txt vaio.txt vaip.txt vii.txt vta.txt
 	rm -f templex.txt $@
 	cat naI.txt | sed 's/$$/\tNA_I ;/' > templex.txt
 	cat niI.txt | sed 's/$$/\tNI_I ;/' >> templex.txt
@@ -157,6 +161,8 @@ nish.txt: nish-template.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.tx
 	cat vii.txt | egrep 'n$$' | sed 's/$$/\tVII_N_Final_Suffixes ;/' >> templex.txt
 	cat vii.txt | egrep 'd$$' | sed 's/$$/\tVII_D_Final_Suffixes ;/' >> templex.txt
 	sed -i '/^LEXICON VII_Stems/r templex.txt' $@
+	cat vta.txt | sed 's/$$/\tVTA_Suffixes ;/' > templex.txt
+	sed -i '/^LEXICON VTA_Stems/r templex.txt' $@
 	rm -f templex.txt
 	chmod 444 $@
 
