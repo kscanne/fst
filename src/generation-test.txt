@@ -7,12 +7,12 @@
 3P+Sg+ikido+Indep+Dub	kidwidog
 3P+Sg+bangishin+Indep+Dub	bngishnodog
 3P+Pl+ikido+Indep+Dub	kidwidgwenag
-3P+Pl+bangishin+Indep+Dub	bngishnodogwenag
+3P+Pl+bangishin+Indep+Dub	bngishnodgwenag
 3P+Sg+wasitaawendam+Indep+Pret	wsitaawendmoban
 3P+Sg+ozosodam+Indep+Pret	wzosdamwiban
 3P+Sg+ayindoodam+Indep+Pret	yindoodmoban
 3P+Sg+wanitam+Indep+Pret	wnitmoban
-3P+Obv+azamwiingwetaa+Indep+Dub	zamwiingwetaadogwenan
+3P+Obv+azamwiingwetaa+Indep+Dub	zamwiingwetaadgwenan
 # VAI2
 1P+Ex+debwetam+Indep+Indic	gdebwetaamin
 2P+Pl+debwetam+Indep+Indic	gdebwetaam

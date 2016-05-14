@@ -17,12 +17,13 @@ define insertDiacriticsH [ h X -> ȟ, h w F -> ȟ || Vowel _ \w ];
 define initialO [ X -> w || .#. _, Hyphen _ ];
 define initialGwaKwa [ w a -> o || .#. [ F | L ] [ g | k ] _ \[ a | "-" ] ];
 define nonFinalNH [ n h -> n y || _ \[ "-" ] ];
-define inflectionalWDeletion [ ŵ [ F | L | X ] -> 0 ];
+define inflectionalWDeletion [ ŵ L -> 0 ];
+define inflectionalWDeletionNonFinal [ ŵ L d o -> d, ŵ L b a -> b || _ ?+ Vowel ];
 define fixFakeW [ ŵ -> w ];
 define fixZWY [ z w y -> z y ]; ! e.g. moozwayaanekizin -> moozyaanekzin
 define reflexiveException [ L -> i || n d _ w a a d .#. ];
 define dropAllMarkers [ F -> 0, L -> 0, X -> 0 ];
 define convertGlottal [ ' -> h ];
-define syncopate [ markWeak .o. convertGlottal .o. insertApost .o. insertDiacriticsGK .o. insertDiacriticsH .o. initialO .o. initialGwaKwa .o. reflexiveException .o. nonFinalNH .o. inflectionalWDeletion .o. fixFakeW .o. dropAllMarkers .o. fixZWY ];
+define syncopate [ markWeak .o. convertGlottal .o. insertApost .o. insertDiacriticsGK .o. insertDiacriticsH .o. initialO .o. initialGwaKwa .o. reflexiveException .o. nonFinalNH .o. inflectionalWDeletionNonFinal .o. inflectionalWDeletion .o. fixFakeW .o. dropAllMarkers .o. fixZWY ];
 push defined syncopate
 save stack syncopate.bin
