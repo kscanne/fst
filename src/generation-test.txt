@@ -126,7 +126,7 @@ Imp+waabam+Indep+1P+Pl+Indic	nwaabmigoomin
 Imp+waabam+Indep+1P+Ex+Indic	gwaabmigoomin
 Imp+waabam+Indep+2P+Pl+Indic	gwaabmigoom
 Imp+waabam+Indep+3P+Pl+Indic	waabmaawag
-NI+Sg+waabam+Indep+1P+Sg+Indic	nwaabamgon
+NI+Sg+waabam+Indep+1P+Sg+Indic	nwaabmigon
 NI+Sg+waabam+Indep+2P+Sg+Indic	gwaabmigon
 NI+Sg+waabam+Indep+3P+Sg+Indic	wwaabmigon
 NI+Sg+waabam+Indep+3P+Obv+Indic	wwaabmiǧnini
