@@ -1053,7 +1053,7 @@ LEXICON VTA_Indep_Suffixes
 	+Imp+1P+Ex+Indic:igoomin	# ;
 	+Imp+2P+Pl+Indic:igoom	# ;
 	+Imp+3P+Pl+Indic:aawag	# ;
-	+NI+Sg+1P+Sg+Indic:gon	# ;
+	+NI+Sg+1P+Sg+Indic:igon	# ;
 	+NI+Sg+2P+Sg+Indic:igon	# ;
 	+NI+Sg+3P+Sg+Indic:igon	# ;
 	+NI+Sg+3P+Obv+Indic:igonini	# ;
