@@ -123,10 +123,22 @@ vii.txt: $(TSV)
 vta.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\tvta\tvta\t/p' | cut -f 15 | egrep '[a-z]' | egrep -v ' ' | sed 's/^\///; s/-\/$$//' > $@
 
+vti1.txt: $(TSV)
+	cat $(TSV) | sed -n '/^\t[^\t]*\tvti\tvti\t/p' | cut -f 15 | egrep '[a-z]' | egrep -v ' ' | sed 's/^\///; s/-\/$$//' > $@
+
+vti2.txt: $(TSV)
+	cat $(TSV) | sed -n '/^\t[^\t]*\tvti\tvti2\t/p' | cut -f 15 | egrep '[a-z]' | egrep -v ' ' | sed 's/^\///; s/-\/$$//' > $@
+
+vti3.txt: $(TSV)
+	cat $(TSV) | sed -n '/^\t[^\t]*\tvti\tvti3\t/p' | cut -f 15 | egrep '[a-z]' | egrep -v ' ' | sed 's/^\///; s/-\/$$//' > $@
+
+vti4.txt: $(TSV)
+	cat $(TSV) | sed -n '/^\t[^\t]*\tvti\tvti4\t/p' | cut -f 15 | egrep '[a-z]' | egrep -v ' ' | sed 's/^\///; s/-\/$$//' > $@
+
 classified-nouns.txt: naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naDep.txt niDep.txt
 	cat naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naDep.txt niDep.txt > $@
 
-nish.txt: nish-template.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naDep.txt niDep.txt vai.txt vaio.txt vaip.txt vii.txt vta.txt
+nish.txt: nish-template.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naDep.txt niDep.txt vai.txt vaio.txt vaip.txt vii.txt vta.txt vti1.txt vti2.txt vti3.txt vti4.txt
 	rm -f templex.txt $@
 	cat naI.txt | sed 's/$$/\tNA_I ;/' > templex.txt
 	cat niI.txt | sed 's/$$/\tNI_I ;/' >> templex.txt
@@ -163,6 +175,11 @@ nish.txt: nish-template.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.tx
 	sed -i '/^LEXICON VII_Stems/r templex.txt' $@
 	cat vta.txt | sed 's/$$/\tVTA_Suffixes ;/' > templex.txt
 	sed -i '/^LEXICON VTA_Stems/r templex.txt' $@
+	cat vti1.txt | sed 's/$$/\tVTI1_Suffixes ;/' > templex.txt
+	cat vti2.txt | sed 's/$$/\tVTI2_Suffixes ;/' >> templex.txt
+	cat vti3.txt | sed 's/$$/\tVTI3_Suffixes ;/' >> templex.txt
+	cat vti4.txt | sed 's/$$/\tVTI4_Suffixes ;/' >> templex.txt
+	sed -i '/^LEXICON VTI_Stems/r templex.txt' $@
 	rm -f templex.txt
 	chmod 444 $@
 
