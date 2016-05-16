@@ -10,7 +10,7 @@ LEXICON Verbs
 	VAIP ;
 	VII ;
 	VTA ;
-	! VTI ;
+	VTI ;
 
 LEXICON VAI
 	VAISubjectPrefixes ;
@@ -26,6 +26,9 @@ LEXICON VII
 
 LEXICON VTA
 	VTASubjectPrefixes ;
+
+LEXICON VTI
+	VTISubjectPrefixes ;
 
 LEXICON VAISubjectPrefixes
 	1P+Sg+:ni	VAI_Stems ;
@@ -85,6 +88,18 @@ LEXICON VTASubjectPrefixes
 	Imp+:0		VTA_Stems ;	! Impersonal ("unspecified actor")
 				VTA_Stems ;	! Conjunct order, actor propagated then stripped
 
+LEXICON VTISubjectPrefixes
+	1P+Sg+:ni	VTI_Stems ;
+	2P+Sg+:gi	VTI_Stems ;
+	3P+Sg+:wi	VTI_Stems ;
+	3P+Obv+:wi	VTI_Stems ;
+	1P+Pl+:ni	VTI_Stems ;
+	1P+Ex+:gi	VTI_Stems ;
+	2P+Pl+:gi	VTI_Stems ;
+	3P+Pl+:wi	VTI_Stems ;
+	Imp+:0		VTI_Stems ;	! Impersonal ("unspecified actor")
+				VTI_Stems ;	! Conjunct order, actor propagated then stripped
+
 LEXICON VAI_Stems
 
 LEXICON VAIO_Stems
@@ -94,6 +109,8 @@ LEXICON VAIP_Stems
 LEXICON VII_Stems
 
 LEXICON VTA_Stems
+
+LEXICON VTI_Stems
 
 LEXICON VAIO_Suffixes
 	+Indep:0		VAIO_Indep_Suffixes ;
@@ -1797,6 +1814,515 @@ LEXICON VTA_Conj_Suffixes
 	+NI+Pl+1P+Ex+Neg+Dub:igosiwangwen	# ;
 	+NI+Pl+2P+Pl+Neg+Dub:igosiwegwen	# ;
 	+NI+Pl+3P+Pl+Neg+Dub:igosiwaagwen	# ;
+
+LEXICON VTI1_Suffixes
+	+Indep:0		VTI1_Indep_Suffixes ;
+	+Conj:0		VTI1_Conj_Suffixes ;
+	! +CC:0		! changed conjuct verbal order
+
+LEXICON VTI2_Suffixes
+	+Indep:0		VTI2_Indep_Suffixes ;
+	+Conj:0		VTI2_Conj_Suffixes ;
+	! +CC:0		! changed conjuct verbal order
+
+LEXICON VTI3_Suffixes
+	+Indep:0		VTI3_Indep_Suffixes ;
+	+Conj:0		VTI3_Conj_Suffixes ;
+	! +CC:0		! changed conjuct verbal order
+
+LEXICON VTI4_Suffixes
+	+Indep:0		VTI4_Indep_Suffixes ;
+	+Conj:0		VTI4_Conj_Suffixes ;
+	! +CC:0		! changed conjuct verbal order
+
+LEXICON VTI1_Indep_Suffixes
+	+1P+Sg+NI+Sg+Indic:aan	# ; ! Biigtigong chart VTI, sheet (1a)
+	+1P+Sg+NI+Pl+Indic:aanan	# ;
+	+2P+Sg+NI+Sg+Indic:aan	# ;
+	+2P+Sg+NI+Pl+Indic:aanan	# ;
+	+3P+Sg+NI+Sg+Indic:aan	# ;
+	+3P+Sg+NI+Pl+Indic:aanan	# ;
+	+3P+Obv+NI+Sg+Indic:amini	# ;
+	+3P+Obv+NI+Pl+Indic:amini	# ;
+	+1P+Pl+NI+Sg+Indic:aamin	# ;
+	+1P+Pl+NI+Pl+Indic:aamin	# ;
+	+1P+Ex+NI+Sg+Indic:aamin	# ;
+	+1P+Ex+NI+Pl+Indic:aamin	# ;
+	+2P+Pl+NI+Sg+Indic:aam	# ;
+	+2P+Pl+NI+Pl+Indic:aam	# ;
+	+3P+Pl+NI+Sg+Indic:aanaawaa	# ;
+	+3P+Pl+NI+Pl+Indic:aanaawaan	# ;
+	+Imp+NI+Sg+Indic:aam	# ;
+	+Imp+NI+Pl+Indic:aam	# ;
+	+1P+Sg+NI+Sg+Neg+Indic:anziin	# ; ! Biigtigong chart VTI, sheet (1b)
+	+1P+Sg+NI+Pl+Neg+Indic:anziinan	# ;
+	+2P+Sg+NI+Sg+Neg+Indic:anziin	# ;
+	+2P+Sg+NI+Pl+Neg+Indic:anziinan	# ;
+	+3P+Sg+NI+Sg+Neg+Indic:anziin	# ;
+	+3P+Sg+NI+Pl+Neg+Indic:anziinan	# ;
+	+3P+Obv+NI+Sg+Neg+Indic:anziinini	# ;
+	+3P+Obv+NI+Pl+Neg+Indic:anziinini	# ;
+	+1P+Pl+NI+Sg+Neg+Indic:anziimin	# ;
+	+1P+Pl+NI+Pl+Neg+Indic:anziimin	# ;
+	+1P+Ex+NI+Sg+Neg+Indic:anziimin	# ;
+	+1P+Ex+NI+Pl+Neg+Indic:anziimin	# ;
+	+2P+Pl+NI+Sg+Neg+Indic:anziim	# ;
+	+2P+Pl+NI+Pl+Neg+Indic:anziim	# ;
+	+3P+Pl+NI+Sg+Neg+Indic:anziinaawaa	# ;
+	+3P+Pl+NI+Pl+Neg+Indic:anziinaawaan	# ;
+	+Imp+NI+Sg+Neg+Indic:anziim	# ;
+	+Imp+NI+Pl+Neg+Indic:anziim	# ;
+	+1P+Sg+NI+Sg+Pret:aanaaban	# ; ! Biigtigong chart VTI, sheet (2a)
+	+1P+Sg+NI+Pl+Pret:aanaabaniin	# ;
+	+2P+Sg+NI+Sg+Pret:aanaaban	# ;
+	+2P+Sg+NI+Pl+Pret:aanaabaniin	# ;
+	+3P+Sg+NI+Sg+Pret:aanaaban	# ;
+	+3P+Sg+NI+Pl+Pret:aanaabaniin	# ;
+	+3P+Obv+NI+Sg+Pret:aminaaban	# ;
+	+3P+Obv+NI+Pl+Pret:aminaabaniin	# ;
+	+1P+Pl+NI+Sg+Pret:aaminaaban	# ;
+	+1P+Pl+NI+Pl+Pret:aaminaabaniin	# ;
+	+1P+Ex+NI+Sg+Pret:aaminaaban	# ;
+	+1P+Ex+NI+Pl+Pret:aaminaabaniin	# ;
+	+2P+Pl+NI+Sg+Pret:aamwaaban	# ;
+	+2P+Pl+NI+Pl+Pret:aamwaabaniin	# ;
+	+3P+Pl+NI+Sg+Pret:aanaawaaban	# ;
+	+3P+Pl+NI+Pl+Pret:aanaawaabaniin	# ;
+	+Imp+NI+Sg+Pret:aamwaaban	# ;
+	+Imp+NI+Pl+Pret:aamwaabaniin	# ;
+	+1P+Sg+NI+Sg+Neg+Pret:anziinaaban	# ; ! Biigtigong chart VTI, sheet (2b)
+	+1P+Sg+NI+Pl+Neg+Pret:anziinaabaniin	# ;
+	+2P+Sg+NI+Sg+Neg+Pret:anziinaaban	# ;
+	+2P+Sg+NI+Pl+Neg+Pret:anziinaabaniin	# ;
+	+3P+Sg+NI+Sg+Neg+Pret:anziinaaban	# ;
+	+3P+Sg+NI+Pl+Neg+Pret:anziinaabaniin	# ;
+	+3P+Obv+NI+Sg+Neg+Pret:anziininaaban	# ;
+	+3P+Obv+NI+Pl+Neg+Pret:anziininaabaniin	# ;
+	+1P+Pl+NI+Sg+Neg+Pret:anziiminaaban	# ;
+	+1P+Pl+NI+Pl+Neg+Pret:anziiminaabaniin	# ;
+	+1P+Ex+NI+Sg+Neg+Pret:anziiminaaban	# ;
+	+1P+Ex+NI+Pl+Neg+Pret:anziiminaabaniin	# ;
+	+2P+Pl+NI+Sg+Neg+Pret:anziimwaaban	# ;
+	+2P+Pl+NI+Pl+Neg+Pret:anziimwaabaniin	# ;
+	+3P+Pl+NI+Sg+Neg+Pret:anziinaawaaban	# ;
+	+3P+Pl+NI+Pl+Neg+Pret:anziinaawaabaniin	# ;
+	+Imp+NI+Sg+Neg+Pret:anziimwaaban	# ;
+	+Imp+NI+Pl+Neg+Pret:anziimwaabaniin	# ;
+	+1P+Sg+NI+Sg+Dub:aanaadog	# ; ! Biigtigong chart VTI, sheet (3a)
+	+1P+Sg+NI+Pl+Dub:aanaadogwenan	# ;
+	+2P+Sg+NI+Sg+Dub:aanaadog	# ;
+	+2P+Sg+NI+Pl+Dub:aanaadogwenan	# ;
+	+3P+Sg+NI+Sg+Dub:aanaadog	# ;
+	+3P+Sg+NI+Pl+Dub:aanaadogwenan	# ;
+	+3P+Obv+NI+Sg+Dub:aminaadog	# ;
+	+3P+Obv+NI+Pl+Dub:aminaadogwenan	# ;
+	+1P+Pl+NI+Sg+Dub:aaminaadog	# ;
+	+1P+Pl+NI+Pl+Dub:aaminaadogwenan	# ;
+	+1P+Ex+NI+Sg+Dub:aaminaadog	# ;
+	+1P+Ex+NI+Pl+Dub:aaminaadogwenan	# ;
+	+2P+Pl+NI+Sg+Dub:aamwaadog	# ;
+	+2P+Pl+NI+Pl+Dub:aamwaadogwenan	# ;
+	+3P+Pl+NI+Sg+Dub:aanaawaadog	# ;
+	+3P+Pl+NI+Pl+Dub:aanaawaadogwenan	# ;
+	+Imp+NI+Sg+Dub:aamwaadog	# ;
+	+Imp+NI+Pl+Dub:aamwaadogwenan	# ;
+	+1P+Sg+NI+Sg+Neg+Dub:anziinaadog	# ; ! Biigtigong chart VTI, sheet (3b)
+	+1P+Sg+NI+Pl+Neg+Dub:anziinaadogwenan	# ;
+	+2P+Sg+NI+Sg+Neg+Dub:anziinaadog	# ;
+	+2P+Sg+NI+Pl+Neg+Dub:anziinaadogwenan	# ;
+	+3P+Sg+NI+Sg+Neg+Dub:anziinaadog	# ;
+	+3P+Sg+NI+Pl+Neg+Dub:anziinaadogwenan	# ;
+	+3P+Obv+NI+Sg+Neg+Dub:anziininaadog	# ;
+	+3P+Obv+NI+Pl+Neg+Dub:anziininaadogwenan	# ;
+	+1P+Pl+NI+Sg+Neg+Dub:anziiminaadog	# ;
+	+1P+Pl+NI+Pl+Neg+Dub:anziiminaadogwenan	# ;
+	+1P+Ex+NI+Sg+Neg+Dub:anziiminaadog	# ;
+	+1P+Ex+NI+Pl+Neg+Dub:anziiminaadogwenan	# ;
+	+2P+Pl+NI+Sg+Neg+Dub:anziimwaadog	# ;
+	+2P+Pl+NI+Pl+Neg+Dub:anziimwaadogwenan	# ;
+	+3P+Pl+NI+Sg+Neg+Dub:anziinaawaadog	# ;
+	+3P+Pl+NI+Pl+Neg+Dub:anziinaawaadogwenan	# ;
+	+Imp+NI+Sg+Neg+Dub:anziimwaadog	# ;
+	+Imp+NI+Pl+Neg+Dub:anziimwaadogwenan	# ;
+	+3P+Sg+NI+Sg+PretDub:amogoban	# ; ! Biigtigong chart VTI, sheet (4a)
+	+3P+Sg+NI+Pl+PretDub:amogoban	# ;
+	+3P+Obv+NI+Sg+PretDub:aminigoban	# ;
+	+3P+Obv+NI+Pl+PretDub:aminigoban	# ;
+	+3P+Pl+NI+Sg+PretDub:amogwaaban	# ;
+	+3P+Pl+NI+Pl+PretDub:amogwaaban	# ;
+	+3P+Sg+NI+Sg+Neg+PretDub:anziigoban	# ; ! Biigtigong chart VTI, sheet (4b)
+	+3P+Sg+NI+Pl+Neg+PretDub:anziigoban	# ;
+	+3P+Obv+NI+Sg+Neg+PretDub:anziinigoban	# ;
+	+3P+Obv+NI+Pl+Neg+PretDub:anziinigoban	# ;
+	+3P+Pl+NI+Sg+Neg+PretDub:anziigwaaban	# ;
+	+3P+Pl+NI+Pl+Neg+PretDub:anziigwaaban	# ;
+
+LEXICON VTI2_Indep_Suffixes
+	+1P+Sg+NI+Sg+Indic:oon	# ; ! Biigtigong chart VTI, sheet (1a)
+	+1P+Sg+NI+Pl+Indic:oonan	# ;
+	+2P+Sg+NI+Sg+Indic:oon	# ;
+	+2P+Sg+NI+Pl+Indic:oonan	# ;
+	+3P+Sg+NI+Sg+Indic:oon	# ;
+	+3P+Sg+NI+Pl+Indic:oonan	# ;
+	+3P+Obv+NI+Sg+Indic:oonini	# ;
+	+3P+Obv+NI+Pl+Indic:oonini	# ;
+	+1P+Pl+NI+Sg+Indic:oomin	# ;
+	+1P+Pl+NI+Pl+Indic:oomin	# ;
+	+1P+Ex+NI+Sg+Indic:oomin	# ;
+	+1P+Ex+NI+Pl+Indic:oomin	# ;
+	+2P+Pl+NI+Sg+Indic:oom	# ;
+	+2P+Pl+NI+Pl+Indic:oom	# ;
+	+3P+Pl+NI+Sg+Indic:oonaawaa	# ;
+	+3P+Pl+NI+Pl+Indic:oonaawaan	# ;
+	+Imp+NI+Sg+Indic:oom	# ;
+	+Imp+NI+Pl+Indic:oom	# ;
+	+1P+Sg+NI+Sg+Neg+Indic:oosiin	# ; ! Biigtigong chart VTI, sheet (1b)
+	+1P+Sg+NI+Pl+Neg+Indic:oosiinan	# ;
+	+2P+Sg+NI+Sg+Neg+Indic:oosiin	# ;
+	+2P+Sg+NI+Pl+Neg+Indic:oosiinan	# ;
+	+3P+Sg+NI+Sg+Neg+Indic:oosiin	# ;
+	+3P+Sg+NI+Pl+Neg+Indic:oosiinan	# ;
+	+3P+Obv+NI+Sg+Neg+Indic:oosiinini	# ;
+	+3P+Obv+NI+Pl+Neg+Indic:oosiinini	# ;
+	+1P+Pl+NI+Sg+Neg+Indic:oosiimin	# ;
+	+1P+Pl+NI+Pl+Neg+Indic:oosiimin	# ;
+	+1P+Ex+NI+Sg+Neg+Indic:oosiimin	# ;
+	+1P+Ex+NI+Pl+Neg+Indic:oosiimin	# ;
+	+2P+Pl+NI+Sg+Neg+Indic:oosiim	# ;
+	+2P+Pl+NI+Pl+Neg+Indic:oosiim	# ;
+	+3P+Pl+NI+Sg+Neg+Indic:oosiinaawaa	# ;
+	+3P+Pl+NI+Pl+Neg+Indic:oosiinaawaan	# ;
+	+Imp+NI+Sg+Neg+Indic:oosiim	# ;
+	+Imp+NI+Pl+Neg+Indic:oosiim	# ;
+	+1P+Sg+NI+Sg+Pret:oonaaban	# ; ! Biigtigong chart VTI, sheet (2a)
+	+1P+Sg+NI+Pl+Pret:oonaabaniin	# ;
+	+2P+Sg+NI+Sg+Pret:oonaaban	# ;
+	+2P+Sg+NI+Pl+Pret:oonaabaniin	# ;
+	+3P+Sg+NI+Sg+Pret:oonaaban	# ;
+	+3P+Sg+NI+Pl+Pret:oonaabaniin	# ;
+	+3P+Obv+NI+Sg+Pret:ooninaaban	# ;
+	+3P+Obv+NI+Pl+Pret:ooninaabaniin	# ;
+	+1P+Pl+NI+Sg+Pret:oominaaban	# ;
+	+1P+Pl+NI+Pl+Pret:oominaabaniin	# ;
+	+1P+Ex+NI+Sg+Pret:oominaaban	# ;
+	+1P+Ex+NI+Pl+Pret:oominaabaniin	# ;
+	+2P+Pl+NI+Sg+Pret:oomwaaban	# ;
+	+2P+Pl+NI+Pl+Pret:oomwaabaniin	# ;
+	+3P+Pl+NI+Sg+Pret:oonaawaaban	# ;
+	+3P+Pl+NI+Pl+Pret:oonaawaabaniin	# ;
+	+Imp+NI+Sg+Pret:oomwaaban	# ;
+	+Imp+NI+Pl+Pret:oomwaabaniin	# ;
+	+1P+Sg+NI+Sg+Neg+Pret:oosiinaaban	# ; ! Biigtigong chart VTI, sheet (2b)
+	+1P+Sg+NI+Pl+Neg+Pret:oosiinaabaniin	# ;
+	+2P+Sg+NI+Sg+Neg+Pret:oosiinaaban	# ;
+	+2P+Sg+NI+Pl+Neg+Pret:oosiinaabaniin	# ;
+	+3P+Sg+NI+Sg+Neg+Pret:oosiinaaban	# ;
+	+3P+Sg+NI+Pl+Neg+Pret:oosiinaabaniin	# ;
+	+3P+Obv+NI+Sg+Neg+Pret:oosiininaaban	# ;
+	+3P+Obv+NI+Pl+Neg+Pret:oosiininaabaniin	# ;
+	+1P+Pl+NI+Sg+Neg+Pret:oosiiminaaban	# ;
+	+1P+Pl+NI+Pl+Neg+Pret:oosiiminaabaniin	# ;
+	+1P+Ex+NI+Sg+Neg+Pret:oosiiminaaban	# ;
+	+1P+Ex+NI+Pl+Neg+Pret:oosiiminaabaniin	# ;
+	+2P+Pl+NI+Sg+Neg+Pret:oosiimwaaban	# ;
+	+2P+Pl+NI+Pl+Neg+Pret:oosiimwaabaniin	# ;
+	+3P+Pl+NI+Sg+Neg+Pret:oosiinaawaaban	# ;
+	+3P+Pl+NI+Pl+Neg+Pret:oosiinaawaabaniin	# ;
+	+Imp+NI+Sg+Neg+Pret:oosiimwaaban	# ;
+	+Imp+NI+Pl+Neg+Pret:oosiimwaabaniin	# ;
+	+1P+Sg+NI+Sg+Dub:oonaadog	# ; ! Biigtigong chart VTI, sheet (3a)
+	+1P+Sg+NI+Pl+Dub:oonaadogwenan	# ;
+	+2P+Sg+NI+Sg+Dub:oonaadog	# ;
+	+2P+Sg+NI+Pl+Dub:oonaadogwenan	# ;
+	+3P+Sg+NI+Sg+Dub:oonaadog	# ;
+	+3P+Sg+NI+Pl+Dub:oonaadogwenan	# ;
+	+3P+Obv+NI+Sg+Dub:ooninaadog	# ;
+	+3P+Obv+NI+Pl+Dub:ooninaadogwenan	# ;
+	+1P+Pl+NI+Sg+Dub:oominaadog	# ;
+	+1P+Pl+NI+Pl+Dub:oominaadogwenan	# ;
+	+1P+Ex+NI+Sg+Dub:oominaadog	# ;
+	+1P+Ex+NI+Pl+Dub:oominaadogwenan	# ;
+	+2P+Pl+NI+Sg+Dub:oomwaadog	# ;
+	+2P+Pl+NI+Pl+Dub:oomwaadogwenan	# ;
+	+3P+Pl+NI+Sg+Dub:oonaawaadog	# ;
+	+3P+Pl+NI+Pl+Dub:oonaawaadogwenan	# ;
+	+Imp+NI+Sg+Dub:oomwaadog	# ;
+	+Imp+NI+Pl+Dub:oomwaadogwenan	# ;
+	+1P+Sg+NI+Sg+Neg+Dub:oosiinaadog	# ; ! Biigtigong chart VTI, sheet (3b)
+	+1P+Sg+NI+Pl+Neg+Dub:oosiinaadogwenan	# ;
+	+2P+Sg+NI+Sg+Neg+Dub:oosiinaadog	# ;
+	+2P+Sg+NI+Pl+Neg+Dub:oosiinaadogwenan	# ;
+	+3P+Sg+NI+Sg+Neg+Dub:oosiinaadog	# ;
+	+3P+Sg+NI+Pl+Neg+Dub:oosiinaadogwenan	# ;
+	+3P+Obv+NI+Sg+Neg+Dub:oosiininaadog	# ;
+	+3P+Obv+NI+Pl+Neg+Dub:oosiininaadogwenan	# ;
+	+1P+Pl+NI+Sg+Neg+Dub:oosiiminaadog	# ;
+	+1P+Pl+NI+Pl+Neg+Dub:oosiiminaadogwenan	# ;
+	+1P+Ex+NI+Sg+Neg+Dub:oosiiminaadog	# ;
+	+1P+Ex+NI+Pl+Neg+Dub:oosiiminaadogwenan	# ;
+	+2P+Pl+NI+Sg+Neg+Dub:oosiimwaadog	# ;
+	+2P+Pl+NI+Pl+Neg+Dub:oosiimwaadogwenan	# ;
+	+3P+Pl+NI+Sg+Neg+Dub:oosiinaawaadog	# ;
+	+3P+Pl+NI+Pl+Neg+Dub:oosiinaawaadogwenan	# ;
+	+Imp+NI+Sg+Neg+Dub:oosiimwaadog	# ;
+	+Imp+NI+Pl+Neg+Dub:oosiimwaadogwenan	# ;
+	+3P+Sg+NI+Sg+PretDub:oogoban	# ; ! Biigtigong chart VTI, sheet (4a)
+	+3P+Sg+NI+Pl+PretDub:oogoban	# ;
+	+3P+Obv+NI+Sg+PretDub:oonigoban	# ;
+	+3P+Obv+NI+Pl+PretDub:oonigoban	# ;
+	+3P+Pl+NI+Sg+PretDub:oogwaaban	# ;
+	+3P+Pl+NI+Pl+PretDub:oogwaaban	# ;
+	+3P+Sg+NI+Sg+Neg+PretDub:oosiigoban	# ; ! Biigtigong chart VTI, sheet (4b)
+	+3P+Sg+NI+Pl+Neg+PretDub:oosiigoban	# ;
+	+3P+Obv+NI+Sg+Neg+PretDub:oosiinigoban	# ;
+	+3P+Obv+NI+Pl+Neg+PretDub:oosiinigoban	# ;
+	+3P+Pl+NI+Sg+Neg+PretDub:oosiigwaaban	# ;
+	+3P+Pl+NI+Pl+Neg+PretDub:oosiigwaaban	# ;
+
+LEXICON VTI3_Indep_Suffixes
+	+1P+Sg+NI+Sg+Indic:n	# ; ! Biigtigong chart VTI, sheet (1a)
+	+1P+Sg+NI+Pl+Indic:nan	# ;
+	+2P+Sg+NI+Sg+Indic:n	# ;
+	+2P+Sg+NI+Pl+Indic:nan	# ;
+	+3P+Sg+NI+Sg+Indic:n	# ;
+	+3P+Sg+NI+Pl+Indic:nan	# ;
+	+3P+Obv+NI+Sg+Indic:nini	# ;
+	+3P+Obv+NI+Pl+Indic:nini	# ;
+	+1P+Pl+NI+Sg+Indic:min	# ;
+	+1P+Pl+NI+Pl+Indic:min	# ;
+	+1P+Ex+NI+Sg+Indic:min	# ;
+	+1P+Ex+NI+Pl+Indic:min	# ;
+	+2P+Pl+NI+Sg+Indic:m	# ;
+	+2P+Pl+NI+Pl+Indic:m	# ;
+	+3P+Pl+NI+Sg+Indic:naawaa	# ;
+	+3P+Pl+NI+Pl+Indic:naawaan	# ;
+	+Imp+NI+Sg+Indic:m	# ;
+	+Imp+NI+Pl+Indic:m	# ;
+	+1P+Sg+NI+Sg+Neg+Indic:siin	# ; ! Biigtigong chart VTI, sheet (1b)
+	+1P+Sg+NI+Pl+Neg+Indic:siinan	# ;
+	+2P+Sg+NI+Sg+Neg+Indic:siin	# ;
+	+2P+Sg+NI+Pl+Neg+Indic:siinan	# ;
+	+3P+Sg+NI+Sg+Neg+Indic:siin	# ;
+	+3P+Sg+NI+Pl+Neg+Indic:siinan	# ;
+	+3P+Obv+NI+Sg+Neg+Indic:siinini	# ;
+	+3P+Obv+NI+Pl+Neg+Indic:siinini	# ;
+	+1P+Pl+NI+Sg+Neg+Indic:siimin	# ;
+	+1P+Pl+NI+Pl+Neg+Indic:siimin	# ;
+	+1P+Ex+NI+Sg+Neg+Indic:siimin	# ;
+	+1P+Ex+NI+Pl+Neg+Indic:siimin	# ;
+	+2P+Pl+NI+Sg+Neg+Indic:siim	# ;
+	+2P+Pl+NI+Pl+Neg+Indic:siim	# ;
+	+3P+Pl+NI+Sg+Neg+Indic:siinaawaa	# ;
+	+3P+Pl+NI+Pl+Neg+Indic:siinaawaan	# ;
+	+Imp+NI+Sg+Neg+Indic:siim	# ;
+	+Imp+NI+Pl+Neg+Indic:siim	# ;
+	+1P+Sg+NI+Sg+Pret:naaban	# ; ! Biigtigong chart VTI, sheet (2a)
+	+1P+Sg+NI+Pl+Pret:naabaniin	# ;
+	+2P+Sg+NI+Sg+Pret:naaban	# ;
+	+2P+Sg+NI+Pl+Pret:naabaniin	# ;
+	+3P+Sg+NI+Sg+Pret:naaban	# ;
+	+3P+Sg+NI+Pl+Pret:naabaniin	# ;
+	+3P+Obv+NI+Sg+Pret:ninaaban	# ;
+	+3P+Obv+NI+Pl+Pret:ninaabaniin	# ;
+	+1P+Pl+NI+Sg+Pret:minaaban	# ;
+	+1P+Pl+NI+Pl+Pret:minaabaniin	# ;
+	+1P+Ex+NI+Sg+Pret:minaaban	# ;
+	+1P+Ex+NI+Pl+Pret:minaabaniin	# ;
+	+2P+Pl+NI+Sg+Pret:mwaaban	# ;
+	+2P+Pl+NI+Pl+Pret:mwaabaniin	# ;
+	+3P+Pl+NI+Sg+Pret:naawaaban	# ;
+	+3P+Pl+NI+Pl+Pret:naawaabaniin	# ;
+	+Imp+NI+Sg+Pret:mwaaban	# ;
+	+Imp+NI+Pl+Pret:mwaabaniin	# ;
+	+1P+Sg+NI+Sg+Neg+Pret:siinaaban	# ; ! Biigtigong chart VTI, sheet (2b)
+	+1P+Sg+NI+Pl+Neg+Pret:siinaabaniin	# ;
+	+2P+Sg+NI+Sg+Neg+Pret:siinaaban	# ;
+	+2P+Sg+NI+Pl+Neg+Pret:siinaabaniin	# ;
+	+3P+Sg+NI+Sg+Neg+Pret:siinaaban	# ;
+	+3P+Sg+NI+Pl+Neg+Pret:siinaabaniin	# ;
+	+3P+Obv+NI+Sg+Neg+Pret:siininaaban	# ;
+	+3P+Obv+NI+Pl+Neg+Pret:siininaabaniin	# ;
+	+1P+Pl+NI+Sg+Neg+Pret:siiminaaban	# ;
+	+1P+Pl+NI+Pl+Neg+Pret:siiminaabaniin	# ;
+	+1P+Ex+NI+Sg+Neg+Pret:siiminaaban	# ;
+	+1P+Ex+NI+Pl+Neg+Pret:siiminaabaniin	# ;
+	+2P+Pl+NI+Sg+Neg+Pret:siimwaaban	# ;
+	+2P+Pl+NI+Pl+Neg+Pret:siimwaabaniin	# ;
+	+3P+Pl+NI+Sg+Neg+Pret:siinaawaaban	# ;
+	+3P+Pl+NI+Pl+Neg+Pret:siinaawaabaniin	# ;
+	+Imp+NI+Sg+Neg+Pret:siimwaaban	# ;
+	+Imp+NI+Pl+Neg+Pret:siimwaabaniin	# ;
+	+1P+Sg+NI+Sg+Dub:naadog	# ; ! Biigtigong chart VTI, sheet (3a)
+	+1P+Sg+NI+Pl+Dub:naadogwenan	# ;
+	+2P+Sg+NI+Sg+Dub:naadog	# ;
+	+2P+Sg+NI+Pl+Dub:naadogwenan	# ;
+	+3P+Sg+NI+Sg+Dub:naadog	# ;
+	+3P+Sg+NI+Pl+Dub:naadogwenan	# ;
+	+3P+Obv+NI+Sg+Dub:ninaadog	# ;
+	+3P+Obv+NI+Pl+Dub:ninaadogwenan	# ;
+	+1P+Pl+NI+Sg+Dub:minaadog	# ;
+	+1P+Pl+NI+Pl+Dub:minaadogwenan	# ;
+	+1P+Ex+NI+Sg+Dub:minaadog	# ;
+	+1P+Ex+NI+Pl+Dub:minaadogwenan	# ;
+	+2P+Pl+NI+Sg+Dub:mwaadog	# ;
+	+2P+Pl+NI+Pl+Dub:mwaadogwenan	# ;
+	+3P+Pl+NI+Sg+Dub:naawaadog	# ;
+	+3P+Pl+NI+Pl+Dub:naawaadogwenan	# ;
+	+Imp+NI+Sg+Dub:mwaadog	# ;
+	+Imp+NI+Pl+Dub:mwaadogwenan	# ;
+	+1P+Sg+NI+Sg+Neg+Dub:siinaadog	# ; ! Biigtigong chart VTI, sheet (3b)
+	+1P+Sg+NI+Pl+Neg+Dub:siinaadogwenan	# ;
+	+2P+Sg+NI+Sg+Neg+Dub:siinaadog	# ;
+	+2P+Sg+NI+Pl+Neg+Dub:siinaadogwenan	# ;
+	+3P+Sg+NI+Sg+Neg+Dub:siinaadog	# ;
+	+3P+Sg+NI+Pl+Neg+Dub:siinaadogwenan	# ;
+	+3P+Obv+NI+Sg+Neg+Dub:siininaadog	# ;
+	+3P+Obv+NI+Pl+Neg+Dub:siininaadogwenan	# ;
+	+1P+Pl+NI+Sg+Neg+Dub:siiminaadog	# ;
+	+1P+Pl+NI+Pl+Neg+Dub:siiminaadogwenan	# ;
+	+1P+Ex+NI+Sg+Neg+Dub:siiminaadog	# ;
+	+1P+Ex+NI+Pl+Neg+Dub:siiminaadogwenan	# ;
+	+2P+Pl+NI+Sg+Neg+Dub:siimwaadog	# ;
+	+2P+Pl+NI+Pl+Neg+Dub:siimwaadogwenan	# ;
+	+3P+Pl+NI+Sg+Neg+Dub:siinaawaadog	# ;
+	+3P+Pl+NI+Pl+Neg+Dub:siinaawaadogwenan	# ;
+	+Imp+NI+Sg+Neg+Dub:siimwaadog	# ;
+	+Imp+NI+Pl+Neg+Dub:siimwaadogwenan	# ;
+	+3P+Sg+NI+Sg+PretDub:goban	# ; ! Biigtigong chart VTI, sheet (4a)
+	+3P+Sg+NI+Pl+PretDub:goban	# ;
+	+3P+Obv+NI+Sg+PretDub:nigoban	# ;
+	+3P+Obv+NI+Pl+PretDub:nigoban	# ;
+	+3P+Pl+NI+Sg+PretDub:gwaaban	# ;
+	+3P+Pl+NI+Pl+PretDub:gwaaban	# ;
+	+3P+Sg+NI+Sg+Neg+PretDub:siigoban	# ; ! Biigtigong chart VTI, sheet (4b)
+	+3P+Sg+NI+Pl+Neg+PretDub:siigoban	# ;
+	+3P+Obv+NI+Sg+Neg+PretDub:siinigoban	# ;
+	+3P+Obv+NI+Pl+Neg+PretDub:siinigoban	# ;
+	+3P+Pl+NI+Sg+Neg+PretDub:siigwaaban	# ;
+	+3P+Pl+NI+Pl+Neg+PretDub:siigwaaban	# ;
+
+LEXICON VTI4_Indep_Suffixes
+	+1P+Sg+NI+Sg+Indic:n	# ; ! Biigtigong chart VTI, sheet (1a)
+	+1P+Sg+NI+Pl+Indic:nan	# ;
+	+2P+Sg+NI+Sg+Indic:n	# ;
+	+2P+Sg+NI+Pl+Indic:nan	# ;
+	+3P+Sg+NI+Sg+Indic:n	# ;
+	+3P+Sg+NI+Pl+Indic:nan	# ;
+	+3P+Obv+NI+Sg+Indic:mini	# ;
+	+3P+Obv+NI+Pl+Indic:mini	# ;
+	+1P+Pl+NI+Sg+Indic:min	# ;
+	+1P+Pl+NI+Pl+Indic:min	# ;
+	+1P+Ex+NI+Sg+Indic:min	# ;
+	+1P+Ex+NI+Pl+Indic:min	# ;
+	+2P+Pl+NI+Sg+Indic:m	# ;
+	+2P+Pl+NI+Pl+Indic:m	# ;
+	+3P+Pl+NI+Sg+Indic:naawaa	# ;
+	+3P+Pl+NI+Pl+Indic:naawaan	# ;
+	+Imp+NI+Sg+Indic:m	# ;
+	+Imp+NI+Pl+Indic:m	# ;
+	+1P+Sg+NI+Sg+Neg+Indic:nziin	# ; ! Biigtigong chart VTI, sheet (1b)
+	+1P+Sg+NI+Pl+Neg+Indic:nziinan	# ;
+	+2P+Sg+NI+Sg+Neg+Indic:nziin	# ;
+	+2P+Sg+NI+Pl+Neg+Indic:nziinan	# ;
+	+3P+Sg+NI+Sg+Neg+Indic:nziin	# ;
+	+3P+Sg+NI+Pl+Neg+Indic:nziinan	# ;
+	+3P+Obv+NI+Sg+Neg+Indic:nziinini	# ;
+	+3P+Obv+NI+Pl+Neg+Indic:nziinini	# ;
+	+1P+Pl+NI+Sg+Neg+Indic:nziimin	# ;
+	+1P+Pl+NI+Pl+Neg+Indic:nziimin	# ;
+	+1P+Ex+NI+Sg+Neg+Indic:nziimin	# ;
+	+1P+Ex+NI+Pl+Neg+Indic:nziimin	# ;
+	+2P+Pl+NI+Sg+Neg+Indic:nziim	# ;
+	+2P+Pl+NI+Pl+Neg+Indic:nziim	# ;
+	+3P+Pl+NI+Sg+Neg+Indic:nziinaawaa	# ;
+	+3P+Pl+NI+Pl+Neg+Indic:nziinaawaan	# ;
+	+Imp+NI+Sg+Neg+Indic:nziim	# ;
+	+Imp+NI+Pl+Neg+Indic:nziim	# ;
+	+1P+Sg+NI+Sg+Pret:naaban	# ; ! Biigtigong chart VTI, sheet (2a)
+	+1P+Sg+NI+Pl+Pret:naabaniin	# ;
+	+2P+Sg+NI+Sg+Pret:naaban	# ;
+	+2P+Sg+NI+Pl+Pret:naabaniin	# ;
+	+3P+Sg+NI+Sg+Pret:naaban	# ;
+	+3P+Sg+NI+Pl+Pret:naabaniin	# ;
+	+3P+Obv+NI+Sg+Pret:minaaban	# ;
+	+3P+Obv+NI+Pl+Pret:minaabaniin	# ;
+	+1P+Pl+NI+Sg+Pret:minaaban	# ;
+	+1P+Pl+NI+Pl+Pret:minaabaniin	# ;
+	+1P+Ex+NI+Sg+Pret:minaaban	# ;
+	+1P+Ex+NI+Pl+Pret:minaabaniin	# ;
+	+2P+Pl+NI+Sg+Pret:mwaaban	# ;
+	+2P+Pl+NI+Pl+Pret:mwaabaniin	# ;
+	+3P+Pl+NI+Sg+Pret:naawaaban	# ;
+	+3P+Pl+NI+Pl+Pret:naawaabaniin	# ;
+	+Imp+NI+Sg+Pret:mwaaban	# ;
+	+Imp+NI+Pl+Pret:mwaabaniin	# ;
+	+1P+Sg+NI+Sg+Neg+Pret:nziinaaban	# ; ! Biigtigong chart VTI, sheet (2b)
+	+1P+Sg+NI+Pl+Neg+Pret:nziinaabaniin	# ;
+	+2P+Sg+NI+Sg+Neg+Pret:nziinaaban	# ;
+	+2P+Sg+NI+Pl+Neg+Pret:nziinaabaniin	# ;
+	+3P+Sg+NI+Sg+Neg+Pret:nziinaaban	# ;
+	+3P+Sg+NI+Pl+Neg+Pret:nziinaabaniin	# ;
+	+3P+Obv+NI+Sg+Neg+Pret:nziininaaban	# ;
+	+3P+Obv+NI+Pl+Neg+Pret:nziininaabaniin	# ;
+	+1P+Pl+NI+Sg+Neg+Pret:nziiminaaban	# ;
+	+1P+Pl+NI+Pl+Neg+Pret:nziiminaabaniin	# ;
+	+1P+Ex+NI+Sg+Neg+Pret:nziiminaaban	# ;
+	+1P+Ex+NI+Pl+Neg+Pret:nziiminaabaniin	# ;
+	+2P+Pl+NI+Sg+Neg+Pret:nziimwaaban	# ;
+	+2P+Pl+NI+Pl+Neg+Pret:nziimwaabaniin	# ;
+	+3P+Pl+NI+Sg+Neg+Pret:nziinaawaaban	# ;
+	+3P+Pl+NI+Pl+Neg+Pret:nziinaawaabaniin	# ;
+	+Imp+NI+Sg+Neg+Pret:nziimwaaban	# ;
+	+Imp+NI+Pl+Neg+Pret:nziimwaabaniin	# ;
+	+1P+Sg+NI+Sg+Dub:naadog	# ; ! Biigtigong chart VTI, sheet (3a)
+	+1P+Sg+NI+Pl+Dub:naadogwenan	# ;
+	+2P+Sg+NI+Sg+Dub:naadog	# ;
+	+2P+Sg+NI+Pl+Dub:naadogwenan	# ;
+	+3P+Sg+NI+Sg+Dub:naadog	# ;
+	+3P+Sg+NI+Pl+Dub:naadogwenan	# ;
+	+3P+Obv+NI+Sg+Dub:minaadog	# ;
+	+3P+Obv+NI+Pl+Dub:aminaadogwenan	# ;
+	+1P+Pl+NI+Sg+Dub:minaadog	# ;
+	+1P+Pl+NI+Pl+Dub:minaadogwenan	# ;
+	+1P+Ex+NI+Sg+Dub:minaadog	# ;
+	+1P+Ex+NI+Pl+Dub:minaadogwenan	# ;
+	+2P+Pl+NI+Sg+Dub:mwaadog	# ;
+	+2P+Pl+NI+Pl+Dub:mwaadogwenan	# ;
+	+3P+Pl+NI+Sg+Dub:naawaadog	# ;
+	+3P+Pl+NI+Pl+Dub:naawaadogwenan	# ;
+	+Imp+NI+Sg+Dub:mwaadog	# ;
+	+Imp+NI+Pl+Dub:mwaadogwenan	# ;
+	+1P+Sg+NI+Sg+Neg+Dub:nziinaadog	# ; ! Biigtigong chart VTI, sheet (3b)
+	+1P+Sg+NI+Pl+Neg+Dub:nziinaadogwenan	# ;
+	+2P+Sg+NI+Sg+Neg+Dub:nziinaadog	# ;
+	+2P+Sg+NI+Pl+Neg+Dub:nziinaadogwenan	# ;
+	+3P+Sg+NI+Sg+Neg+Dub:nziinaadog	# ;
+	+3P+Sg+NI+Pl+Neg+Dub:nziinaadogwenan	# ;
+	+3P+Obv+NI+Sg+Neg+Dub:nziininaadog	# ;
+	+3P+Obv+NI+Pl+Neg+Dub:nziininaadogwenan	# ;
+	+1P+Pl+NI+Sg+Neg+Dub:nziiminaadog	# ;
+	+1P+Pl+NI+Pl+Neg+Dub:nziiminaadogwenan	# ;
+	+1P+Ex+NI+Sg+Neg+Dub:nziiminaadog	# ;
+	+1P+Ex+NI+Pl+Neg+Dub:nziiminaadogwenan	# ;
+	+2P+Pl+NI+Sg+Neg+Dub:nziimwaadog	# ;
+	+2P+Pl+NI+Pl+Neg+Dub:nziimwaadogwenan	# ;
+	+3P+Pl+NI+Sg+Neg+Dub:nziinaawaadog	# ;
+	+3P+Pl+NI+Pl+Neg+Dub:nziinaawaadogwenan	# ;
+	+Imp+NI+Sg+Neg+Dub:nziimwaadog	# ;
+	+Imp+NI+Pl+Neg+Dub:nziimwaadogwenan	# ;
+	+3P+Sg+NI+Sg+PretDub:mogoban	# ; ! Biigtigong chart VTI, sheet (4a)
+	+3P+Sg+NI+Pl+PretDub:mogoban	# ;
+	+3P+Obv+NI+Sg+PretDub:minigoban	# ;
+	+3P+Obv+NI+Pl+PretDub:minigoban	# ;
+	+3P+Pl+NI+Sg+PretDub:mogwaaban	# ;
+	+3P+Pl+NI+Pl+PretDub:mogwaaban	# ;
+	+3P+Sg+NI+Sg+Neg+PretDub:nziigoban	# ; ! Biigtigong chart VTI, sheet (4b)
+	+3P+Sg+NI+Pl+Neg+PretDub:nziigoban	# ;
+	+3P+Obv+NI+Sg+Neg+PretDub:nziinigoban	# ;
+	+3P+Obv+NI+Pl+Neg+PretDub:nziinigoban	# ;
+	+3P+Pl+NI+Sg+Neg+PretDub:nziigwaaban	# ;
+	+3P+Pl+NI+Pl+Neg+PretDub:nziigwaaban	# ;
+
 
 LEXICON Nouns
 	RegularNouns ;
