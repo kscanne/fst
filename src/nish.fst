@@ -1,6 +1,8 @@
 read lexc nish.txt
 define Lexicon;
 define DisallowIntermediateTags ~[$[ "+NAPl" | "+NIPl" | "+NASg" | "+NISg" | "+Poss" | "+Imp" ]];
+define DisallowFakePrefixes ~[$[ "2P+" "Ex+" | "2P+" "Obv+" | "1P+" "Obv+" ]];
+define DisallowMultipleObjects ~[$[ [ "+Indep" | "+Conj" ] ? ? ? ? ? ]];
 define AnimatePlural [ "+Pl" -> "+NAPl" || "+NA" ?* _ .#. ];
 define InanimatePlural [ "+Pl" -> "+NIPl" || "+NI" ?* _ .#. ];
 define AnimateSingular [ "+Sg" -> "+NASg" || "+NA" ?* _ .#. ];
@@ -82,6 +84,6 @@ define adjustFinalConsonant [ vai2Changes .o. normalizeNasalToN .o. dropFinalDVI
 define keepFinalLongVowel [ "@" -> 0 || [ a a | i i | o o ] _ .#. ];
 define dropFinalShortVowel [ [ a | i | o ] "@" -> 0 || _ .#. ];
 define Cleanup [ "~" -> 0, "^" -> 0, "@" -> 0 ];
-define Morph [ DisallowIntermediateTags .o. LongDistanceDependencies .o. Lexicon .o. adjustFinalConsonant .o. keepFinalLongVowel .o. dropFinalShortVowel .o. PossPrefixRules .o. PluralRules .o. ClassVFinalI .o. ClassVOther .o. ConOrDimRules .o. ShortAConOrDim .o. LeniteQuasiDim .o. ClassVIDropY .o. PejRules .o. LocRules .o. PossThmRules .o. ShortALocOrPoss .o. classVICleanup .o. SingularCleanup .o. Cleanup .o. @"syncopate.bin" ];
+define Morph [ DisallowIntermediateTags .o. DisallowFakePrefixes .o. DisallowMultipleObjects .o. LongDistanceDependencies .o. Lexicon .o. adjustFinalConsonant .o. keepFinalLongVowel .o. dropFinalShortVowel .o. PossPrefixRules .o. PluralRules .o. ClassVFinalI .o. ClassVOther .o. ConOrDimRules .o. ShortAConOrDim .o. LeniteQuasiDim .o. ClassVIDropY .o. PejRules .o. LocRules .o. PossThmRules .o. ShortALocOrPoss .o. classVICleanup .o. SingularCleanup .o. Cleanup .o. @"syncopate.bin" ];
 push Morph
 save stack nish.bin
