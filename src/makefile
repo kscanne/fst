@@ -10,7 +10,21 @@ all: badapost.txt badchar.txt badvowel.txt badcluster.txt
 	@echo "bad full-vowel clusters..."
 	@cat badcluster.txt
 
-comp: depsyncope-comparison.txt syncope-comparison.txt diminutive-comparison.txt locative-comparison.txt obviative-comparison.txt pejorative-comparison.txt possessive-comparison.txt posswithm-comparison.txt plural-comparison.txt singular-comparison.txt
+comp: syncope-comparison.txt diminutive-comparison.txt locative-comparison.txt obviative-comparison.txt pejorative-comparison.txt possessive-comparison.txt posswithm-comparison.txt plural-comparison.txt singular-comparison.txt
+
+#comp: depsyncope-comparison.txt syncope-comparison.txt diminutive-comparison.txt locative-comparison.txt obviative-comparison.txt pejorative-comparison.txt possessive-comparison.txt posswithm-comparison.txt plural-comparison.txt singular-comparison.txt
+
+fixcomp:
+	cp -f depsyncope-comparison-prev.txt depsyncope-comparison.txt
+	cp -f diminutive-comparison-prev.txt diminutive-comparison.txt
+	cp -f locative-comparison-prev.txt locative-comparison.txt
+	cp -f obviative-comparison-prev.txt obviative-comparison.txt
+	cp -f pejorative-comparison-prev.txt pejorative-comparison.txt
+	cp -f plural-comparison-prev.txt plural-comparison.txt
+	cp -f possessive-comparison-prev.txt possessive-comparison.txt
+	cp -f posswithm-comparison-prev.txt posswithm-comparison.txt
+	cp -f singular-comparison-prev.txt singular-comparison.txt
+	cp -f syncope-comparison-prev.txt syncope-comparison.txt
 
 gentest: FORCE
 	cat generation-test.txt | egrep -v '^#' > test-correct.txt
@@ -254,7 +268,7 @@ syncopated-test.txt: $(TSV) syncopate.bin
 	cat $(TSV) | egrep -v '^[a-z]' | cut -f 2,6 | egrep -v "^(we|wedi)[^ a-z]" | cut -f 2 | flookup -i syncopate.bin | egrep '.' | sed 's/^.*\t//' > $@
 
 depsyncopated-test.txt: $(TSV) nish.bin
-	cat $(TSV) | egrep '^[a-z]' | cut -f 3,6 | sed 's/^\(n[ai]\)p/\1/' | sed 's/^na\t\(.*\)/\1+NA+Sg/' | sed 's/^ni\t\(.*\)/\1+NI+Sg/' | sed "s/^/1P+Sg+Poss+/" | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
+	- cat $(TSV) | egrep '^[a-z]' | cut -f 3,6 | sed 's/^\(n[ai]\)p/\1/' | sed 's/^na\t\(.*\)/\1+NA+Sg/' | sed 's/^ni\t\(.*\)/\1+NI+Sg/' | sed "s/^/1P+Sg+Poss+/" | flookup -i nish.bin | egrep '.' | sed 's/^.*\t//' > $@
 
 singular-comparison.txt: singular-test.txt tsv-singulars.txt 
 	touch $@
@@ -280,7 +294,7 @@ locative-comparison.txt: locative-test.txt tsv-locatives.txt
 diminutive-comparison.txt: diminutive-test.txt tsv-diminutives.txt 
 	touch $@
 	mv -f $@ diminutive-comparison-prev.txt
-	paste diminutive-test.txt tsv-diminutives.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
+	-paste diminutive-test.txt tsv-diminutives.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
 	-diff -u diminutive-comparison-prev.txt $@
 	wc -l diminutive-comparison-prev.txt $@
 
@@ -326,7 +340,7 @@ depsyncope-comparison.txt: depsyncopated-test.txt tsv-depsyncopated.txt
 	mv -f $@ depsyncope-comparison-prev.txt
 	paste depsyncopated-test.txt tsv-depsyncopated.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' > $@
 	-diff -u depsyncope-comparison-prev.txt $@
-	wc -l depsyncope-comparison-prev.txt $@
+	-wc -l depsyncope-comparison-prev.txt $@
 
 diacriticbug.txt: syncope-comparison.txt
 	cat syncope-comparison.txt | sed 's/ǧ/g/g; s/ȟ/h/g; s/ǩ/k/g' | egrep '^(.+)[^a-z]\1$$' | sed 's/\t.*//' > $@
@@ -359,3 +373,4 @@ distclean:
 	rm -f syncopate.bin nish.bin
 
 FORCE:
+
