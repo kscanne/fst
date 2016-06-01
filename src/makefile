@@ -10,9 +10,7 @@ all: badapost.txt badchar.txt badvowel.txt badcluster.txt
 	@echo "bad full-vowel clusters..."
 	@cat badcluster.txt
 
-comp: syncope-comparison.txt diminutive-comparison.txt locative-comparison.txt obviative-comparison.txt pejorative-comparison.txt possessive-comparison.txt posswithm-comparison.txt plural-comparison.txt singular-comparison.txt
-
-#comp: depsyncope-comparison.txt syncope-comparison.txt diminutive-comparison.txt locative-comparison.txt obviative-comparison.txt pejorative-comparison.txt possessive-comparison.txt posswithm-comparison.txt plural-comparison.txt singular-comparison.txt
+comp: depsyncope-comparison.txt syncope-comparison.txt diminutive-comparison.txt locative-comparison.txt obviative-comparison.txt pejorative-comparison.txt possessive-comparison.txt posswithm-comparison.txt plural-comparison.txt singular-comparison.txt
 
 fixcomp:
 	cp -f depsyncope-comparison-prev.txt depsyncope-comparison.txt
@@ -273,21 +271,21 @@ depsyncopated-test.txt: $(TSV) nish.bin
 singular-comparison.txt: singular-test.txt tsv-singulars.txt 
 	touch $@
 	mv -f $@ singular-comparison-prev.txt
-	paste singular-test.txt tsv-singulars.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
+	-paste singular-test.txt tsv-singulars.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
 	-diff -u singular-comparison-prev.txt $@
 	wc -l singular-comparison-prev.txt $@
 
 plural-comparison.txt: plural-test.txt tsv-plurals.txt 
 	touch $@
 	mv -f $@ plural-comparison-prev.txt
-	paste plural-test.txt tsv-plurals.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
+	-paste plural-test.txt tsv-plurals.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
 	-diff -u plural-comparison-prev.txt $@
 	wc -l plural-comparison-prev.txt $@
 
 locative-comparison.txt: locative-test.txt tsv-locatives.txt 
 	touch $@
 	mv -f $@ locative-comparison-prev.txt
-	paste locative-test.txt tsv-locatives.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
+	-paste locative-test.txt tsv-locatives.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
 	-diff -u locative-comparison-prev.txt $@
 	wc -l locative-comparison-prev.txt $@
 
@@ -301,28 +299,28 @@ diminutive-comparison.txt: diminutive-test.txt tsv-diminutives.txt
 pejorative-comparison.txt: pejorative-test.txt tsv-pejoratives.txt 
 	touch $@
 	mv -f $@ pejorative-comparison-prev.txt
-	paste pejorative-test.txt tsv-pejoratives.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
+	-paste pejorative-test.txt tsv-pejoratives.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
 	-diff -u pejorative-comparison-prev.txt $@
 	wc -l pejorative-comparison-prev.txt $@
 
 possessive-comparison.txt: possessive-test.txt tsv-possessive.txt 
 	touch $@
 	mv -f $@ possessive-comparison-prev.txt
-	paste possessive-test.txt tsv-possessive.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
+	-paste possessive-test.txt tsv-possessive.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
 	-diff -u possessive-comparison-prev.txt $@
 	wc -l possessive-comparison-prev.txt $@
 
 posswithm-comparison.txt: posswithm-test.txt tsv-posswithm.txt 
 	touch $@
 	mv -f $@ posswithm-comparison-prev.txt
-	paste posswithm-test.txt tsv-posswithm.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
+	-paste posswithm-test.txt tsv-posswithm.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
 	-diff -u posswithm-comparison-prev.txt $@
 	wc -l posswithm-comparison-prev.txt $@
 
 obviative-comparison.txt: obviative-test.txt tsv-obviatives.txt 
 	touch $@
 	mv -f $@ obviative-comparison-prev.txt
-	paste obviative-test.txt tsv-obviatives.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
+	-paste obviative-test.txt tsv-obviatives.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' | egrep '[A-Za-z]$$' > $@
 	-diff -u obviative-comparison-prev.txt $@
 	wc -l obviative-comparison-prev.txt $@
 
@@ -331,14 +329,14 @@ obviative-comparison.txt: obviative-test.txt tsv-obviatives.txt
 syncope-comparison.txt: syncopated-test.txt tsv-syncopated.txt
 	touch $@
 	mv -f $@ syncope-comparison-prev.txt
-	paste syncopated-test.txt tsv-syncopated.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' > $@
+	-paste syncopated-test.txt tsv-syncopated.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' > $@
 	-diff -u syncope-comparison-prev.txt $@
 	wc -l syncope-comparison-prev.txt $@
 
 depsyncope-comparison.txt: depsyncopated-test.txt tsv-depsyncopated.txt
 	touch $@
 	mv -f $@ depsyncope-comparison-prev.txt
-	paste depsyncopated-test.txt tsv-depsyncopated.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' > $@
+	-paste depsyncopated-test.txt tsv-depsyncopated.txt | tolow | egrep -v '^(.+).\1$$' | egrep -v ' ' | egrep -v '^[^A-Za-z]' > $@
 	-diff -u depsyncope-comparison-prev.txt $@
 	-wc -l depsyncope-comparison-prev.txt $@
 
