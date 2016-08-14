@@ -11,7 +11,7 @@ define Cons [ wAbleCons | otherCons ];
 define Cluster [ Cons | wAbleCons w ];
 define Hyphen [ "-" ];
 define insertShortAfterNH [ n h -> n h i || _ Cons ];
-define markWeak [ a -> F, i -> L, o -> X // .#. _ Cluster Vowel , .#. Cluster _ Cluster Vowel , Hyphen _ Cluster Vowel , Hyphen Cluster _ Cluster Vowel , LongV Cluster _ Cluster Vowel , dropMarker Cluster ShortV Cluster _ Cluster Vowel , dropMarker Cluster ShortV Cluster _ Hyphen , ? LongV Cluster _ Hyphen ];
+define markWeak [ a -> F, i -> L, o -> X // .#. _ Cluster Vowel , .#. Cluster _ Cluster Vowel , Hyphen _ Cluster Vowel , Hyphen Cluster _ Cluster Vowel , LongV Cluster _ Cluster Vowel , dropMarker Cluster ShortV Cluster _ Cluster Vowel ];
 define insertApost [ c dropMarker h -> c ' h, m dropMarker b -> m ' b, n dropMarker d -> n ' d, n dropMarker g -> n ' g, n dropMarker h -> n ' h, n dropMarker j -> n ' j, n dropMarker s -> n ' s, n dropMarker y -> n ' y, n dropMarker z -> n ' z, s dropMarker h -> s ' h, s h dropMarker k -> s h ' k, s h dropMarker t -> s h ' t, s dropMarker k -> s ' k, s dropMarker p -> s ' p, z dropMarker h -> z ' h ];
 define dropWBeforeWeak [ w dropMarker -> 0 || wAbleCons _ ];
 define insertDiacriticsGK [ g X -> ǧ, k X -> ǩ, g w F -> ǧ, k w F -> ǩ || _ \w];
