@@ -2962,9 +2962,6 @@ LEXICON NA_V
 LEXICON NA_VI
 +NA:^A	DiminutiveOrContemptive ;
 
-LEXICON NA_Dep
-+NA:0	DiminutiveOrContemptive ;
-
 LEXICON NI_I
 +NI:0	DiminutiveOrContemptive ;
 
@@ -2992,9 +2989,6 @@ LEXICON NI_V
 
 LEXICON NI_VI
 +NI:^A	DiminutiveOrContemptive ;
-
-LEXICON NI_Dep
-+NI:0	DiminutiveOrContemptive ;
 
 LEXICON DiminutiveOrContemptive
 +Dim:^ens	PossTheme ;
