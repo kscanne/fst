@@ -61,31 +61,58 @@ pos.txt: $(TSV)
 naI.txt: naVI.txt naDim.txt
 	cat $(TSV) | sed -n '/^\t[^\t]*\([^aeio]\)\tna\t/p' | cut -f 2,3,6,7 | egrep "^[A-Za-z'-]*[aeio]([bcdfghjkmnprstwyz]+)[^A-Za-z'-].+\1ag$$" | cut -f 3 | egrep '[a-z]' | egrep -v ' ' | keepif -n naDim.txt | keepif -n naVI.txt > $@
 
+# note no naDimDep.txt to worry about
+naIDep.txt: naVIDep.txt
+	cat $(TSV) | sed -n '/^n[^\t]*\t[^\t]*\([^aeio]\)\tna\t/p' | cut -f 2,3,6,7 | egrep "^[A-Za-z'-]*[aeio]([bcdfghjkmnprstwyz]+)[^A-Za-z'-].+\1ag$$" | cut -f 3 | egrep '[a-z]' | egrep -v ' ' | keepif -n naVIDep.txt > $@
+
 niI.txt: niVI.txt niDim.txt
 	cat $(TSV) | sed -n '/^\t[^\t]*\([^aeio]\)\tni\t/p' | cut -f 2,3,6,7 | egrep "^[A-Za-z'-]*[aeio]([bcdfghjkmnprstwyz]+)[^A-Za-z'-].+\1an$$" | cut -f 3 | egrep '[a-z]' | egrep -v ' ' | keepif -n niDim.txt | keepif -n niVI.txt > $@
+
+niIDep.txt: niVIDep.txt niDimDep.txt
+	cat $(TSV) | sed -n '/^n[^\t]*\t[^\t]*\([^aeio]\)\tni\t/p' | cut -f 2,3,6,7 | egrep "^[A-Za-z'-]*[aeio]([bcdfghjkmnprstwyz]+)[^A-Za-z'-].+\1an$$" | cut -f 3 | egrep '[a-z]' | egrep -v ' ' | keepif -n niDimDep.txt | keepif -n niVIDep.txt > $@
 
 naCon.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*nh\tna\t/p' | cut -f 2,3,6,7 | egrep "nyag$$" | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
+naConDep.txt: $(TSV)
+	cat $(TSV) | sed -n '/^n[^\t]*\t[^\t]*nh\tna\t/p' | cut -f 2,3,6,7 | egrep "nyag$$" | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
+
 niCon.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*nh\tni\t/p' | cut -f 2,3,6,7 | egrep "nyan$$" | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
+niConDep.txt: $(TSV)
+	cat $(TSV) | sed -n '/^n[^\t]*\t[^\t]*nh\tni\t/p' | cut -f 2,3,6,7 | egrep "nyan$$" | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
+
+# no dependent examples
 naDim.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*ns\tna\t/p' | cut -f 2,3,6,7 | egrep "nsag$$" | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
 niDim.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*ns\tni\t/p' | cut -f 2,3,6,7 | egrep "nsan$$" | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
+niDimDep.txt: $(TSV)
+	cat $(TSV) | sed -n '/^n[^\t]*\t[^\t]*ns\tni\t/p' | cut -f 2,3,6,7 | egrep "nsan$$" | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
+
 # intentionally allowing even short vowels as final vowel (mkwa, miikna, etc.)
 naII.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*[aeio]\tna\t/p' | cut -f 2,3,6,7 | egrep '^(.+)[^a-z].+\1g$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
+naIIDep.txt: $(TSV)
+	cat $(TSV) | sed -n '/^n[^\t]*\t[^\t]*[aeio]\tna\t/p' | cut -f 2,3,6,7 | egrep '^(.+)[^a-z].+\1g$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
+
 niII.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*[aeio]\tni\t/p' | cut -f 2,3,6,7 | egrep '^(.+)[^a-z].+\1n$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
+
+niIIDep.txt: $(TSV)
+	cat $(TSV) | sed -n '/^n[^\t]*\t[^\t]*[aeio]\tni\t/p' | cut -f 2,3,6,7 | egrep '^(.+)[^a-z].+\1n$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
 naIII.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\([aeio]\)\tna\t/p' | cut -f 2,3,6,7 | egrep '^(.+)i?[^a-z].+\1wag$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
+naIIIDep.txt: $(TSV)
+	cat $(TSV) | sed -n '/^n[^\t]*\t[^\t]*\([aeio]\)\tna\t/p' | cut -f 2,3,6,7 | egrep '^(.+)i?[^a-z].+\1wag$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
+
+# no dependent examples
 niIII.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\([aeio]\)\tni\t/p' | cut -f 2,3,6,7 | egrep '^(.+)i?[^a-z].+\1wan$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
@@ -94,29 +121,44 @@ niIII.txt: $(TSV)
 naIVa.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\([^aeio]\)\tna\t/p' | cut -f 2,3,6,7 | egrep 'oog$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
+naIVaDep.txt: $(TSV)
+	cat $(TSV) | sed -n '/^n[^\t]*\t[^\t]*\([^aeio]\)\tna\t/p' | cut -f 2,3,6,7 | egrep 'oog$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
+
 niIVa.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\([^aeio]\)\tni\t/p' | cut -f 2,3,6,7 | egrep 'oon$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
+
+niIVaDep.txt: $(TSV)
+	cat $(TSV) | sed -n '/^n[^\t]*\t[^\t]*\([^aeio]\)\tni\t/p' | cut -f 2,3,6,7 | egrep 'oon$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
 naIVb.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\([^aeio]\)\tna\t/p' | cut -f 2,3,6,7 | egrep '^(.+)[^a-z].+[^a-z]\1(o|wa)g$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
+naIVbDep.txt: $(TSV)
+	cat $(TSV) | sed -n '/^n[^\t]*\t[^\t]*\([^aeio]\)\tna\t/p' | cut -f 2,3,6,7 | egrep '^(.+)[^a-z].+[^a-z]\1(o|wa)g$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
+
 naV.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\tna\t/p' | cut -f 2,3,6,7 | egrep 'iig$$' | cut -f 3 | egrep -v 'ii$$' > $@
+
+naVDep.txt: $(TSV)
+	cat $(TSV) | sed -n '/^n[^\t]*\t[^\t]*\tna\t/p' | cut -f 2,3,6,7 | egrep 'iig$$' | cut -f 3 | egrep -v 'ii$$' > $@
 
 niV.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\tni\t/p' | cut -f 2,3,6,7 | egrep 'iin$$' | cut -f 3 | egrep -v 'ii$$' | egrep -v "^zaaga'igan$$" > $@
 
+niVDep.txt: $(TSV)
+	cat $(TSV) | sed -n '/^n[^\t]*\t[^\t]*\tni\t/p' | cut -f 2,3,6,7 | egrep 'iin$$' | cut -f 3 | egrep -v 'ii$$' > $@
+
 naVI.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\([^aeio]\)\tna\t/p' | cut -f 2,3,6,7,8 | egrep 'aang$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
+
+naVIDep.txt: $(TSV)
+	cat $(TSV) | sed -n '/^n[^\t]*\t[^\t]*\([^aeio]\)\tna\t/p' | cut -f 2,3,6,7,8 | egrep 'aang$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
 niVI.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\([^aeio]\)\tni\t/p' | cut -f 2,3,6,7,8 | egrep 'aang$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
-naDep.txt: $(TSV)
-	cat $(TSV) | sed -n '/^n[^\t]*\t[^\t]*\tna\t/p' | cut -f 6 | egrep '[a-z]' | egrep -v ' ' > $@
-
-niDep.txt: $(TSV)
-	cat $(TSV) | sed -n '/^n[^\t]*\t[^\t]*\tni\t/p' | cut -f 6 | egrep '[a-z]' | egrep -v ' ' | egrep -v '^mashkimod$$' > $@
+niVIDep.txt: $(TSV)
+	cat $(TSV) | sed -n '/^n[^\t]*\t[^\t]*\([^aeio]\)\tni\t/p' | cut -f 2,3,6,7,8 | egrep 'aang$$' | cut -f 3 | egrep '[a-z]' | egrep -v ' ' > $@
 
 # want the FV stems (col 15) here, *not* column 6 with the -ng or -d ending...
 vai.txt: $(TSV)
@@ -147,10 +189,10 @@ vti3.txt: $(TSV)
 vti4.txt: $(TSV)
 	cat $(TSV) | sed -n '/^\t[^\t]*\tvti\tvti4\t/p' | cut -f 15 | egrep '[a-z]' | egrep -v ' ' | sed 's/^\///; s/-\/$$//' > $@
 
-classified-nouns.txt: naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naDep.txt niDep.txt
-	cat naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naDep.txt niDep.txt > $@
+classified-nouns.txt: naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naConDep.txt naIDep.txt naIIDep.txt naIIIDep.txt naIVaDep.txt naIVbDep.txt naVDep.txt naVIDep.txt niConDep.txt niDimDep.txt niIDep.txt niIIDep.txt niIVaDep.txt niVDep.txt niVIDep.txt
+	cat naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naConDep.txt naIDep.txt naIIDep.txt naIIIDep.txt naIVaDep.txt naIVbDep.txt naVDep.txt naVIDep.txt niConDep.txt niDimDep.txt niIDep.txt niIIDep.txt niIVaDep.txt niVDep.txt niVIDep.txt > $@
 
-nish.txt: nish-template.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naDep.txt niDep.txt vai.txt vaio.txt vaip.txt vii.txt vta.txt vti1.txt vti2.txt vti3.txt vti4.txt
+nish.txt: nish-template.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDim.txt niDim.txt naConDep.txt naIDep.txt naIIDep.txt naIIIDep.txt naIVaDep.txt naIVbDep.txt naVDep.txt naVIDep.txt niConDep.txt niDimDep.txt niIDep.txt niIIDep.txt niIVaDep.txt niVDep.txt niVIDep.txt vai.txt vaio.txt vaip.txt vii.txt vta.txt vti1.txt vti2.txt vti3.txt vti4.txt
 	rm -f templex.txt $@
 	cat naI.txt | sed 's/$$/\tNA_I ;/' > templex.txt
 	cat niI.txt | sed 's/$$/\tNI_I ;/' >> templex.txt
@@ -170,8 +212,21 @@ nish.txt: nish-template.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.tx
 	cat naVI.txt | sed 's/$$/\tNA_VI ;/' >> templex.txt
 	cat niVI.txt | sed 's/$$/\tNI_VI ;/' >> templex.txt
 	cat nish-template.txt | sed '/^LEXICON IndependentNouns/r templex.txt' > $@
-	cat naDep.txt | sed 's/$$/\tNA_Dep ;/' > templex.txt
-	cat niDep.txt | sed 's/$$/\tNI_Dep ;/' >> templex.txt
+	cat naIDep.txt | sed 's/$$/\tNA_I ;/' > templex.txt
+	cat niIDep.txt | sed 's/$$/\tNI_I ;/' >> templex.txt
+	cat naConDep.txt | sed 's/$$/\tNA_Con ;/' >> templex.txt
+	cat niConDep.txt | sed 's/$$/\tNI_Con ;/' >> templex.txt
+	cat niDimDep.txt | sed 's/$$/\tNI_Dim ;/' >> templex.txt
+	cat naIIDep.txt | sed 's/$$/\tNA_II ;/' >> templex.txt
+	cat niIIDep.txt | sed 's/$$/\tNI_II ;/' >> templex.txt
+	cat naIIIDep.txt | sed 's/$$/\tNA_III ;/' >> templex.txt
+	cat naIVaDep.txt | sed 's/$$/\tNA_IVa ;/' >> templex.txt
+	cat niIVaDep.txt | sed 's/$$/\tNI_IVa ;/' >> templex.txt
+	cat naIVbDep.txt | sed 's/$$/\tNA_IVb ;/' >> templex.txt
+	cat naVDep.txt | sed 's/$$/\tNA_V ;/' >> templex.txt
+	cat niVDep.txt | sed 's/$$/\tNI_V ;/' >> templex.txt
+	cat naVIDep.txt | sed 's/$$/\tNA_VI ;/' >> templex.txt
+	cat niVIDep.txt | sed 's/$$/\tNI_VI ;/' >> templex.txt
 	sed -i '/^LEXICON DependentNouns/r templex.txt' $@
 	cat vai.txt | egrep '[aeio]$$' | sed 's/$$/\tVAI_Vowel_Final_Suffixes ;/' > templex.txt
 	cat vai.txt | egrep '[^aeio]$$' | sed 's/$$/\tVAI_Nasal_Final_Suffixes ;/' >> templex.txt
@@ -364,7 +419,7 @@ badcluster.txt: fullvowel.txt clusters.txt
 	-cat fullvowel.txt | egrep -v ' ' | egrep -o '[^aeiou-]+' | keepif -n clusters.txt | sort | uniq -c | sort -r -n > $@
 
 clean:
-	rm -f badapost.txt allaposts.txt badchar.txt badcluster.txt badvowel.txt headwords.txt fullvowel.txt syncopated-test.txt clusters.txt ascii-headwords.txt classified-nouns.txt othernouns.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naDep.txt niDep.txt naDim.txt niDim.txt *-prev.txt *-comparison.txt *-test.txt consonanttypos.txt diacriticbug.txt multichar.txt nish.txt plural-test.txt tsv-*.txt independentnouns.txt pos.txt repeats.txt allnouns.txt test-actual.txt test-correct.txt
+	rm -f badapost.txt allaposts.txt badchar.txt badcluster.txt badvowel.txt headwords.txt fullvowel.txt syncopated-test.txt clusters.txt ascii-headwords.txt classified-nouns.txt othernouns.txt naI.txt niI.txt naII.txt niII.txt naIII.txt niIII.txt naIVa.txt niIVa.txt naIVb.txt naV.txt niV.txt naVI.txt niVI.txt naCon.txt niCon.txt naConDep.txt naIDep.txt naIIDep.txt naIIIDep.txt naIVaDep.txt naIVbDep.txt naVDep.txt naVIDep.txt niConDep.txt niDimDep.txt niIDep.txt niIIDep.txt niIVaDep.txt niVDep.txt niVIDep.txt naDim.txt niDim.txt *-prev.txt *-comparison.txt *-test.txt consonanttypos.txt diacriticbug.txt multichar.txt nish.txt plural-test.txt tsv-*.txt independentnouns.txt pos.txt repeats.txt allnouns.txt test-actual.txt test-correct.txt
 
 distclean:
 	$(MAKE) clean
